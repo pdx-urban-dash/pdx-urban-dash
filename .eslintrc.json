@@ -1,4 +1,10 @@
 {
     "extends": ["react-app", "airbnb", "plugin:jsx-a11y/recommended"],
-    "plugins": ["jsx-a11y"]
+    "plugins": ["jsx-a11y"],
+    "rules": {
+        "no-param-reassign": "off",
+        "no-console": "off",
+        "react/jsx-filename-extension": "off",
+        "react/jsx-one-expression-per-line": "off"
+    }
 }
