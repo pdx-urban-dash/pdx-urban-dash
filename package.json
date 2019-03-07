@@ -14,7 +14,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint ./src ./server.js"
+    "lint": "node_modules/.bin/eslint ./src ./server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
