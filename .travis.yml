@@ -2,12 +2,15 @@ dist: xenial
 language: node_js
 cache: yarn
 node_js:
-  - "node"
   - "lts/*"
-
-# By default travis will run yarn test so we only need an extra job for linting
+stages:
+  - lint
+  - unit-test
 jobs:
   include:
     - stage: lint
       install: npm install eslint
       script: yarn lint
+    - stage: unit-test
+      install: yarn
+      script: yarn test
