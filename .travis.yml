@@ -9,8 +9,8 @@ stages:
 jobs:
   include:
     - stage: lint
-      install: npm install eslint
+      install: yarn install
       script: yarn lint
     - stage: unit-test
-      install: yarn
+      install: yarn install
       script: yarn test
