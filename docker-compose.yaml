@@ -1,0 +1,17 @@
+version: "2"
+services:
+  dash:
+    image: "node:10"
+    working_dir: /home/dash/pdx-urban-dash
+    user: "${UID}:${GID}"
+    environment:
+        - NODE_ENV=production
+        - REACT_APP_STAGE=production
+        - PORT=8080
+    volumes:
+        - ./:/home/dash/pdx-urban-dash
+    expose:
+        - "8080"
+    ports:
+        - "127.0.0.1:8080:8080"
+    command: bash -c "yarn build && yarn start"
