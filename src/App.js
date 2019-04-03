@@ -2,6 +2,9 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+/**
+ * Root level App component
+ */
 const App = () => (
   <div className="App">
     <header className="App-header">
