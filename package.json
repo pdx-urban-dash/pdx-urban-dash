@@ -4,10 +4,13 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.18.3",
+    "css-loader": "1.0.0",
     "express": "^4.16.4",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "react-vega": "^6.0.1",
+    "vega": "^5.3.4"
   },
   "scripts": {
     "start": "react-scripts start",
