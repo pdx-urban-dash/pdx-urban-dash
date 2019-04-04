@@ -9,6 +9,7 @@
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-scripts": "2.1.5",
+    "react-vega": "^6.0.1",
     "vega": "^5.3.4"
   },
   "scripts": {
