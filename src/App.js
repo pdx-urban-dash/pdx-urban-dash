@@ -8,7 +8,7 @@ import './App.css';
 const App = () => (
   <div className="App">
     <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
+      {/* <img src={logo} className="App-logo" alt="logo" />
       <p>
         Edit <code>src/App.js</code> and save to reload.
       </p>
@@ -19,7 +19,10 @@ const App = () => (
         rel="noopener noreferrer"
       >
         Learn React
-      </a>
+      </a> */}
+      <div id="bar-container1" />
+      <div id="bar-container2" />
+
     </header>
   </div>
 );
