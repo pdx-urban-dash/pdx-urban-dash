@@ -4,9 +4,10 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import BarChart from './BarChart';
+import StupidComp from './components/StupidComp';
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<StupidComp />, document.getElementById('root'));
 const barData = {
   table: [
     { category: 'A', amount: 28 },
@@ -28,19 +29,31 @@ const barData2 = {
   ],
 };
 
+const barData3 = {
+  table: [
+    { category: 'Something', amount: 1000 },
+    { category: 'ANother', amount: 52 },
+    { category: 'boop boop', amount: 600 },
+  ],
+};
+
 
 function handleHover(...args) {
   console.log(args);
 }
 
-ReactDOM.render(
-  <BarChart data={barData} onSignalHover={handleHover} />,
-  document.getElementById('bar-container1'),
-);
-ReactDOM.render(
-  <BarChart data={barData2} width={100} height={200} onSignalHover={handleHover} />,
-  document.getElementById('bar-container2'),
-);
+// ReactDOM.render(
+//   <BarChart data={barData} onSignalHover={handleHover} />,
+//   document.getElementById('bar-container1'),
+// );
+// ReactDOM.render(
+//   <BarChart data={barData2} width={100} height={200} onSignalHover={handleHover} />,
+//   document.getElementById('bar-container2'),
+// );
+// ReactDOM.render(
+//   <BarChart data={barData3} onSignalHover={handleHover} />,
+//   document.getElementById('bar-container3'),
+// );
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

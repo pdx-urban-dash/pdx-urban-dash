@@ -22,6 +22,8 @@ const App = () => (
       </a> */}
       <div id="bar-container1" />
       <div id="bar-container2" />
+      <div id="bar-container3" />
+
 
     </header>
   </div>
