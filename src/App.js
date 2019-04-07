@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import LineChart from './components/viz/LineChart';
 
 /**
  * Root level App component
  */
 const App = () => (
   <div className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-    </header>
+    <LineChart
+      data={[
+        {
+          dataSetName: 'first',
+          values: [
+            { x: 0, y: 10 },
+            { x: 1, y: 20 },
+            { x: 2, y: 30 },
+            { x: 3, y: 40 },
+          ],
+        },
+        {
+          dataSetName: 'second',
+          values: [
+            { x: 0, y: 20 },
+            { x: 1, y: 30 },
+            { x: 2, y: 40 },
+            { x: 3, y: 50 },
+          ],
+        },
+      ]}
+    />
   </div>
 );
 
