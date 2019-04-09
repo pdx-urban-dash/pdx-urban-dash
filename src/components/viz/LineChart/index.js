@@ -3,23 +3,13 @@ import PropTypes from 'prop-types';
 import { createClassFromSpec } from 'react-vega';
 
 import { injectPropsIntoSchema } from '../../../utils/vegaUtils';
+import { getDefaultColor } from '../../../utils/vizUtils';
 import { colors, sizes } from '../../../constants';
 import lineChartSchema from './schema';
 import './styles.scss';
 
 import Legend from '../shared/Legend';
 
-
-const defaultColors = [
-  colors.primary,
-  colors.secondary,
-  colors.tertiary,
-  colors.fontDark,
-];
-
-const getDefaultColor = (idx) => {
-  return defaultColors[idx % defaultColors.length];
-};
 
 const buildData = (data) => {
   const retData = [];
