@@ -1,0 +1,61 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 200,
+  "height": 200,
+  "autosize": "none",
+  
+  "data": [
+    {
+      "name": "table",
+      "$dataValues": "",
+      "$transformValues": "",
+      "transform": [
+        {
+          "type": "pie",
+          "field": "field",
+          "startAngle": 0,
+          "endAngle": 6.29,
+          "sort": false
+        }
+      ]
+    }
+  ],
+
+  "config": {
+    "axis": {
+      "$labelColor": "",
+      "$labelFontSize": 0
+    }
+  },
+
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {"data": "table", "field": "id"},
+      "range": {"scheme": "category20"}
+    }
+  ],
+
+  "marks": [
+    {
+      "type": "arc",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "fill": {"scale": "color", "field": "id"},
+          "x": {"signal": "width / 2"},
+          "y": {"signal": "height / 2"}
+        },
+        "update": {
+          "startAngle": {"field": "startAngle"},
+          "endAngle": {"field": "endAngle"},
+          "padAngle": {"field": "padAngle"},
+          "innerRadius": { "signal": "50" },
+          "outerRadius": {"signal": "width / 2"},
+          "cornerRadius": {"field": "cornerRadius"}
+        }
+      }
+    }
+  ]
+}
