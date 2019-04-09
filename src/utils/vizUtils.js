@@ -1,11 +1,12 @@
 import { colors } from '../constants';
 
-const defaultColors = [
+export const defaultColors = [
   colors.primary,
   colors.secondary,
   colors.tertiary,
   colors.fontDark,
 ];
 
-// eslint-disable-next-line
-export const getDefaultColor = idx => defaultColors[idx % defaultColors.length];
+export const getDefaultColor = idx => (
+  idx < 0 ? defaultColors[4 - (Math.abs(idx) % 4)] : defaultColors[idx % defaultColors.length]
+);
