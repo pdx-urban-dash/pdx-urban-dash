@@ -1,0 +1,27 @@
+@import "../../../../base-styles";
+
+.Legend {
+  &-wrapper {
+
+  }
+
+  &-item {
+
+  }
+
+  &-colorIndicator {
+    height: 8px;
+    width: 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-right: $spacing-1;
+  }
+
+  &-title {
+
+  }
+
+  &-description {
+
+  }
+}

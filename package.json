@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.18.3",
+    "bootstrap": "^4.3.1",
     "express": "^4.16.4",
     "node-sass": "^4.11.0",
     "prop-types": "^15.7.2",

@@ -3,10 +3,23 @@ import PropTypes from 'prop-types';
 import { createClassFromSpec } from 'react-vega';
 
 import { injectPropsIntoSchema } from '../../../utils/vegaUtils';
-import { colors, sizes } from "../../../constants";
+import { colors, sizes } from '../../../constants';
 import lineChartSchema from './schema';
 import './styles.scss';
 
+import Legend from '../shared/Legend';
+
+
+const defaultColors = [
+  colors.primary,
+  colors.secondary,
+  colors.tertiary,
+  colors.fontDark,
+];
+
+const getDefaultColor = (idx) => {
+  return defaultColors[idx % defaultColors.length];
+};
 
 const buildData = (data) => {
   const retData = [];
@@ -16,6 +29,8 @@ const buildData = (data) => {
   return retData;
 };
 
+const getColors = data => data.map((elem, idx) => elem.lineColor || getDefaultColor(idx));
+
 const LineChart = (
   {
     data,
@@ -24,6 +39,7 @@ const LineChart = (
     colorScheme,
   },
 ) => {
+  const colorRange = getColors(data);
   const Graph = createClassFromSpec(
     injectPropsIntoSchema(
       {
@@ -39,6 +55,10 @@ const LineChart = (
           name: 'labelFontSize',
           value: parseInt(sizes.fontSM.slice(0, -2), 10),
         },
+        $colorRange: {
+          name: 'range',
+          value: colorRange,
+        },
       },
       lineChartSchema,
     ),
@@ -47,6 +67,13 @@ const LineChart = (
     <div className={`LineChart-wrapper LineChart-theme__${colorScheme} ${className}`}>
       <span className="LineChart-title">{title}</span>
       <Graph />
+      <Legend
+        series={data.map((elem, idx) => ({
+          title: elem.dataSetName,
+          color: colorRange[idx],
+          description: elem.description,
+        }))}
+      />
     </div>
   );
 };
@@ -55,6 +82,7 @@ LineChart.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
     dataSetName: PropTypes.string,
     lineColor: PropTypes.string,
+    description: PropTypes.string,
     values: PropTypes.arrayOf(PropTypes.shape({
       x: PropTypes.number.isRequired,
       y: PropTypes.number.isRequired,
