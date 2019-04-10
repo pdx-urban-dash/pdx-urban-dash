@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import LineChart from './components/viz/LineChart';
 
 /**
@@ -11,6 +10,8 @@ const App = () => (
       data={[
         {
           dataSetName: 'first',
+          description: 'this is first',
+          lineColor: 'red',
           values: [
             { x: 0, y: 10 },
             { x: 1, y: 20 },
@@ -20,6 +21,8 @@ const App = () => (
         },
         {
           dataSetName: 'second',
+          lineColor: 'blue',
+          description: 'this is second',
           values: [
             { x: 0, y: 20 },
             { x: 1, y: 30 },

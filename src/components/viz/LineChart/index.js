@@ -55,7 +55,7 @@ const LineChart = (
     ),
   );
   return (
-    <ChartWrapper title={title}>
+    <ChartWrapper title={title} className={className}>
       <Graph />
       <Legend
         series={data.map((elem, idx) => ({

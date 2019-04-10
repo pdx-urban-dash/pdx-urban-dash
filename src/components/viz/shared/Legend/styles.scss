@@ -18,10 +18,11 @@
   }
 
   &-title {
-
+    font-weight: 700;
   }
 
   &-description {
-
+    color: grey;
+    margin-left: $spacing-2;
   }
 }

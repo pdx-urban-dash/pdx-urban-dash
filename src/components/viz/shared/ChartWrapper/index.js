@@ -8,6 +8,7 @@ import './styles.scss';
 const ChartWrapper = (
   {
     title,
+    className,
     // eslint-disable-next-line
     children,
   },
@@ -22,9 +23,9 @@ const ChartWrapper = (
     }
   });
   return (
-    <Container>
+    <Container className={`ChartWrapper-wrapper ${className}`}>
       <Row>
-        <Col>
+        <Col className="ChartWrapper-title">
           <span className="ChartWrapper-title">{title}</span>
         </Col>
         <Col />
@@ -39,10 +40,12 @@ const ChartWrapper = (
 
 ChartWrapper.propTypes = {
   title: PropTypes.string,
+  className: PropTypes.string,
 };
 
 ChartWrapper.defaultProps = {
   title: '',
+  className: '',
 };
 
 export default ChartWrapper;
