@@ -9,6 +9,7 @@ import lineChartSchema from './schema';
 import './styles.scss';
 
 import Legend from '../shared/Legend';
+import ChartWrapper from '../shared/ChartWrapper';
 
 
 const buildData = (data) => {
@@ -54,17 +55,16 @@ const LineChart = (
     ),
   );
   return (
-    <div className={`LineChart-wrapper LineChart-theme__${colorScheme} ${className}`}>
-      <span className="LineChart-title">{title}</span>
+    <ChartWrapper title={title}>
       <Graph />
       <Legend
         series={data.map((elem, idx) => ({
           title: elem.dataSetName,
-          color: colorRange[idx],
           description: elem.description,
+          color: elem.lineColor || getDefaultColor(idx),
         }))}
       />
-    </div>
+    </ChartWrapper>
   );
 };
 

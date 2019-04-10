@@ -9,6 +9,7 @@
     "node-sass": "^4.11.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
+    "react-bootstrap": "^1.0.0-beta.6",
     "react-dom": "^16.8.3",
     "react-scripts": "2.1.5",
     "react-vega": "^6.0.1",
