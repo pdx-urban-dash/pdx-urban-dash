@@ -15,27 +15,9 @@ const buildData = (data) => {
   return retData;
 };
 
-const buildTransform = (transform) => {
-  const retData = [];
-  transform.values(trans => retData.push(
-    {
-      type: trans.type,
-      field: trans.field,
-      startAngle: trans.startAngle,
-      endAngle: trans.endAngle,
-      padAngle: trans.padAngle,
-      innerRadius: trans.innerRadius,
-      cornerRadius: trans.cornerRadius,
-      sort: trans.sort,
-    },
-  ));
-  return retData;
-};
-
 const DonutChart = (
   {
     data,
-    transform,
     title,
     className,
     colorScheme,
@@ -47,10 +29,6 @@ const DonutChart = (
         $dataValues: {
           name: 'values',
           value: buildData(data),
-        },
-        $transformValues: {
-          name: 'transform',
-          value: buildTransform(transform),
         },
         $labelColor: {
           name: 'labelColor',
@@ -79,16 +57,6 @@ DonutChart.propTypes = {
       id: PropTypes.number.isRequired,
       field: PropTypes.number.isRequired,
     })),
-  })).isRequired,
-  transform: PropTypes.arrayOf(PropTypes.shape({
-    type: PropTypes.string.isRequired,
-    field: PropTypes.string.isRequired,
-    startAngle: PropTypes.number.isRequired,
-    endAngle: PropTypes.number.isRequired,
-    padAngle: PropTypes.number.isRequired,
-    innerRadius: PropTypes.number.isRequired,
-    cornerRadius: PropTypes.number.isRequired,
-    sort: PropTypes.bool.isRequired,
   })).isRequired,
   title: PropTypes.string,
   className: PropTypes.string,

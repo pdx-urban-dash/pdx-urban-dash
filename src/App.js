@@ -8,7 +8,6 @@ import DonutChart from './components/viz/DonutChart';
 const App = () => (
   <div className="App">
     <DonutChart
-      name="table"
       data={[
         {
           dataSetName: 'first',
@@ -24,21 +23,6 @@ const App = () => (
           ],
         },
       ]}
-      // Refactor so transform is not required
-      transform={[
-        {
-          type: 'pie',
-          field: 'field',
-          startAngle: 0,
-          endAngle: 6.29,
-          padAngle: 0,
-          innerRadius: 50,
-          cornerRadius: 0,
-          sort: false,
-        },
-      ]}
-      title="Chart Title"
-      // colorScheme="dark"
     />
   </div>
 );

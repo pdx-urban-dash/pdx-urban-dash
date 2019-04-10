@@ -8,7 +8,6 @@
     {
       "name": "table",
       "$dataValues": "",
-      "$transformValues": "",
       "transform": [
         {
           "type": "pie",
