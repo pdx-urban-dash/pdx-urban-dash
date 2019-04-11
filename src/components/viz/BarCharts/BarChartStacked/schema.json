@@ -1,0 +1,94 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 500,
+  "height": 200,
+  "padding": 5,
+
+  "data": [
+    {
+      "name": "table",
+      "$dataValues": "",
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": ["x"],
+          "sort": {"data": "table", "field": "c"},
+          "field": "y"
+        }
+      ]
+    }
+  ],
+
+  "config": {
+    "axis": {
+      "$labelColor": "",
+      "$labelFontSize": 0
+    }
+  },
+
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "domain": {"data": "table", "field": "x"},
+      "range": "width",
+      "padding": 0.05,
+      "round": true
+    },
+    {
+      "name": "y",
+      "domain": {"data": "table", "field": "y0"},
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "$colorRange": [],
+      "domain": {"data": "table", "field": "c"}
+    }
+  ],
+
+  "axes": [
+    { "orient": "bottom", "scale": "x" },
+    { "orient": "left", "scale": "y" }
+  ],
+
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "c"
+        }
+      },
+
+      "marks": [
+        {
+          "type": "rect",
+          "from": {"data": "series"},
+          "encode": {
+            "enter": {
+              "interpolate": {"value": "monotone"},
+              "x": {"scale": "x", "field": "x"},
+              "y": {"scale": "y", "field": "y0"},
+              "y2": {"scale": "y", "field": "y1"},
+
+              "width": {"scale": "x", "band": 1},
+              "fill": {"scale": "color", "field": "c"}
+            },
+            "update": {
+              "fillOpacity": {"value": 1}
+            },
+            "hover": {
+              "fillOpacity": {"value": 0.5}
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
