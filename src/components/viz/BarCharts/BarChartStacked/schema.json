@@ -60,7 +60,7 @@
       "type": "group",
       "from": {
         "facet": {
-          "name": "series",
+          "name": "facet",
           "data": "table",
           "groupby": "c"
         }
@@ -69,10 +69,9 @@
       "marks": [
         {
           "type": "rect",
-          "from": {"data": "series"},
+          "from": {"data": "facet"},
           "encode": {
             "enter": {
-              "interpolate": {"value": "monotone"},
               "x": {"scale": "x", "field": "x"},
               "y": {"scale": "y", "field": "y0"},
               "y2": {"scale": "y", "field": "y1"},
