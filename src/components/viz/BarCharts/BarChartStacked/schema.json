@@ -68,8 +68,9 @@
 
       "marks": [
         {
-          "type": "rect",
+          "name": "bars",
           "from": {"data": "facet"},
+          "type": "rect",
           "encode": {
             "enter": {
               "x": {"scale": "x", "field": "x"},
