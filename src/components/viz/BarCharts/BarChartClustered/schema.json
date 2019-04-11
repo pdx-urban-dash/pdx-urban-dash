@@ -18,6 +18,17 @@
     }
   },
 
+  "signals": [
+    {
+      "name": "tooltip",
+      "value": {},
+      "on": [
+        {"events": "rect:mouseover", "update": "datum"},
+        {"events": "rect:mouseout",  "update": "{}"}
+      ]
+    }
+  ],
+
   "scales": [
     {
       "name": "xscale",
@@ -38,6 +49,12 @@
       "name": "color",
       "type": "ordinal",
       "$colorRange": [],
+      "domain": {"data": "table", "field": "c"}
+    },
+    {
+      "name": "textoffset",
+      "type": "band",
+      "range": "width",
       "domain": {"data": "table", "field": "c"}
     }
   ],
@@ -70,7 +87,7 @@
 
       "scales": [
         {
-          "name": "offset",
+          "name": "groupoffset",
           "type": "band",
           "range": "width",
           "domain": {"data": "facet", "field": "c"}
@@ -82,18 +99,45 @@
           "name": "bars",
           "from": {"data": "facet"},
           "type": "rect",
+          "scales": [
+            {
+              "name": "textoffset",
+              "type": "band",
+              "range": {"data": "data", "field": "c"},
+              "domain": {"data": "facet", "field": "c"}
+            }
+          ],
           "encode": {
             "enter": {
 
 
-              "x": {"scale": "offset", "field": "c"},
-              "width": {"scale": "offset", "band": 1},
+              "x": {"scale": "groupoffset", "field": "c"},
+              "width": {"scale": "groupoffset", "band": 1},
 
               "y": {"scale": "yscale", "field": "y"},
               "y2": {"scale": "yscale", "value": 0},
               
 
               "fill": {"scale": "color", "field": "c"}
+            },
+            "update": {
+              "fillOpacity": {"value": 1}
+            },
+            "hover": {
+              "fillOpacity": {"value": 0.5}
+            }
+          }
+        },
+        {
+          "type": "text",
+          "from": {"data": "bars"},
+          "encode": {
+            "enter": {
+              "x": {"field": "x", "offset": {"field": "width", "mult": 0.5}},
+              "y": {"field": "y", "offset":-5},
+              "fill": {"value": "black"},
+              "align": {"value": "center"},
+              "text": {"field": "datum.y"}
             },
             "update": {
               "fillOpacity": {"value": 1}

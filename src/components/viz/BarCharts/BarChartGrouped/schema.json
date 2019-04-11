@@ -89,6 +89,26 @@
               "fill": {"scale": "color", "field": "c"}
             }
           }
+        },
+        {
+          "type": "text",
+          "from": {"data": "bars"},
+          "encode": {
+            "enter": {
+              "x": {"field": "x", "offset": -5},
+              "y": {"field": "y", "offset": {"field": "height", "mult": 0.5}},
+              "fill": {"value": "black"},
+              "align": {"value": "right"},
+              "baseline": {"value": "middle"},
+              "text": {"field": "datum.x"}
+            },
+            "update": {
+              "fillOpacity": {"value": 1}
+            },
+            "hover": {
+              "fillOpacity": {"value": 0.5}
+            }
+          }
         }
       ]
     }
