@@ -37,7 +37,7 @@
     },
     {
       "name": "y",
-      "domain": {"data": "table", "field": "y0"},
+      "domain": {"data": "table", "field": "y1"},
       "range": "height",
       "nice": true,
       "zero": true
