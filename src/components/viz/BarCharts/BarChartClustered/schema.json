@@ -133,17 +133,16 @@
           "from": {"data": "bars"},
           "encode": {
             "enter": {
-              "x": {"field": "x", "offset": {"field": "width", "mult": 0.5}},
-              "y": {"field": "y", "offset":-5},
               "fill": {"value": "black"},
-              "align": {"value": "center"},
-              "text": {"field": "datum.y"}
-            },
+              "align": {"value": "center"}            },
             "update": {
-              "fillOpacity": {"value": 1}
-            },
-            "hover": {
-              "fillOpacity": {"value": 0.5}
+              "x": {"field": "x", "offset": {"field": "width", "mult": 0.5}},
+              "y": {"field": "y", "offset": 20},
+              "text": {"signal": "tooltip.y"},
+              "fillOpacity": [
+                {"test": "datum === tooltip", "value": 0},
+                {"value": 1}
+              ]
             }
           }
         }
