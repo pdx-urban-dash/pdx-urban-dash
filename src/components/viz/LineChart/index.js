@@ -12,7 +12,7 @@ import Legend from '../shared/Legend';
 import ChartWrapper from '../shared/ChartWrapper';
 
 
-const buildData = (data) => {
+export const buildData = (data) => {
   const retData = [];
   let currentTrendLineNumber = data.length;
   data.forEach((dataSet, idx) => {
@@ -28,7 +28,7 @@ const buildData = (data) => {
   return retData;
 };
 
-const getColors = (data) => {
+export const getColors = (data) => {
   let numTrendLines = 0;
   const mColors = data.map((elem, idx) => {
     if (elem.showTrendLine) numTrendLines += 1;

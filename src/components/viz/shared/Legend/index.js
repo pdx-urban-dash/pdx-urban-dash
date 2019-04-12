@@ -21,7 +21,7 @@ export default class Legend extends Component {
         {
           series.map(s => (
             <div className="Legend-item" key={`legend-item-${s.title}`}>
-              {s.color && <div className="Legend-colorIndicator" style={{ backgroundColor: s.color }}/>}
+              {s.color && <div className="Legend-colorIndicator" style={{ backgroundColor: s.color }} />}
               <span className="Legend-title">{s.title}</span>
               {s.description && <span className="Legend-description">{s.description}</span>}
             </div>
