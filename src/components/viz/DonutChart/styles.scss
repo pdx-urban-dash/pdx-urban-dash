@@ -18,6 +18,13 @@ defining font-families, sizes, margins, padding or colors.
     margin-right: auto;
   }
 
+  &-description {
+    font-family: $font-heading;
+    font-size: $font-size-lg;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   &-theme {
     &__light {
       color: $color-font-dark;
