@@ -3,14 +3,25 @@ import PropTypes from 'prop-types';
 import { createClassFromSpec } from 'react-vega';
 
 import { injectPropsIntoSchema } from '../../../utils/vegaUtils';
+import { getDefaultColor } from '../../../utils/visUtils';
 import { colors, sizes } from '../../../constants';
 import donutChartSchema from './schema';
 import './styles.scss';
 
+import Legend from '../shared/Legend';
+import ChartWrapper from '../shared/ChartWrapper';
+
 const buildData = (data) => {
   const retData = [];
   data.forEach((dataSet, idx) => {
-    dataSet.values.forEach(slice => retData.push({ id: slice.id, field: slice.field, c: idx }));
+    dataSet.values.forEach(slice => retData.push(
+      {
+        id: slice.id,
+        field: slice.field,
+        color: slice.color,
+        c: idx,
+      },
+    ));
   });
   return retData;
 };
@@ -43,10 +54,16 @@ const DonutChart = (
     ),
   );
   return (
-    <div className={`DonutChart-wrapper DonutChart-theme__${colorScheme} ${className}`}>
-      <span className="DonutChart-title">{title}</span>
+    <ChartWrapper title={title} className={className}>
       <Graph />
-    </div>
+      <Legend
+        series={data.map((elem, idx) => ({
+          title: elem.dataSetName,
+          description: elem.description,
+          color: elem.color || getDefaultColor(idx),
+        }))}
+      />
+    </ChartWrapper>
   );
 };
 
@@ -56,6 +73,7 @@ DonutChart.propTypes = {
     values: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       field: PropTypes.number.isRequired,
+      color: PropTypes.string,
     })),
   })).isRequired,
   title: PropTypes.string,
