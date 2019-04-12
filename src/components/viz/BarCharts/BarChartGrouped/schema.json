@@ -87,6 +87,12 @@
               "height": {"scale": "offset", "band": 1},
               
               "fill": {"scale": "color", "field": "c"}
+            },
+            "update": {
+              "fillOpacity": {"value": 1}
+            },
+            "hover": {
+              "fillOpacity": {"value": 0.5}
             }
           }
         },
@@ -101,6 +107,26 @@
               "align": {"value": "right"},
               "baseline": {"value": "middle"},
               "text": {"field": "datum.x"}
+            },
+            "update": {
+              "fillOpacity": {"value": 1}
+            },
+            "hover": {
+              "fillOpacity": {"value": 0.5}
+            }
+          }
+        },
+        {
+          "type": "text",
+          "from": {"data": "bars"},
+          "encode": {
+            "enter": {
+              "x": {"field": "x2", "offset": 17},
+              "y": {"field": "y", "offset": {"field": "height", "mult": 0.5}},
+              "fill": {"value": "black"},
+              "align": {"value": "right"},
+              "baseline": {"value": "middle"},
+              "text": {"field": "datum.y"}
             },
             "update": {
               "fillOpacity": {"value": 1}

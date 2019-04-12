@@ -118,7 +118,8 @@
               "y2": {"scale": "yscale", "value": 0},
               
 
-              "fill": {"scale": "color", "field": "c"}
+              "fill": {"scale": "color", "field": "c"},
+              "tooltip": {"yeet": "yes"}
             },
             "update": {
               "fillOpacity": {"value": 1}
@@ -137,12 +138,11 @@
               "align": {"value": "center"}            },
             "update": {
               "x": {"field": "x", "offset": {"field": "width", "mult": 0.5}},
-              "y": {"field": "y", "offset": 20},
-              "text": {"signal": "tooltip.y"},
-              "fillOpacity": [
-                {"test": "datum === tooltip", "value": 0},
-                {"value": 1}
-              ]
+              "y": {"field": "y", "offset": -5},
+              "text": {"field": "datum.y"}
+            },
+            "hover": {
+              "fillOpacity": {"value": 0.5}
             }
           }
         }
