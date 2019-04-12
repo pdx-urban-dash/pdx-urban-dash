@@ -5,7 +5,7 @@ import { Col } from 'react-bootstrap';
 import './styles.scss';
 
 // eslint-disable-next-line react/prefer-stateless-function
-export default class DonutLegend extends Component {
+export default class Legend extends Component {
   static propTypes = {
     series: PropTypes.arrayOf(PropTypes.shape({
       title: PropTypes.string.isRequired,

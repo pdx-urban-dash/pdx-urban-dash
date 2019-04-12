@@ -36,6 +36,15 @@
     }
   ],
 
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Legend",
+      "padding": 55,
+      "orient": "top-right"
+    }
+  ],
+
   "marks": [
     {
       "type": "arc",
@@ -50,7 +59,7 @@
           "startAngle": {"field": "startAngle"},
           "endAngle": {"field": "endAngle"},
           "padAngle": {"field": "padAngle"},
-          "innerRadius": { "signal": "50" },
+          "innerRadius": {"signal": "45"},
           "outerRadius": {"signal": "width / 2"},
           "cornerRadius": {"field": "cornerRadius"}
         }

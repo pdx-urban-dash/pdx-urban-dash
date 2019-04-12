@@ -7,6 +7,8 @@ import { colors, sizes } from '../../../constants';
 import donutChartSchema from './schema';
 import './styles.scss';
 
+import ChartWrapper from '../shared/ChartWrapper';
+
 const buildData = (data) => {
   const retData = [];
   data.forEach((dataSet) => {
@@ -43,10 +45,9 @@ const DonutChart = (
     ),
   );
   return (
-    <div className={`DonutChart-wrapper DonutChart-theme__${colorScheme} ${className}`}>
-      <span className="DonutChart-title">{title}</span>
+    <ChartWrapper title={title} className={className}>
       <Graph />
-    </div>
+    </ChartWrapper>
   );
 };
 
@@ -64,7 +65,7 @@ DonutChart.propTypes = {
 };
 
 DonutChart.defaultProps = {
-  title: 'chart title',
+  title: 'default title',
   className: '',
   colorScheme: 'light',
 };

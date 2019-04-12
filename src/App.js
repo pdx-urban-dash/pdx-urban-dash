@@ -8,15 +8,13 @@ import DonutChart from './components/viz/DonutChart';
 const App = () => (
   <div className="App">
     <DonutChart
-      title="donut-chart title"
+      title="chart title"
       data={[
         {
           values: [
-            { id: 0, field: 100 },
-            { id: 1, field: 50 },
-            { id: 2, field: 25 },
-            { id: 3, field: 10 },
-            { id: 4, field: 75 },
+            { id: 'ID one', field: 90 },
+            { id: 'ID two', field: 50 },
+            { id: 'ID three', field: 25 },
           ],
         },
       ]}
