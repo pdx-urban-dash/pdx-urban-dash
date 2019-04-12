@@ -33,6 +33,7 @@
   ],
   "devDependencies": {
     "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
     "eslint-config-airbnb": "^17.1.0",
     "jest-each": "^24.7.1",
     "nodemon": "^1.18.10"

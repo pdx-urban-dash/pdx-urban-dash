@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { createClassFromSpec } from 'react-vega';
 
 import { injectPropsIntoSchema } from '../../../utils/vegaUtils';
-import { getDefaultColor } from '../../../utils/vizUtils';
+import { getDefaultColor, getTrendLineFunc } from '../../../utils/vizUtils';
 import { colors, sizes } from '../../../constants';
 import lineChartSchema from './schema';
 import './styles.scss';
@@ -14,13 +14,31 @@ import ChartWrapper from '../shared/ChartWrapper';
 
 const buildData = (data) => {
   const retData = [];
+  let currentTrendLineNumber = data.length;
   data.forEach((dataSet, idx) => {
     dataSet.values.forEach(point => retData.push({ x: point.x, y: point.y, c: idx }));
+    if (dataSet.showTrendLine) {
+      const trendFunc = getTrendLineFunc(dataSet.values);
+      dataSet.values.forEach(
+        ({ x }) => retData.push({ x, y: trendFunc(x), c: currentTrendLineNumber }),
+      );
+      currentTrendLineNumber += 1;
+    }
   });
   return retData;
 };
 
-const getColors = data => data.map((elem, idx) => elem.lineColor || getDefaultColor(idx));
+const getColors = (data) => {
+  let numTrendLines = 0;
+  const mColors = data.map((elem, idx) => {
+    if (elem.showTrendLine) numTrendLines += 1;
+    return elem.lineColor || getDefaultColor(idx);
+  });
+  for (let i = 0; i < numTrendLines; i += 1) {
+    mColors.push(colors.trendLine);
+  }
+  return mColors;
+};
 
 const LineChart = (
   {
@@ -73,6 +91,7 @@ LineChart.propTypes = {
     dataSetName: PropTypes.string,
     lineColor: PropTypes.string,
     description: PropTypes.string,
+    showTrendLine: PropTypes.bool,
     values: PropTypes.arrayOf(PropTypes.shape({
       x: PropTypes.number.isRequired,
       y: PropTypes.number.isRequired,

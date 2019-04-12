@@ -7,6 +7,7 @@ export const colors = {
   success: '#6CC551',
   warning: '#ff9966',
   error: '#cc3300',
+  trendLine: '#bcbcbc',
 };
 
 export const sizes = {

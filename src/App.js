@@ -12,6 +12,7 @@ const App = () => (
           dataSetName: 'first',
           description: 'this is first',
           lineColor: 'red',
+          showTrendLine: true,
           values: [
             { x: 0, y: 10 },
             { x: 1, y: 20 },
