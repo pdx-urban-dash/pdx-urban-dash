@@ -1,23 +1,20 @@
 import React from 'react';
 import './App.css';
-import DonutChart from './components/viz/DonutChart';
+// import DonutChart from './components/viz/DonutChart';
+import DonutChartPercentage from './components/viz/DonutChartPercentage';
 
 /**
  * Root level App component
  */
 const App = () => (
   <div className="App">
-    <DonutChart
-      title="chart title"
-      data={[
-        {
-          values: [
-            { id: 'ID one', field: 90 },
-            { id: 'ID two', field: 50 },
-            { id: 'ID three', field: 25 },
-          ],
-        },
-      ]}
+    <DonutChartPercentage
+      title="percentage chart"
+      className=""
+      color="black"
+      description="this chart shows a percentage of a value to a target"
+      value="33"
+      target="75"
     />
   </div>
 );
