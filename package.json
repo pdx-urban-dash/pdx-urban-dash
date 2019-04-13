@@ -4,10 +4,16 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.18.3",
+    "bootstrap": "^4.3.1",
     "express": "^4.16.4",
+    "node-sass": "^4.11.0",
+    "prop-types": "^15.7.2",
     "react": "^16.8.3",
+    "react-bootstrap": "^1.0.0-beta.6",
     "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "react-vega": "^6.0.1",
+    "vega": "^5.3.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -26,7 +32,10 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
     "eslint-config-airbnb": "^17.1.0",
+    "jest-each": "^24.7.1",
     "nodemon": "^1.18.10"
   },
   "proxy": "http://localhost:5000/"
