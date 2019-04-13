@@ -30,5 +30,6 @@ type VizData {
   categories: [String!]!
   target: Float
   targetTrend: TrendType
+  axisLabels: [String!]!
   dataSets: [DataSet!]!
 }
