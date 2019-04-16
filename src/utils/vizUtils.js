@@ -10,6 +10,7 @@ export const defaultColors = [
 export const getDefaultColor = idx => (
   idx < 0 ? defaultColors[4 - (Math.abs(idx) % 4)] : defaultColors[idx % defaultColors.length]
 );
+<<<<<<< HEAD
 
 export const getTrendLineFunc = (points) => {
   const n = points.length;
@@ -23,3 +24,5 @@ export const getTrendLineFunc = (points) => {
 
   return x => (slope * x) + offset;
 };
+=======
+>>>>>>> 1ab62bd72d313f1875f8ca362cdf0e840846ce01
