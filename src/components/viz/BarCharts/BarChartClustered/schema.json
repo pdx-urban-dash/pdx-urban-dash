@@ -1,0 +1,152 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 500,
+  "height": 200,
+  "padding": 5,
+
+  "data": [
+    {
+      "name": "table",
+      "$dataValues": ""
+    }
+  ],
+
+  "config": {
+    "axis": {
+      "$labelColor": "",
+      "$labelFontSize": 0
+    }
+  },
+
+  "signals": [
+    {
+      "name": "tooltip",
+      "value": {},
+      "on": [
+        {"events": "rect:mouseover", "update": "datum"},
+        {"events": "rect:mouseout",  "update": "{}"}
+      ]
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {"data": "table", "field": "x"},
+      "range": "width",
+      "padding": 0.05,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {"data": "table", "field": "y"},
+      "range": "height",
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "$colorRange": [],
+      "domain": {"data": "table", "field": "c"}
+    },
+    {
+      "name": "textoffset",
+      "type": "band",
+      "range": "width",
+      "domain": {"data": "table", "field": "c"}
+    }
+  ],
+
+  "axes": [
+    { "orient": "bottom", "scale": "xscale" },
+    { "orient": "left", "scale": "yscale" }
+  ],
+
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "facet",
+          "data": "table",
+          "groupby": "x"
+        }
+      },
+
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale", "field": "x"}
+        }
+      },
+
+      "signals": [
+        {"name": "width", "update": "bandwidth('xscale')"}
+      ],
+
+      "scales": [
+        {
+          "name": "groupoffset",
+          "type": "band",
+          "range": "width",
+          "domain": {"data": "facet", "field": "c"}
+        }
+      ],
+
+      "marks": [
+        {
+          "name": "bars",
+          "from": {"data": "facet"},
+          "type": "rect",
+          "scales": [
+            {
+              "name": "textoffset",
+              "type": "band",
+              "range": {"data": "data", "field": "c"},
+              "domain": {"data": "facet", "field": "c"}
+            }
+          ],
+          "encode": {
+            "enter": {
+
+
+              "x": {"scale": "groupoffset", "field": "c"},
+              "width": {"scale": "groupoffset", "band": 1},
+
+              "y": {"scale": "yscale", "field": "y"},
+              "y2": {"scale": "yscale", "value": 0},
+              
+
+              "fill": {"scale": "color", "field": "c"},
+              "tooltip": {"yeet": "yes"}
+            },
+            "update": {
+              "fillOpacity": {"value": 1}
+            },
+            "hover": {
+              "fillOpacity": {"value": 0.5}
+            }
+          }
+        },
+        {
+          "type": "text",
+          "from": {"data": "bars"},
+          "encode": {
+            "enter": {
+              "fill": {"value": "black"},
+              "align": {"value": "center"}            },
+            "update": {
+              "x": {"field": "x", "offset": {"field": "width", "mult": 0.5}},
+              "y": {"field": "y", "offset": -5},
+              "text": {"field": "datum.y"}
+            },
+            "hover": {
+              "fillOpacity": {"value": 0.5}
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
