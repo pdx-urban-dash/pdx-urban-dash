@@ -4,7 +4,7 @@ import DonutChart from '../index';
 
 describe('<DonutChart />', () => {
   test('snapshot', () => {
-    shallow(
+    const wrapper = shallow(
       <DonutChart
         title="title"
         className=""
@@ -26,6 +26,6 @@ describe('<DonutChart />', () => {
         ]}
       />,
     );
-    // expect(wrapper).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 });

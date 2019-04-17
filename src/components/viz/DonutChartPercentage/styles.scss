@@ -1,31 +1,51 @@
-.donutchartpercentage-track {
-  fill: transparent;
-  stroke: #DAE2E5;
-  stroke-width: 26;
-}
-.donutchartpercentage-indicator {
-  fill: transparent;
-  stroke: #0F0F0F;
-  stroke-width: 26;
-  stroke-dasharray: 0 10000;
-}
+/*
+These are the global variables we use. Just an optimization to keep
+us using standardized widths and colors. Reference base-styles.scss when
+defining font-families, sizes, margins, padding or colors.
+*/
+@import "../../../base-styles";
 
-.donutchartpercentage {
-  margin: 0 auto;
-  border-radius: 50%;
+.DonutChartPercentage {
+
   display: block;
-}
+  margin: auto;
 
-.donutchartpercentage-text {
-  fill: #607580;
-}
-.donutchartpercentage-text-val {
-  font-size:22px;
-}
-.donutchartpercentage-text-percent {
-  font-size:22px;
-}
+  &-wrapper {
+    height: 100%;
+    width: 100%;
+  }
 
-.donutchartpercentage-text-label {
-  font-size:9px;
+  &-title {
+    font-family: $font-heading;
+    font-size: $font-size-lg;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &-theme {
+    &__light {
+      color: $color-font-dark;
+      background-color: white;
+    }
+
+    &__dark {
+      color: $color-font-light;
+      background-color: $color-font-dark;
+    }
+  }
+
+  &-track {
+    fill: transparent;
+    stroke: #DAE2E5;
+  }
+
+  &-indicator {
+    fill: transparent;
+    stroke: #0F0F0F;
+  }
+  
+  &-text-label {
+    font-size: $font-size-xsm;
+    font-style: $font-heading;
+  }
 }
