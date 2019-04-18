@@ -1,14 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-<<<<<<< HEAD
   "width": 500,
   "height": 200,
   "padding": 5,
-=======
-  "width": 200,
-  "height": 175,
-  "autosize": "fit",
->>>>>>> 43833c2510545533448b3592e9bdf129403948b3
 
   "data": [
     {
@@ -41,17 +35,6 @@
       "range": {"scheme": "category20"}
     }
   ],
-<<<<<<< HEAD
-=======
-  
-  "legends": [
-    {
-        "fill": "color"
-        "title": "Legend",
-        "stroke": "color",
-    }
-  ],
->>>>>>> 43833c2510545533448b3592e9bdf129403948b3
 
   "marks": [
     {
@@ -66,13 +49,8 @@
         "update": {
           "startAngle": {"field": "startAngle"},
           "endAngle": {"field": "endAngle"},
-<<<<<<< HEAD
           "innerRadius": {"signal": "width / 8"},
           "outerRadius": {"signal": "width / 4"}
-=======
-          "innerRadius": {"signal": "35"},
-          "outerRadius": {"signal": "width / 2"}
->>>>>>> 43833c2510545533448b3592e9bdf129403948b3
         }
       }
     }
