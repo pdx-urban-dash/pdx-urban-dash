@@ -1,10 +1,11 @@
 import React from "react";
-import { Card, Container, Col, Form, Jumbotron, Row, Navbar } from 'react-bootstrap';
-import { BarChartGrouped, BarChartStacked, BarChartClustered } from './viz/BarCharts/BarCharts'
+import { Container, Col, Jumbotron, Row } from 'react-bootstrap';
+import { BarChartGrouped, BarChartStacked, BarChartClustered } from './../viz/BarCharts/BarCharts'
+import { Charts, FilterCard, IntroCard, Navigation} from './components'
 
 
 //Navbar
-import logo from "../images/SealofPortland.png"
+import logo from "./images/SealofPortland.png"
 const pageTitle = "City of Portland Urban Dashboard";
 
 //Intro card
@@ -18,8 +19,6 @@ const filterTrendOptions = ["All", "..."];
 const filterCardSelects = [
 	{
 		"title": "category",
-		"type": "select",
-		"slected": false,
 		"options": filterCatOptions
 	},
 	{
@@ -27,7 +26,11 @@ const filterCardSelects = [
 		"options": filterTrendOptions
 	}
 ];
-const filterButtonPlaceholder = "enter a search term";
+const filterCardTexts = [
+	{
+		"placeholder": "enter a search term"
+	}
+]
 
 //charts
 const barChartData = [
@@ -90,55 +93,18 @@ class App extends React.Component {
 	render () {
 		return (
 			<div>
-				<Navbar bg="light" className="justify-content-sm-center">
-					<Navbar.Brand >
-						<img src={logo} width="40" height="40" alt="City of Portland"/>
-						<span></span> {pageTitle}
-					</Navbar.Brand>
-				</Navbar>
+				<Navigation title={pageTitle} logo={logo}/>
 				<Container>
 					<Row as={Container}>
 						<Col as={Jumbotron} lg={6}>
-							<h1>{introCardTitle}</h1>
-							<p>{introCardText}</p>
+							<IntroCard title={introCardTitle} body={introCardText}/>
 
 						</Col>
 						<Col as={Jumbotron} lg={6}>
-							<Card style={{padding:"auto"}}>
-								<Card.Body>
-									<Card.Title>{filterCardTitle}</Card.Title>
-									<Container as={Form}>
-										{
-											filterCardSelects.map((elem) => 
-												<Row as={Form.Group} controlId = {"filter"+elem.title} key={elem.title}>
-													<Col as={Form.Label} >{elem.title}</Col>
-													<Col as="select" id = {"filter"+elem.title}>
-														{
-															elem.options.map((option) => 
-																<option key={option}>{option}</option>
-															)
-														}
-													</Col>
-												</Row>
-											)
-										}
-										<Form.Group>
-											<Form.Control type="text" placeholder={filterButtonPlaceholder} />
-										</Form.Group>
-									</Container>
-								</Card.Body>
-							</Card>
+							<FilterCard title={filterCardTitle} selects={filterCardSelects} texts={filterCardTexts}/>
 						</Col>
 					</Row>
-					<Row className="charRow">
-						{
-							charts.map((chart, i) =>
-								<Col sm={6} key={i}>
-									<chart.schema data={chart.data}/>
-								</Col>
-							)
-						}
-					</Row>
+					<Charts charts={charts}/>
 				</Container>
 			</div>
 		);
