@@ -14,7 +14,7 @@ import ChartWrapper from '../shared/ChartWrapper';
 const buildData = (data) => {
   const retData = [];
   data.forEach((dataSet, idx) => {
-    dataSet.values.forEach(slice => retData.push({ id: slice.id, field: slice.field, c: idx }));
+    dataSet.values(slice => retData.push({ id: slice.id, field: slice.field, c: idx }));
   });
   return retData;
 };

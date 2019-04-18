@@ -11,8 +11,8 @@ describe('<LineChart />', () => {
         className=""
         color="black"
         description="this chart shows a percentage of a value to a target"
+        value={33}
         target={75}
-        value={40}
       />,
     );
     expect(wrapper).toMatchSnapshot();

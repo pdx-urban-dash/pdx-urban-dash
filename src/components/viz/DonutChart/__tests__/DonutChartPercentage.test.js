@@ -13,30 +13,22 @@ describe('<DonutChart />', () => {
           {
             dataSetName: 'first slice',
             description: 'first description',
-            values: [
-              { id: 0, field: 10 },
-            ],
+            values: { id: 0, field: 10 },
           },
           {
             dataSetName: 'second slice',
             description: 'second description',
-            values: [
-              { id: 1, field: 10 },
-            ],
+            values: { id: 1, field: 10 },
           },
           {
             dataSetName: 'third slice',
             description: 'third description',
-            values: [
-              { id: 2, field: 10 },
-            ],
+            values: { id: 2, field: 10 },
           },
           {
             dataSetName: 'fourth slice',
             description: 'fourth description',
-            values: [
-              { id: 3, field: 10 },
-            ],
+            values: { id: 3, field: 10 },
           },
         ]}
       />,

@@ -9,39 +9,42 @@ ShallowWrapper {
     data={
       Array [
         Object {
-          "dataSetName": "first",
+          "dataSetName": "first slice",
+          "description": "first description",
           "values": Array [
             Object {
               "field": 10,
               "id": 0,
             },
+          ],
+        },
+        Object {
+          "dataSetName": "second slice",
+          "description": "second description",
+          "values": Array [
             Object {
-              "field": 20,
+              "field": 10,
               "id": 1,
             },
+          ],
+        },
+        Object {
+          "dataSetName": "third slice",
+          "description": "third description",
+          "values": Array [
             Object {
-              "field": 15,
+              "field": 10,
               "id": 2,
             },
+          ],
+        },
+        Object {
+          "dataSetName": "fourth slice",
+          "description": "fourth description",
+          "values": Array [
             Object {
-              "field": 40,
+              "field": 10,
               "id": 3,
-            },
-            Object {
-              "field": 90,
-              "id": 4,
-            },
-            Object {
-              "field": 12,
-              "id": 5,
-            },
-            Object {
-              "field": 35,
-              "id": 6,
-            },
-            Object {
-              "field": 55,
-              "id": 7,
             },
           ],
         },
@@ -63,36 +66,41 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "function",
     "props": Object {
-      "children": <a />,
+      "children": Array [
+        <a />,
+        <Legend
+          series={
+            Array [
+              Object {
+                "color": "#1f77b4",
+                "description": "first description",
+                "title": "first slice",
+              },
+              Object {
+                "color": "#aec7e8",
+                "description": "second description",
+                "title": "second slice",
+              },
+              Object {
+                "color": "#ff7f0e",
+                "description": "third description",
+                "title": "third slice",
+              },
+              Object {
+                "color": "#ffbb78",
+                "description": "fourth description",
+                "title": "fourth slice",
+              },
+            ]
+          }
+        />,
+      ],
       "className": "",
-      "description": "",
       "title": "title",
     },
     "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {},
-      "ref": null,
-      "rendered": null,
-      "type": [Function],
-    },
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "children": <a />,
-        "className": "",
-        "description": "",
-        "title": "title",
-      },
-      "ref": null,
-      "rendered": Object {
+    "rendered": Array [
+      Object {
         "instance": null,
         "key": undefined,
         "nodeType": "function",
@@ -101,6 +109,123 @@ ShallowWrapper {
         "rendered": null,
         "type": [Function],
       },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "series": Array [
+            Object {
+              "color": "#1f77b4",
+              "description": "first description",
+              "title": "first slice",
+            },
+            Object {
+              "color": "#aec7e8",
+              "description": "second description",
+              "title": "second slice",
+            },
+            Object {
+              "color": "#ff7f0e",
+              "description": "third description",
+              "title": "third slice",
+            },
+            Object {
+              "color": "#ffbb78",
+              "description": "fourth description",
+              "title": "fourth slice",
+            },
+          ],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          <a />,
+          <Legend
+            series={
+              Array [
+                Object {
+                  "color": "#1f77b4",
+                  "description": "first description",
+                  "title": "first slice",
+                },
+                Object {
+                  "color": "#aec7e8",
+                  "description": "second description",
+                  "title": "second slice",
+                },
+                Object {
+                  "color": "#ff7f0e",
+                  "description": "third description",
+                  "title": "third slice",
+                },
+                Object {
+                  "color": "#ffbb78",
+                  "description": "fourth description",
+                  "title": "fourth slice",
+                },
+              ]
+            }
+          />,
+        ],
+        "className": "",
+        "title": "title",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "series": Array [
+              Object {
+                "color": "#1f77b4",
+                "description": "first description",
+                "title": "first slice",
+              },
+              Object {
+                "color": "#aec7e8",
+                "description": "second description",
+                "title": "second slice",
+              },
+              Object {
+                "color": "#ff7f0e",
+                "description": "third description",
+                "title": "third slice",
+              },
+              Object {
+                "color": "#ffbb78",
+                "description": "fourth description",
+                "title": "fourth slice",
+              },
+            ],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
       "type": [Function],
     },
   ],
