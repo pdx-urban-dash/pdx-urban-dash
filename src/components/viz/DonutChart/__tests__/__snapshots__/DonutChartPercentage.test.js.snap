@@ -11,42 +11,34 @@ ShallowWrapper {
         Object {
           "dataSetName": "first slice",
           "description": "first description",
-          "values": Array [
-            Object {
-              "field": 10,
-              "id": 0,
-            },
-          ],
+          "values": Object {
+            "field": 10,
+            "id": 0,
+          },
         },
         Object {
           "dataSetName": "second slice",
           "description": "second description",
-          "values": Array [
-            Object {
-              "field": 10,
-              "id": 1,
-            },
-          ],
+          "values": Object {
+            "field": 10,
+            "id": 1,
+          },
         },
         Object {
           "dataSetName": "third slice",
           "description": "third description",
-          "values": Array [
-            Object {
-              "field": 10,
-              "id": 2,
-            },
-          ],
+          "values": Object {
+            "field": 10,
+            "id": 2,
+          },
         },
         Object {
           "dataSetName": "fourth slice",
           "description": "fourth description",
-          "values": Array [
-            Object {
-              "field": 10,
-              "id": 3,
-            },
-          ],
+          "values": Object {
+            "field": 10,
+            "id": 3,
+          },
         },
       ]
     }
