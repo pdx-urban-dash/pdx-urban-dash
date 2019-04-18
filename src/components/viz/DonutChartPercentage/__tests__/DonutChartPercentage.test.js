@@ -2,7 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import DonutChartPercentage from '../index';
 
-describe('<DonutChartPercentage />', () => {
+
+describe('<LineChart />', () => {
   test('snapshot', () => {
     const wrapper = shallow(
       <DonutChartPercentage

@@ -1,6 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+<<<<<<< HEAD
 exports[`<DonutChartPercentage /> snapshot 1`] = `
+=======
+exports[`<LineChart /> snapshot 1`] = `
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <DonutChartPercentage
@@ -28,12 +32,20 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <svg
+<<<<<<< HEAD
           className="donutchartpercentage"
+=======
+          className="DonutChartPercentage"
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
           height={200}
           width={200}
         >
           <circle
+<<<<<<< HEAD
             className="donutchartpercentage-track"
+=======
+            className="DonutChartPercentage-track"
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
             cx={100}
             cy={100}
             r={75}
@@ -45,7 +57,11 @@ ShallowWrapper {
             transform="rotate(-90 100,100)"
           />
           <circle
+<<<<<<< HEAD
             className="donutchartpercentage-indicator"
+=======
+            className="DonutChartPercentage-indicator"
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
             cx={100}
             cy={100}
             r={75}
@@ -58,7 +74,11 @@ ShallowWrapper {
             transform="rotate(-90 100,100)"
           />
           <text
+<<<<<<< HEAD
             className="donutchartpercentage-text"
+=======
+            className="DonutChartPercentage-text"
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
             style={
               Object {
                 "textAnchor": "middle",
@@ -68,6 +88,7 @@ ShallowWrapper {
             y={100}
           >
             <tspan
+<<<<<<< HEAD
               className="donutchartpercentage-text-val"
             >
               53
@@ -79,6 +100,17 @@ ShallowWrapper {
             </tspan>
             <tspan
               className="donutchartpercentage-text-label"
+=======
+              className="DonutChartPercentage-text-val"
+            >
+              53
+            </tspan>
+            <tspan>
+              %
+            </tspan>
+            <tspan
+              className="DonutChartPercentage-text-label"
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
               x={100}
               y={110}
             >
@@ -99,6 +131,10 @@ ShallowWrapper {
         />,
       ],
       "className": "",
+<<<<<<< HEAD
+=======
+      "description": "",
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
       "title": "percentage chart",
     },
     "ref": null,
@@ -110,7 +146,11 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <circle
+<<<<<<< HEAD
               className="donutchartpercentage-track"
+=======
+              className="DonutChartPercentage-track"
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
               cx={100}
               cy={100}
               r={75}
@@ -122,7 +162,11 @@ ShallowWrapper {
               transform="rotate(-90 100,100)"
             />,
             <circle
+<<<<<<< HEAD
               className="donutchartpercentage-indicator"
+=======
+              className="DonutChartPercentage-indicator"
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
               cx={100}
               cy={100}
               r={75}
@@ -135,7 +179,11 @@ ShallowWrapper {
               transform="rotate(-90 100,100)"
             />,
             <text
+<<<<<<< HEAD
               className="donutchartpercentage-text"
+=======
+              className="DonutChartPercentage-text"
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
               style={
                 Object {
                   "textAnchor": "middle",
@@ -145,6 +193,7 @@ ShallowWrapper {
               y={100}
             >
               <tspan
+<<<<<<< HEAD
                 className="donutchartpercentage-text-val"
               >
                 53
@@ -156,6 +205,17 @@ ShallowWrapper {
               </tspan>
               <tspan
                 className="donutchartpercentage-text-label"
+=======
+                className="DonutChartPercentage-text-val"
+              >
+                53
+              </tspan>
+              <tspan>
+                %
+              </tspan>
+              <tspan
+                className="DonutChartPercentage-text-label"
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
                 x={100}
                 y={110}
               >
@@ -163,7 +223,11 @@ ShallowWrapper {
               </tspan>
             </text>,
           ],
+<<<<<<< HEAD
           "className": "donutchartpercentage",
+=======
+          "className": "DonutChartPercentage",
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
           "height": 200,
           "width": 200,
         },
@@ -174,7 +238,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
+<<<<<<< HEAD
               "className": "donutchartpercentage-track",
+=======
+              "className": "DonutChartPercentage-track",
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
               "cx": 100,
               "cy": 100,
               "r": 75,
@@ -192,7 +260,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
+<<<<<<< HEAD
               "className": "donutchartpercentage-indicator",
+=======
+              "className": "DonutChartPercentage-indicator",
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
               "cx": 100,
               "cy": 100,
               "r": 75,
@@ -213,6 +285,7 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <tspan
+<<<<<<< HEAD
                   className="donutchartpercentage-text-val"
                 >
                   53
@@ -224,13 +297,28 @@ ShallowWrapper {
                 </tspan>,
                 <tspan
                   className="donutchartpercentage-text-label"
+=======
+                  className="DonutChartPercentage-text-val"
+                >
+                  53
+                </tspan>,
+                <tspan>
+                  %
+                </tspan>,
+                <tspan
+                  className="DonutChartPercentage-text-label"
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
                   x={100}
                   y={110}
                 >
                   Completed
                 </tspan>,
               ],
+<<<<<<< HEAD
               "className": "donutchartpercentage-text",
+=======
+              "className": "DonutChartPercentage-text",
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
               "style": Object {
                 "textAnchor": "middle",
               },
@@ -245,7 +333,11 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": 53,
+<<<<<<< HEAD
                   "className": "donutchartpercentage-text-val",
+=======
+                  "className": "DonutChartPercentage-text-val",
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
                 },
                 "ref": null,
                 "rendered": 53,
@@ -257,7 +349,10 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": "%",
+<<<<<<< HEAD
                   "className": "donutchartpercentage-text-percent",
+=======
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
                 },
                 "ref": null,
                 "rendered": "%",
@@ -269,7 +364,11 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": "Completed",
+<<<<<<< HEAD
                   "className": "donutchartpercentage-text-label",
+=======
+                  "className": "DonutChartPercentage-text-label",
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
                   "x": 100,
                   "y": 110,
                 },
@@ -311,12 +410,20 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <svg
+<<<<<<< HEAD
             className="donutchartpercentage"
+=======
+            className="DonutChartPercentage"
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
             height={200}
             width={200}
           >
             <circle
+<<<<<<< HEAD
               className="donutchartpercentage-track"
+=======
+              className="DonutChartPercentage-track"
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
               cx={100}
               cy={100}
               r={75}
@@ -328,7 +435,11 @@ ShallowWrapper {
               transform="rotate(-90 100,100)"
             />
             <circle
+<<<<<<< HEAD
               className="donutchartpercentage-indicator"
+=======
+              className="DonutChartPercentage-indicator"
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
               cx={100}
               cy={100}
               r={75}
@@ -341,7 +452,11 @@ ShallowWrapper {
               transform="rotate(-90 100,100)"
             />
             <text
+<<<<<<< HEAD
               className="donutchartpercentage-text"
+=======
+              className="DonutChartPercentage-text"
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
               style={
                 Object {
                   "textAnchor": "middle",
@@ -351,6 +466,7 @@ ShallowWrapper {
               y={100}
             >
               <tspan
+<<<<<<< HEAD
                 className="donutchartpercentage-text-val"
               >
                 53
@@ -362,6 +478,17 @@ ShallowWrapper {
               </tspan>
               <tspan
                 className="donutchartpercentage-text-label"
+=======
+                className="DonutChartPercentage-text-val"
+              >
+                53
+              </tspan>
+              <tspan>
+                %
+              </tspan>
+              <tspan
+                className="DonutChartPercentage-text-label"
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
                 x={100}
                 y={110}
               >
@@ -382,6 +509,10 @@ ShallowWrapper {
           />,
         ],
         "className": "",
+<<<<<<< HEAD
+=======
+        "description": "",
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
         "title": "percentage chart",
       },
       "ref": null,
@@ -393,7 +524,11 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <circle
+<<<<<<< HEAD
                 className="donutchartpercentage-track"
+=======
+                className="DonutChartPercentage-track"
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
                 cx={100}
                 cy={100}
                 r={75}
@@ -405,7 +540,11 @@ ShallowWrapper {
                 transform="rotate(-90 100,100)"
               />,
               <circle
+<<<<<<< HEAD
                 className="donutchartpercentage-indicator"
+=======
+                className="DonutChartPercentage-indicator"
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
                 cx={100}
                 cy={100}
                 r={75}
@@ -418,7 +557,11 @@ ShallowWrapper {
                 transform="rotate(-90 100,100)"
               />,
               <text
+<<<<<<< HEAD
                 className="donutchartpercentage-text"
+=======
+                className="DonutChartPercentage-text"
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
                 style={
                   Object {
                     "textAnchor": "middle",
@@ -428,6 +571,7 @@ ShallowWrapper {
                 y={100}
               >
                 <tspan
+<<<<<<< HEAD
                   className="donutchartpercentage-text-val"
                 >
                   53
@@ -439,6 +583,17 @@ ShallowWrapper {
                 </tspan>
                 <tspan
                   className="donutchartpercentage-text-label"
+=======
+                  className="DonutChartPercentage-text-val"
+                >
+                  53
+                </tspan>
+                <tspan>
+                  %
+                </tspan>
+                <tspan
+                  className="DonutChartPercentage-text-label"
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
                   x={100}
                   y={110}
                 >
@@ -446,7 +601,11 @@ ShallowWrapper {
                 </tspan>
               </text>,
             ],
+<<<<<<< HEAD
             "className": "donutchartpercentage",
+=======
+            "className": "DonutChartPercentage",
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
             "height": 200,
             "width": 200,
           },
@@ -457,7 +616,11 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
+<<<<<<< HEAD
                 "className": "donutchartpercentage-track",
+=======
+                "className": "DonutChartPercentage-track",
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
                 "cx": 100,
                 "cy": 100,
                 "r": 75,
@@ -475,7 +638,11 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
+<<<<<<< HEAD
                 "className": "donutchartpercentage-indicator",
+=======
+                "className": "DonutChartPercentage-indicator",
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
                 "cx": 100,
                 "cy": 100,
                 "r": 75,
@@ -496,6 +663,7 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <tspan
+<<<<<<< HEAD
                     className="donutchartpercentage-text-val"
                   >
                     53
@@ -507,13 +675,28 @@ ShallowWrapper {
                   </tspan>,
                   <tspan
                     className="donutchartpercentage-text-label"
+=======
+                    className="DonutChartPercentage-text-val"
+                  >
+                    53
+                  </tspan>,
+                  <tspan>
+                    %
+                  </tspan>,
+                  <tspan
+                    className="DonutChartPercentage-text-label"
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
                     x={100}
                     y={110}
                   >
                     Completed
                   </tspan>,
                 ],
+<<<<<<< HEAD
                 "className": "donutchartpercentage-text",
+=======
+                "className": "DonutChartPercentage-text",
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
                 "style": Object {
                   "textAnchor": "middle",
                 },
@@ -528,7 +711,11 @@ ShallowWrapper {
                   "nodeType": "host",
                   "props": Object {
                     "children": 53,
+<<<<<<< HEAD
                     "className": "donutchartpercentage-text-val",
+=======
+                    "className": "DonutChartPercentage-text-val",
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
                   },
                   "ref": null,
                   "rendered": 53,
@@ -540,7 +727,10 @@ ShallowWrapper {
                   "nodeType": "host",
                   "props": Object {
                     "children": "%",
+<<<<<<< HEAD
                     "className": "donutchartpercentage-text-percent",
+=======
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
                   },
                   "ref": null,
                   "rendered": "%",
@@ -552,7 +742,11 @@ ShallowWrapper {
                   "nodeType": "host",
                   "props": Object {
                     "children": "Completed",
+<<<<<<< HEAD
                     "className": "donutchartpercentage-text-label",
+=======
+                    "className": "DonutChartPercentage-text-label",
+>>>>>>> 43833c2510545533448b3592e9bdf129403948b3
                     "x": 100,
                     "y": 110,
                   },

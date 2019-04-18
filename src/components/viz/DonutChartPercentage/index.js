@@ -32,13 +32,13 @@ const DonutChartPercentage = (
   const rotateval = `rotate(-90 ${halfsize},${halfsize})`;
   return (
     <ChartWrapper title={title} className={className}>
-      <svg width={size} height={size} className="donutchartpercentage">
-        <circle r={radius} cx={halfsize} cy={halfsize} transform={rotateval} style={trackstyle} className="donutchartpercentage-track" />
-        <circle r={radius} cx={halfsize} cy={halfsize} transform={rotateval} style={indicatorstyle} className="donutchartpercentage-indicator" />
-        <text className="donutchartpercentage-text" x={halfsize} y={halfsize} style={{ textAnchor: 'middle' }}>
-          <tspan className="donutchartpercentage-text-val">{percentage}</tspan>
-          <tspan className="donutchartpercentage-text-percent">%</tspan>
-          <tspan className="donutchartpercentage-text-label" x={halfsize} y={halfsize + 10}>{label}</tspan>
+      <svg width={size} height={size} className="DonutChartPercentage">
+        <circle r={radius} cx={halfsize} cy={halfsize} transform={rotateval} style={trackstyle} className="DonutChartPercentage-track" />
+        <circle r={radius} cx={halfsize} cy={halfsize} transform={rotateval} style={indicatorstyle} className="DonutChartPercentage-indicator" />
+        <text className="DonutChartPercentage-text" x={halfsize} y={halfsize} style={{ textAnchor: 'middle' }}>
+          <tspan className="DonutChartPercentage-text-val">{percentage}</tspan>
+          <tspan>%</tspan>
+          <tspan className="DonutChartPercentage-text-label" x={halfsize} y={halfsize + 10}>{label}</tspan>
         </text>
       </svg>
       <Legend
