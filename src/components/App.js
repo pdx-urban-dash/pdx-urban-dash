@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Container, Col, Form, Row, Navbar } from 'react-bootstrap';
+import { Card, Container, Col, Form, Jumbotron, Row, Navbar } from 'react-bootstrap';
 import { BarChartGrouped, BarChartStacked, BarChartClustered } from './viz/BarCharts/BarCharts'
 
 
@@ -18,6 +18,8 @@ const filterTrendOptions = ["All", "..."];
 const filterCardSelects = [
 	{
 		"title": "category",
+		"type": "select",
+		"slected": false,
 		"options": filterCatOptions
 	},
 	{
@@ -25,11 +27,10 @@ const filterCardSelects = [
 		"options": filterTrendOptions
 	}
 ];
-
 const filterButtonPlaceholder = "enter a search term";
 
-//Example Data
-const testData = [
+//charts
+const barChartData = [
 	{
 		dataSetName: 'Total Crimes Against Persons',
 		description: 'Police Bureau, public safety',
@@ -51,6 +52,38 @@ const testData = [
 		],
 	},
 ]
+const charts = [
+	{
+		"title": "Grouped Chart",
+		"schema": BarChartGrouped,
+		"data": barChartData
+	},
+	{
+		"title": "Stacked Chart",
+		"schema": BarChartStacked,
+		"data": barChartData
+	},
+	{
+		"title": "Clustered Chart",
+		"schema": BarChartClustered,
+		"data": barChartData
+	},
+	{
+		"title": "Grouped Chart",
+		"schema": BarChartGrouped,
+		"data": barChartData
+	},
+	{
+		"title": "Stacked Chart",
+		"schema": BarChartStacked,
+		"data": barChartData
+	},
+	{
+		"title": "Clustered Chart",
+		"schema": BarChartClustered,
+		"data": barChartData
+	}
+]
 
 class App extends React.Component {
 
@@ -65,61 +98,46 @@ class App extends React.Component {
 				</Navbar>
 				<Container>
 					<Row as={Container}>
-						<Col lg={4}>
-							<Row>
-								<Col>
-									<Card>
-										<Card.Body>
-											<Card.Title>{introCardTitle}</Card.Title>
-											<Card.Text>{introCardText}</Card.Text>
-										</Card.Body>
-									</Card>
-								</Col>
-							</Row>
+						<Col as={Jumbotron} lg={6}>
+							<h1>{introCardTitle}</h1>
+							<p>{introCardText}</p>
 
-							<Row>
-								<Col>
-									<Card>
-										<Card.Body>
-											<Card.Title>{filterCardTitle}</Card.Title>
-											<Container as={Form}>
-												{
-													filterCardSelects.map((elem) => 
-														<Row as={Form.Group} controlId = {"filter"+elem.title}>
-															<Col as={Form.Label} >{elem.title}</Col>
-															<Col as="select" id = {"filter"+elem.title}>
-																{elem.options.map((option) => <option>{option}</option>)}
-															</Col>
-														</Row>
-													)
-												}
-												<Form.Group>
-													<Form.Control type="text" placeholder={filterButtonPlaceholder} />
-												</Form.Group>
-											</Container>
-										</Card.Body>
-									</Card>
-								</Col>
-							</Row>
 						</Col>
-
-						<Col lg={8}>
-							<Card>
+						<Col as={Jumbotron} lg={6}>
+							<Card style={{padding:"auto"}}>
 								<Card.Body>
-									<BarChartGrouped data={testData}/>
-								</Card.Body>
-							</Card>
-							<Card>
-								<Card.Body>
-									<BarChartStacked data={testData}/>
-								</Card.Body>
-							</Card>
-							<Card>
-								<Card.Body>
-									<BarChartClustered data={testData}/>
+									<Card.Title>{filterCardTitle}</Card.Title>
+									<Container as={Form}>
+										{
+											filterCardSelects.map((elem) => 
+												<Row as={Form.Group} controlId = {"filter"+elem.title} key={elem.title}>
+													<Col as={Form.Label} >{elem.title}</Col>
+													<Col as="select" id = {"filter"+elem.title}>
+														{
+															elem.options.map((option) => 
+																<option key={option}>{option}</option>
+															)
+														}
+													</Col>
+												</Row>
+											)
+										}
+										<Form.Group>
+											<Form.Control type="text" placeholder={filterButtonPlaceholder} />
+										</Form.Group>
+									</Container>
 								</Card.Body>
 							</Card>
 						</Col>
+					</Row>
+					<Row className="charRow">
+						{
+							charts.map((chart, i) =>
+								<Col sm={6} key={i}>
+									<chart.schema data={chart.data}/>
+								</Col>
+							)
+						}
 					</Row>
 				</Container>
 			</div>
