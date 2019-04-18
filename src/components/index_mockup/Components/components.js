@@ -3,8 +3,8 @@ import Charts from './Charts';
 import IntroCard from './IntroCard';
 import Navigation from './Navigation';
 export {
-	Charts,
-	FilterCard,
-	IntroCard,
-	Navigation
+  Charts,
+  FilterCard,
+  IntroCard,
+  Navigation
 };
