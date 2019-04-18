@@ -1,7 +1,11 @@
 import React from "react";
 import { Card, Container, Col, Form, Row, Navbar } from 'react-bootstrap';
 import { BarChartGrouped, BarChartStacked, BarChartClustered } from './viz/BarCharts/BarCharts'
+
+
+//Navbar
 import logo from "../images/SealofPortland.png"
+const pageTitle = "City of Portland Urban Dashboard";
 
 //Intro card
 const introCardTitle = "How to use this dashboard";
@@ -56,43 +60,49 @@ class App extends React.Component {
 				<Navbar bg="light" className="justify-content-sm-center">
 					<Navbar.Brand >
 						<img src={logo} width="40" height="40" alt="City of Portland"/>
-						<span></span> City of Portland Urban Dashboard
+						<span></span> {pageTitle}
 					</Navbar.Brand>
 				</Navbar>
 				<Container>
 					<Row as={Container}>
 						<Col lg={4}>
 							<Row>
-								<Card>
-									<Card.Body>
-										<Card.Title>{introCardTitle}</Card.Title>
-										<Card.Text>{introCardText}</Card.Text>
-									</Card.Body>
-								</Card>
+								<Col>
+									<Card>
+										<Card.Body>
+											<Card.Title>{introCardTitle}</Card.Title>
+											<Card.Text>{introCardText}</Card.Text>
+										</Card.Body>
+									</Card>
+								</Col>
 							</Row>
+
 							<Row>
-								<Card>
-									<Card.Body>
-										<Card.Title>{filterCardTitle}</Card.Title>
-										<Container as={Form}>
-											{
-												filterCardSelects.map((elem) => 
-													<Row as={Form.Group} controlId="metricsFilterCat">
-														<Col  as={Form.Label}>{elem.title}</Col>
-														<Col as="select">
-															{elem.options.map((option) => <option> {option} </option>)}
-														</Col>
-													</Row>
-												)
-											}
-											<Form.Group>
-												<Form.Control type="text" placeholder={filterButtonPlaceholder} />
-											</Form.Group>
-										</Container>
-									</Card.Body>
-								</Card>
+								<Col>
+									<Card>
+										<Card.Body>
+											<Card.Title>{filterCardTitle}</Card.Title>
+											<Container as={Form}>
+												{
+													filterCardSelects.map((elem) => 
+														<Row as={Form.Group} controlId = {"filter"+elem.title}>
+															<Col as={Form.Label} >{elem.title}</Col>
+															<Col as="select" id = {"filter"+elem.title}>
+																{elem.options.map((option) => <option>{option}</option>)}
+															</Col>
+														</Row>
+													)
+												}
+												<Form.Group>
+													<Form.Control type="text" placeholder={filterButtonPlaceholder} />
+												</Form.Group>
+											</Container>
+										</Card.Body>
+									</Card>
+								</Col>
 							</Row>
 						</Col>
+
 						<Col lg={8}>
 							<Card>
 								<Card.Body>
