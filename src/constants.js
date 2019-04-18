@@ -22,3 +22,26 @@ export const sizes = {
   spacing5: '48px',
   spacing6: '64px',
 };
+
+export const category20 = {
+  color1: '#1f77b4',
+  color2: '#aec7e8',
+  color3: '#ff7f0e',
+  color4: '#ffbb78',
+  color5: '#2ca02c',
+  color6: '#98df8a',
+  color7: '#d62728',
+  color8: '#ff9896',
+  color9: '#9467bd',
+  color10: '#c5b0d5',
+  color11: '#8c564b',
+  color12: '#c49c94',
+  color13: '#e377c2',
+  color14: '#f7b6d2',
+  color15: '#7f7f7f',
+  color16: '#c7c7c7',
+  color17: '#bcbd22',
+  color18: '#dbdb8d',
+  color19: '#17becf',
+  color20: '#9edae5',
+};

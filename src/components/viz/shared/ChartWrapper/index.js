@@ -4,11 +4,11 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 import './styles.scss';
 
+
 const ChartWrapper = (
   {
     title,
     className,
-    description,
     // eslint-disable-next-line
     children,
   },
@@ -27,7 +27,6 @@ const ChartWrapper = (
       <Row>
         <Col className="ChartWrapper-title">
           <span className="ChartWrapper-title">{title}</span>
-          <span description="ChartWrapper-description">{description}</span>
         </Col>
         <Col />
       </Row>
@@ -42,13 +41,11 @@ const ChartWrapper = (
 ChartWrapper.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
-  description: PropTypes.string,
 };
 
 ChartWrapper.defaultProps = {
   title: '',
   className: '',
-  description: '',
 };
 
 export default ChartWrapper;

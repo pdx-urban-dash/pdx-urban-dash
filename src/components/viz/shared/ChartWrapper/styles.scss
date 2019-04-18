@@ -1,10 +1,10 @@
 @import "../../../../base-styles";
 
 .ChartWrapper-wrapper {
+}
 
-  &-title {
-    font-family: $font-heading;
-    font-size: $font-size-lg;
-    text-align: center;
-  }
+.ChartWrapper-title {
+  font-family: $font-heading;
+  font-size: $font-size-lg;
+  text-align: center;
 }

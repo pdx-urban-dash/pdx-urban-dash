@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.18.3",
+    "bootstrap": "^4.3.1",
     "express": "^4.16.4",
     "node-sass": "^4.11.0",
     "prop-types": "^15.7.2",
@@ -16,6 +17,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "server": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -32,9 +34,10 @@
   ],
   "devDependencies": {
     "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
     "eslint-config-airbnb": "^17.1.0",
     "jest-each": "^24.7.1",
     "nodemon": "^1.18.10"
   },
-  "proxy": "http://localhost:5000/"
+  "proxy": "http://localhost:8080/"
 }

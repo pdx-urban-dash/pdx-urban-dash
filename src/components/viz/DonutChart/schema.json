@@ -1,9 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "width": 200,
+  "width": 500,
   "height": 200,
-  "autosize": "none",
-  
+  "padding": 5,
+
   "data": [
     {
       "name": "table",
@@ -36,15 +36,6 @@
     }
   ],
 
-  "legends": [
-    {
-      "fill": "color",
-      "title": "Legend",
-      "padding": 55,
-      "orient": "top-right"
-    }
-  ],
-
   "marks": [
     {
       "type": "arc",
@@ -58,10 +49,8 @@
         "update": {
           "startAngle": {"field": "startAngle"},
           "endAngle": {"field": "endAngle"},
-          "padAngle": {"field": "padAngle"},
-          "innerRadius": {"signal": "45"},
-          "outerRadius": {"signal": "width / 2"},
-          "cornerRadius": {"field": "cornerRadius"}
+          "innerRadius": {"signal": "width / 8"},
+          "outerRadius": {"signal": "width / 4"}
         }
       }
     }

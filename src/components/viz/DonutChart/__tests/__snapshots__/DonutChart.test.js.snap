@@ -1,0 +1,257 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DonutChart /> snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <DonutChart
+    className=""
+    colorScheme="light"
+    data={
+      Array [
+        Object {
+          "dataSetName": "first slice",
+          "description": "first description",
+          "values": Array [
+            Object {
+              "field": 10,
+              "id": 0,
+            },
+          ],
+        },
+        Object {
+          "dataSetName": "second slice",
+          "description": "second description",
+          "values": Array [
+            Object {
+              "field": 10,
+              "id": 1,
+            },
+          ],
+        },
+        Object {
+          "dataSetName": "third slice",
+          "description": "third description",
+          "values": Array [
+            Object {
+              "field": 10,
+              "id": 2,
+            },
+          ],
+        },
+        Object {
+          "dataSetName": "fourth slice",
+          "description": "fourth description",
+          "values": Array [
+            Object {
+              "field": 10,
+              "id": 3,
+            },
+          ],
+        },
+      ]
+    }
+    title="title"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": Array [
+        <a />,
+        <Legend
+          series={
+            Array [
+              Object {
+                "color": "#1f77b4",
+                "description": "first description",
+                "title": "first slice",
+              },
+              Object {
+                "color": "#aec7e8",
+                "description": "second description",
+                "title": "second slice",
+              },
+              Object {
+                "color": "#ff7f0e",
+                "description": "third description",
+                "title": "third slice",
+              },
+              Object {
+                "color": "#ffbb78",
+                "description": "fourth description",
+                "title": "fourth slice",
+              },
+            ]
+          }
+        />,
+      ],
+      "className": "",
+      "title": "title",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "series": Array [
+            Object {
+              "color": "#1f77b4",
+              "description": "first description",
+              "title": "first slice",
+            },
+            Object {
+              "color": "#aec7e8",
+              "description": "second description",
+              "title": "second slice",
+            },
+            Object {
+              "color": "#ff7f0e",
+              "description": "third description",
+              "title": "third slice",
+            },
+            Object {
+              "color": "#ffbb78",
+              "description": "fourth description",
+              "title": "fourth slice",
+            },
+          ],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          <a />,
+          <Legend
+            series={
+              Array [
+                Object {
+                  "color": "#1f77b4",
+                  "description": "first description",
+                  "title": "first slice",
+                },
+                Object {
+                  "color": "#aec7e8",
+                  "description": "second description",
+                  "title": "second slice",
+                },
+                Object {
+                  "color": "#ff7f0e",
+                  "description": "third description",
+                  "title": "third slice",
+                },
+                Object {
+                  "color": "#ffbb78",
+                  "description": "fourth description",
+                  "title": "fourth slice",
+                },
+              ]
+            }
+          />,
+        ],
+        "className": "",
+        "title": "title",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "series": Array [
+              Object {
+                "color": "#1f77b4",
+                "description": "first description",
+                "title": "first slice",
+              },
+              Object {
+                "color": "#aec7e8",
+                "description": "second description",
+                "title": "second slice",
+              },
+              Object {
+                "color": "#ff7f0e",
+                "description": "third description",
+                "title": "third slice",
+              },
+              Object {
+                "color": "#ffbb78",
+                "description": "fourth description",
+                "title": "fourth slice",
+              },
+            ],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

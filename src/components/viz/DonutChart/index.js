@@ -3,18 +3,25 @@ import PropTypes from 'prop-types';
 import { createClassFromSpec } from 'react-vega';
 
 import { injectPropsIntoSchema } from '../../../utils/vegaUtils';
+import { getDefaultDonutColor } from '../../../utils/visUtils';
 import { colors, sizes } from '../../../constants';
 import donutChartSchema from './schema';
 import './styles.scss';
 
+import Legend from '../shared/Legend';
 import ChartWrapper from '../shared/ChartWrapper';
 
 const buildData = (data) => {
   const retData = [];
-  data.forEach((dataSet) => {
-    dataSet.values.forEach(slice => retData.push({ id: slice.id, field: slice.field }));
+  data.forEach((dataSet, idx) => {
+    dataSet.values.forEach(slice => retData.push({ id: slice.id, field: slice.field, c: idx }));
   });
   return retData;
+};
+
+export const getColors = (data) => {
+  const mColors = data.map((_elem, idx) => getDefaultDonutColor(idx));
+  return mColors;
 };
 
 const DonutChart = (
@@ -25,6 +32,7 @@ const DonutChart = (
     colorScheme,
   },
 ) => {
+  const colorRange = getColors(data);
   const Graph = createClassFromSpec(
     injectPropsIntoSchema(
       {
@@ -40,6 +48,10 @@ const DonutChart = (
           name: 'labelFontSize',
           value: parseInt(sizes.fontSM.slice(0, -2), 10),
         },
+        $colorRange: {
+          name: 'range',
+          value: colorRange,
+        },
       },
       donutChartSchema,
     ),
@@ -47,6 +59,13 @@ const DonutChart = (
   return (
     <ChartWrapper title={title} className={className}>
       <Graph />
+      <Legend
+        series={data.map((elem, idx) => ({
+          title: elem.dataSetName,
+          description: elem.description,
+          color: getDefaultDonutColor(idx),
+        }))}
+      />
     </ChartWrapper>
   );
 };
@@ -54,10 +73,11 @@ const DonutChart = (
 DonutChart.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
     dataSetName: PropTypes.string,
-    values: PropTypes.arrayOf(PropTypes.shape({
+    sliceColor: PropTypes.string,
+    values: PropTypes.shape({
       id: PropTypes.number.isRequired,
       field: PropTypes.number.isRequired,
-    })),
+    }),
   })).isRequired,
   title: PropTypes.string,
   className: PropTypes.string,
