@@ -1,0 +1,54 @@
+[
+    {
+        "metadata": "",
+        "title": "dummy bar graph",
+        "description": "",
+        "chart_type": "LINE",
+        "categories": [
+            "cat1",
+            "cat2"
+        ],
+        "target": 100,
+        "target_trend": "UP",
+        "axis_labels": [
+            "x",
+            "y"
+        ],
+        "data_sets": [
+            {
+                "metadata": "",
+                "title": "bar1",
+                "description": "first datapoint",
+                "color": "RED",
+                "show_trendline": true,
+                "data_values": [
+                    [
+                        100
+                    ],
+                    [
+                        200
+                    ]
+                ]
+            },
+            {
+                "metadata": "",
+                "title": "bar2",
+                "description": "second datapoint",
+                "color": "RED",
+                "show_trendline": false,
+                "data_values": [
+                    [
+                        100
+                    ],
+                    [
+                        100,
+                        100
+                    ],
+                    [
+                        100
+                    ]
+                ]
+            }
+        ]
+    }
+]
