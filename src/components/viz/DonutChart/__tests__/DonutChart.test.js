@@ -11,22 +11,22 @@ describe('<DonutChart />', () => {
         colorScheme="light"
         data={[
           {
-            dataSetName: 'first slice',
+            name: 'first slice',
             description: 'first description',
             value: 10,
           },
           {
-            dataSetName: 'second slice',
+            name: 'second slice',
             description: 'second description',
             value: 10,
           },
           {
-            dataSetName: 'third slice',
+            name: 'third slice',
             description: 'third description',
             value: 10,
           },
           {
-            dataSetName: 'fourth slice',
+            name: 'fourth slice',
             description: 'fourth description',
             value: 10,
           },
