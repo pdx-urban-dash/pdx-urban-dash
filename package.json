@@ -13,6 +13,7 @@
     "react-dom": "^16.8.3",
     "react-scripts": "2.1.5",
     "react-vega": "^6.0.1",
+    "reactstrap": "^8.0.0",
     "vega": "^5.3.4"
   },
   "scripts": {
