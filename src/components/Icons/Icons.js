@@ -4,9 +4,9 @@ import * as Icons from 'react-feather';
 
 export default function Icon (props) {
     const size = {
-        sml:15,
-        med:25,
-        lrg:50,
+        sm:15,
+        md:25,
+        lg:50,
     };
 
     const iconList = {
