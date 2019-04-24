@@ -1,0 +1,15 @@
+@import "../../../base-styles.scss";
+
+.article {
+  &-title {
+    display: block;
+    font-family: $font-heading;
+    font-size: $font-size-md;
+  }
+
+  &-body {
+    display: block;
+    font-family: $font-body;
+    font-size: $font-size-sm;
+  }
+}
