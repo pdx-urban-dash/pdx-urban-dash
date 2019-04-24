@@ -1,0 +1,19 @@
+@import "../../../base-styles";
+
+.nav {
+  &-title {
+    font-family: $font-heading;
+    font-size: $font-size-lg;
+    margin: auto 0 auto $spacing-3;
+  }
+
+  &-logo {
+    height: 40px;
+    margin-bottom: $spacing-2;
+  }
+
+  &-brand {
+    margin: auto;
+    text-align: center;
+  }
+}
