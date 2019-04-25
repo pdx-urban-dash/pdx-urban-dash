@@ -1,0 +1,32 @@
+/*
+These are the global variables we use. Just an optimization to keep
+us using standardized widths and colors. Reference base-styles.scss when
+defining font-families, sizes, margins, padding or colors.
+*/
+@import "../../../base-styles";
+
+.LineChart {
+  &-wrapper {
+    height: 100%;
+    width: 100%;
+  }
+
+  &-title {
+    font-family: $font-heading;
+    font-size: $font-size-lg;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &-theme {
+    &__light {
+      color: $color-font-dark;
+      background-color: white;
+    }
+
+    &__dark {
+      color: $color-font-light;
+      background-color: $color-font-dark;
+    }
+  }
+}
