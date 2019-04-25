@@ -13,54 +13,55 @@ import ChartWrapper from '../shared/ChartWrapper';
 
 const buildTreemapData = (data) => {
   const retData = [{
-    "name": "City Of Portland",
-    "id": "City Of Portland"
+    name: 'City Of Portland',
+    id: 'City Of Portland',
   }];
-  data.forEach((dataSet, i) => {
-    var bureauName = dataSet['Bureau'];
-    var serviceName = dataSet['City Service Area'];
-    var councilName = dataSet['Council Priority Area'];
-    var measureName = dataSet['Measure Title'];
-    var measureValue = dataSet['FY 2017-18 Actual']
+  data.forEach((dataSet) => {
+    const bureauName = dataSet.Bureau;
+    const serviceName = dataSet['City Service Area'];
+    const councilName = dataSet['Council Priority Area'];
+    const measureName = dataSet['Measure Title'];
+    const measureValue = dataSet['FY 2017-18 Actual'];
 
-    var bureauID = bureauName;
-    var serviceID = bureauName+ ", " +serviceName;
-    var councilID = serviceID + ", " +serviceName;
-    var measureID = councilID + ", " +measureName;
+    const bureauID = bureauName;
+    const serviceID = `${bureauName}, ${serviceName}`;
+    const councilID = `${serviceID}, ${serviceName}`;
+    const measureID = `${councilID}, ${measureName}`;
 
     if (retData.findIndex(x => x.id === councilID) === -1) {
       retData.push({
-        "name": councilName, 
-        "id": councilID,
-        "parent": serviceID,
+        name: councilName,
+        id: councilID,
+        parent: serviceID,
       });
 
       if (retData.findIndex(x => x.id === serviceID) === -1) {
         retData.push({
-          "name": serviceName,
-          "id": serviceID,
-          "parent": bureauID
+          name: serviceName,
+          id: serviceID,
+          parent: bureauID,
         });
 
-        if (retData.findIndex(x => x.id === bureauID) === -1) 
+        if (retData.findIndex(x => x.id === bureauID) === -1) {
           retData.push({
-            "id": bureauID,
-            "name": bureauName, 
-            "parent": "City Of Portland"
+            id: bureauID,
+            name: bureauName,
+            parent: 'City Of Portland',
           });
+        }
       }
     }
 
     retData.push({
-      "name": measureName, 
-      "id": measureID,
-      "parent": councilID, 
-      "size": measureValue
+      name: measureName,
+      id: measureID,
+      parent: councilID,
+      size: measureValue,
     });
   });
   console.log(retData);
   return retData;
-}
+};
 
 const getColors = data => data.map((elem, idx) => elem.barColor || getDefaultColor(idx));
 
@@ -99,6 +100,13 @@ const Treemap = (
   return (
     <ChartWrapper title={title} className={className}>
       <Graph />
+      <Legend
+        series={data.map((elem, idx) => ({
+          title: elem.dataSetName,
+          description: elem.description,
+          color: elem.barColor || getDefaultColor(idx),
+        }))}
+      />
     </ChartWrapper>
   );
 };
