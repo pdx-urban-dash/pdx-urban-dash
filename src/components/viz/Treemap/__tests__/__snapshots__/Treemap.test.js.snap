@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Treemap /> snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Treemap
+    className=""
+    colorScheme="light"
+    data={
+      Array [
+        Object {
+          "Bureau": "Development Services",
+          "City Service Area": "Community Development",
+          "Council Priority Area": "Housing & Homelessness",
+          "Data Source": "",
+          "Data Visualization": "",
+          "Data frequency": "",
+          "Desired Trend": "UP",
+          "FY 2016-17 Actual": "  8,145 ",
+          "FY 2017-18 Actual": "  6,905 ",
+          "Geographic Tag?": "y",
+          "Measure Title": "Number of Building Permits",
+          "Notes": "Data can be disagregated into commercial and residential, or even further into permit type (new construction, renovation, etc.)",
+          "Strategic Target": "  8,100 ",
+          "Target": "",
+          "What is important about this metric?": "",
+          "What the measure shows": "Construction market activity",
+        },
+        Object {
+          "Bureau": "Bureau of Emergency Communications",
+          "City Service Area": "Public Safety",
+          "Council Priority Area": "Public Safety",
+          "Data Source": "BOEC",
+          "Data Visualization": "",
+          "Data frequency": "",
+          "Desired Trend": "UP",
+          "FY 2016-17 Actual": "63.2%",
+          "FY 2017-18 Actual": "63.9%",
+          "Geographic Tag?": "n",
+          "Measure Title": "Percentage of 9-1-1 calls answered within 20 seconds",
+          "Notes": "Can be updated daily, can be disaggregated into land line vs. cell phone calls. ",
+          "Strategic Target": "90.0%",
+          "Target": "",
+          "What is important about this metric?": "",
+          "What the measure shows": "Speed by which we answer 9-1-1 calls",
+        },
+      ]
+    }
+    title="chart title"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": <a />,
+      "className": "",
+      "title": "chart title",
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {},
+      "ref": null,
+      "rendered": null,
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": <a />,
+        "className": "",
+        "title": "chart title",
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;
