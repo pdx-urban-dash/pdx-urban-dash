@@ -9,7 +9,7 @@ import './styles.scss';
 
 import Legend from '../shared/Legend';
 import ChartWrapper from '../shared/ChartWrapper';
-import { getDefaultColor } from '../../../utils/vizUtils';
+import { getDefaultDonutColor } from '../../../utils/vizUtils';
 
 const buildData = data => data.map((elem, idx) => ({
   id: idx,
@@ -17,7 +17,7 @@ const buildData = data => data.map((elem, idx) => ({
   c: idx,
 }));
 
-export const getColors = data => data.map((elem, idx) => (elem.color || getDefaultColor(idx)));
+export const getColors = data => data.map((elem, idx) => (elem.color || getDefaultDonutColor(idx)));
 
 const DonutChart = (
   {
