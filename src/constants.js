@@ -23,3 +23,10 @@ export const sizes = {
   spacing5: '48px',
   spacing6: '64px',
 };
+
+export const iconSizes = {
+  small: 24,
+  medium: 36,
+  large: 48,
+  xlarge: 64,
+};
