@@ -60,6 +60,16 @@ describe('<DonutChart />', () => {
             description: 'tenth description',
             value: 10,
           },
+          {
+            name: 'eleventh slice',
+            description: 'eleventh description',
+            value: 10,
+          },
+          {
+            name: 'twelveth slice',
+            description: 'twelveth description',
+            value: 10,
+          },
         ]}
       />,
     );
