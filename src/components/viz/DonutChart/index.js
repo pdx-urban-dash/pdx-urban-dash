@@ -17,7 +17,7 @@ const buildData = data => data.map((elem, idx) => ({
   c: idx,
 }));
 
-export const getColors = data => data.map((elem, idx) => (elem.color || getDefaultDonutColor(idx)));
+export const getColors = data => data.map((_elem, idx) => getDefaultDonutColor(idx));
 
 const DonutChart = (
   {
