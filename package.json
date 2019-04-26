@@ -11,6 +11,7 @@
     "react": "^16.8.3",
     "react-bootstrap": "^1.0.0-beta.6",
     "react-dom": "^16.8.3",
+    "react-feather": "^1.1.6",
     "react-scripts": "2.1.5",
     "react-vega": "^6.0.1",
     "reactstrap": "^8.0.0",
