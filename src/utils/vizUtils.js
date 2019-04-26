@@ -1,4 +1,4 @@
-import { colors } from '../constants';
+import { colors, category20 } from '../constants';
 
 export const defaultColors = [
   colors.primary,
@@ -23,3 +23,31 @@ export const getTrendLineFunc = (points) => {
 
   return x => (slope * x) + offset;
 };
+
+export const defaultDonutColors = [
+  category20.color1,
+  category20.color2,
+  category20.color3,
+  category20.color4,
+  category20.color5,
+  category20.color6,
+  category20.color7,
+  category20.color8,
+  category20.color9,
+  category20.color10,
+  category20.color11,
+  category20.color12,
+  category20.color13,
+  category20.color14,
+  category20.color15,
+  category20.color16,
+  category20.color17,
+  category20.color18,
+  category20.color19,
+  category20.color20,
+];
+
+export const getDefaultDonutColor = idx => (
+  idx < 0 ? defaultDonutColors[20 - (Math.abs(idx) % 20)]
+    : defaultDonutColors[idx % defaultDonutColors.length]
+);

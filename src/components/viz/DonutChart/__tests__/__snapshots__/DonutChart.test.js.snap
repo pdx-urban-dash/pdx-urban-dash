@@ -28,6 +28,46 @@ ShallowWrapper {
           "name": "fourth slice",
           "value": 10,
         },
+        Object {
+          "description": "fifth description",
+          "name": "fifth slice",
+          "value": 10,
+        },
+        Object {
+          "description": "sixth description",
+          "name": "sixth slice",
+          "value": 10,
+        },
+        Object {
+          "description": "seventh description",
+          "name": "seventh slice",
+          "value": 10,
+        },
+        Object {
+          "description": "eighth description",
+          "name": "eighth slice",
+          "value": 10,
+        },
+        Object {
+          "description": "ninth description",
+          "name": "ninth slice",
+          "value": 10,
+        },
+        Object {
+          "description": "tenth description",
+          "name": "tenth slice",
+          "value": 10,
+        },
+        Object {
+          "description": "eleventh description",
+          "name": "eleventh slice",
+          "value": 10,
+        },
+        Object {
+          "description": "twelveth description",
+          "name": "twelveth slice",
+          "value": 10,
+        },
       ]
     }
     title="title"
@@ -52,24 +92,64 @@ ShallowWrapper {
           series={
             Array [
               Object {
-                "color": "#82204A",
+                "color": "#1f77b4",
                 "description": "first description",
                 "title": "first slice",
               },
               Object {
-                "color": "#558C8C",
+                "color": "#aec7e8",
                 "description": "second description",
                 "title": "second slice",
               },
               Object {
-                "color": "#E8DB7D",
+                "color": "#ff7f0e",
                 "description": "third description",
                 "title": "third slice",
               },
               Object {
-                "color": "#231123",
+                "color": "#ffbb78",
                 "description": "fourth description",
                 "title": "fourth slice",
+              },
+              Object {
+                "color": "#2ca02c",
+                "description": "fifth description",
+                "title": "fifth slice",
+              },
+              Object {
+                "color": "#98df8a",
+                "description": "sixth description",
+                "title": "sixth slice",
+              },
+              Object {
+                "color": "#d62728",
+                "description": "seventh description",
+                "title": "seventh slice",
+              },
+              Object {
+                "color": "#ff9896",
+                "description": "eighth description",
+                "title": "eighth slice",
+              },
+              Object {
+                "color": "#9467bd",
+                "description": "ninth description",
+                "title": "ninth slice",
+              },
+              Object {
+                "color": "#c5b0d5",
+                "description": "tenth description",
+                "title": "tenth slice",
+              },
+              Object {
+                "color": "#8c564b",
+                "description": "eleventh description",
+                "title": "eleventh slice",
+              },
+              Object {
+                "color": "#c49c94",
+                "description": "twelveth description",
+                "title": "twelveth slice",
               },
             ]
           }
@@ -96,24 +176,64 @@ ShallowWrapper {
         "props": Object {
           "series": Array [
             Object {
-              "color": "#82204A",
+              "color": "#1f77b4",
               "description": "first description",
               "title": "first slice",
             },
             Object {
-              "color": "#558C8C",
+              "color": "#aec7e8",
               "description": "second description",
               "title": "second slice",
             },
             Object {
-              "color": "#E8DB7D",
+              "color": "#ff7f0e",
               "description": "third description",
               "title": "third slice",
             },
             Object {
-              "color": "#231123",
+              "color": "#ffbb78",
               "description": "fourth description",
               "title": "fourth slice",
+            },
+            Object {
+              "color": "#2ca02c",
+              "description": "fifth description",
+              "title": "fifth slice",
+            },
+            Object {
+              "color": "#98df8a",
+              "description": "sixth description",
+              "title": "sixth slice",
+            },
+            Object {
+              "color": "#d62728",
+              "description": "seventh description",
+              "title": "seventh slice",
+            },
+            Object {
+              "color": "#ff9896",
+              "description": "eighth description",
+              "title": "eighth slice",
+            },
+            Object {
+              "color": "#9467bd",
+              "description": "ninth description",
+              "title": "ninth slice",
+            },
+            Object {
+              "color": "#c5b0d5",
+              "description": "tenth description",
+              "title": "tenth slice",
+            },
+            Object {
+              "color": "#8c564b",
+              "description": "eleventh description",
+              "title": "eleventh slice",
+            },
+            Object {
+              "color": "#c49c94",
+              "description": "twelveth description",
+              "title": "twelveth slice",
             },
           ],
         },
@@ -136,24 +256,64 @@ ShallowWrapper {
             series={
               Array [
                 Object {
-                  "color": "#82204A",
+                  "color": "#1f77b4",
                   "description": "first description",
                   "title": "first slice",
                 },
                 Object {
-                  "color": "#558C8C",
+                  "color": "#aec7e8",
                   "description": "second description",
                   "title": "second slice",
                 },
                 Object {
-                  "color": "#E8DB7D",
+                  "color": "#ff7f0e",
                   "description": "third description",
                   "title": "third slice",
                 },
                 Object {
-                  "color": "#231123",
+                  "color": "#ffbb78",
                   "description": "fourth description",
                   "title": "fourth slice",
+                },
+                Object {
+                  "color": "#2ca02c",
+                  "description": "fifth description",
+                  "title": "fifth slice",
+                },
+                Object {
+                  "color": "#98df8a",
+                  "description": "sixth description",
+                  "title": "sixth slice",
+                },
+                Object {
+                  "color": "#d62728",
+                  "description": "seventh description",
+                  "title": "seventh slice",
+                },
+                Object {
+                  "color": "#ff9896",
+                  "description": "eighth description",
+                  "title": "eighth slice",
+                },
+                Object {
+                  "color": "#9467bd",
+                  "description": "ninth description",
+                  "title": "ninth slice",
+                },
+                Object {
+                  "color": "#c5b0d5",
+                  "description": "tenth description",
+                  "title": "tenth slice",
+                },
+                Object {
+                  "color": "#8c564b",
+                  "description": "eleventh description",
+                  "title": "eleventh slice",
+                },
+                Object {
+                  "color": "#c49c94",
+                  "description": "twelveth description",
+                  "title": "twelveth slice",
                 },
               ]
             }
@@ -180,24 +340,64 @@ ShallowWrapper {
           "props": Object {
             "series": Array [
               Object {
-                "color": "#82204A",
+                "color": "#1f77b4",
                 "description": "first description",
                 "title": "first slice",
               },
               Object {
-                "color": "#558C8C",
+                "color": "#aec7e8",
                 "description": "second description",
                 "title": "second slice",
               },
               Object {
-                "color": "#E8DB7D",
+                "color": "#ff7f0e",
                 "description": "third description",
                 "title": "third slice",
               },
               Object {
-                "color": "#231123",
+                "color": "#ffbb78",
                 "description": "fourth description",
                 "title": "fourth slice",
+              },
+              Object {
+                "color": "#2ca02c",
+                "description": "fifth description",
+                "title": "fifth slice",
+              },
+              Object {
+                "color": "#98df8a",
+                "description": "sixth description",
+                "title": "sixth slice",
+              },
+              Object {
+                "color": "#d62728",
+                "description": "seventh description",
+                "title": "seventh slice",
+              },
+              Object {
+                "color": "#ff9896",
+                "description": "eighth description",
+                "title": "eighth slice",
+              },
+              Object {
+                "color": "#9467bd",
+                "description": "ninth description",
+                "title": "ninth slice",
+              },
+              Object {
+                "color": "#c5b0d5",
+                "description": "tenth description",
+                "title": "tenth slice",
+              },
+              Object {
+                "color": "#8c564b",
+                "description": "eleventh description",
+                "title": "eleventh slice",
+              },
+              Object {
+                "color": "#c49c94",
+                "description": "twelveth description",
+                "title": "twelveth slice",
               },
             ],
           },
