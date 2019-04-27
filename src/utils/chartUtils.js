@@ -1,8 +1,9 @@
 import { colors } from '../constants';
-import '../components/viz/LineChart';
+import LineChart from '../components/viz/LineChart';
 import React from 'react';
 
-export const GenChart = (chartJson, colorScheme) => {
+// eslint-disable-next-line import /prefer-default-export
+export const genChart = (chartJson, colorScheme) => {
     if(chartJson === undefined){
         return null;
     }
