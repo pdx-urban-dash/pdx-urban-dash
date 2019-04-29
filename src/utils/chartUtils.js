@@ -1,27 +1,27 @@
+import React from 'react';
 import { colors } from '../constants';
 import LineChart from '../components/viz/LineChart';
-import React from 'react';
 
 // eslint-disable-next-line import /prefer-default-export
 export const genChart = (chartJson, colorScheme) => {
-    if(chartJson === undefined){
-        return null;
-    }
-    if(chartJson["chart_type"] === "LINE"){
-        var data = []
-        chartJson["data_sets"].forEach(chart_data => {
-            var values = chart_data["data_values"][0].map(function(e, i) {
-                  return [e, chart_data["data_values"][1][i]];
-            });
-            data.push({
-                dataSetName: chart_data["title"],
-                lineColor: chart_data["color"],
-                description: chart_data["description"],
-                showTrendLine: chart_data["show_trendLine"],
-                values: values,
-            });
-        });
-        const f_input = { title: chartJson["title"], colorScheme: colorScheme, data: data };
-        return <LineChart {...f_input}/>;
-    }
-}
+  if (chartJson === undefined) {
+    return null;
+  }
+  if (chartJson.chart_type === 'LINE') {
+    const data = [];
+    chartJson.data_sets.forEach((chartData) => {
+      const values = []
+      chartData.data_values[0].map((e, i) => values.push({x: e, y: chartData.data_values[1][i]}));
+      console.log(values);
+      data.push({
+        dataSetName: chartData.title,
+        lineColor: chartData.color,
+        description: chartData.description,
+        showTrendLine: chartData.show_trendLine,
+        values,
+      });
+    });
+    const fInput = { title: chartJson.title, colorScheme, data };
+    return <LineChart {...fInput} />;
+  }
+};

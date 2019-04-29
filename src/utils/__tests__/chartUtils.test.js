@@ -1,79 +1,43 @@
 import React from 'react';
 import each from 'jest-each';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { genChart } from '../chartUtils';
 
 each([
   [undefined, null, 0],
   [{
-        "target_trend": "UP",
-        "target": 100,
-        "title": "dummy line graph",
-        "axis_labels": [
-            "x",
-            "y"
+    target_trend: 'UP',
+    target: 100,
+    title: 'dummy line graph',
+    axis_labels: [
+      'x',
+      'y',
+    ],
+    chart_type: 'LINE',
+    data_sets: [
+      {
+        show_trendline: true,
+        description: 'first datapoint',
+        title: 'bar1',
+        color: 'RED',
+        data_values: [
+          [
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+          ],
+          [
+            2, 5, 1, 6, 8, 9, 3, 4, 7, 8,
+          ],
         ],
-        "chart_type": "LINE",
-        "data_sets": [
-            {
-                "show_trendline": true,
-                "description": "first datapoint",
-                "title": "bar1",
-                "color": "RED",
-                "data_values": [
-                    [
-                        1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-                    ],
-                    [
-                        2, 5, 1, 6, 8, 9, 3, 4, 7, 8
-                    ]
-                ],
-                "metadata": ""
-            }
-        ]
-    }, "marks", 1]
+        metadata: '',
+      },
+    ],
+  }, 'marks', 1],
 ]).test('genChart with obj: %o', (obj, expected, length) => {
-  if(obj === undefined) {
+  if (obj === undefined) {
     expect(genChart(obj)).toBeNull();
-  }
-  else {
-      const lineChart = genChart(obj, "light");
-      const wrapper = mount(<lineChart />);
-      expect(wrapper.find(expected)).toHaveLength(length);
-  }
-});
-
-describe('<LineChart />', () => {
-  test('snapshot', () => {
-    const wrapper = shallow(
-      <genChart
-        data={[
-          {
-            dataSetName: 'first',
-            description: 'this is first',
-            lineColor: 'red',
-            showTrendLine: true,
-            values: [
-              { x: 0, y: 10 },
-              { x: 1, y: 20 },
-              { x: 2, y: 15 },
-              { x: 3, y: 40 },
-            ],
-          },
-          {
-            dataSetName: 'second',
-            lineColor: 'blue',
-            description: 'this is second',
-            values: [
-              { x: 0, y: 20 },
-              { x: 1, y: 30 },
-              { x: 2, y: 19 },
-              { x: 3, y: 50 },
-            ],
-          },
-        ]}
-      />,
-    );
+  } else {
+    const lineChart = genChart(obj, 'light');
+    const wrapper = shallow(<lineChart />);
     expect(wrapper).toMatchSnapshot();
-  });
+  }
 });
