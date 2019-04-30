@@ -6,6 +6,8 @@ import { DonutChart } from '../components/viz/DonutChart';
 
 // eslint-disable-next-line import /prefer-default-export
 export const genChart = (chartJson, colorScheme, className) => {
+  console.log("In genchart");
+  console.log(chartJson);
   if (chartJson === undefined) {
     return null;
   }
