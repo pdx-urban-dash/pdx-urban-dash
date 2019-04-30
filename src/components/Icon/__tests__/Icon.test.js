@@ -58,6 +58,3 @@ describe('<Icon />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 });
-    
-    
-  
