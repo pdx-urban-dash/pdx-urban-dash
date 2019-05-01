@@ -24,6 +24,7 @@ export const sizes = {
   spacing6: '64px',
 };
 
+
 export const category20 = {
   color1: '#1f77b4',
   color2: '#aec7e8',
@@ -45,4 +46,11 @@ export const category20 = {
   color18: '#dbdb8d',
   color19: '#17becf',
   color20: '#9edae5',
+};
+
+export const iconSizes = {
+  small: 24,
+  medium: 36,
+  large: 48,
+  xlarge: 64,
 };
