@@ -52,4 +52,9 @@ describe('<Icon />', () => {
     const wrapper = mount(<Icon type="chevrons-up" />);
     expect(wrapper).toMatchSnapshot();
   });
+
+  test('Icon renders target', () => {
+    const wrapper = mount(<Icon type="x-circle" />);
+    expect(wrapper).toMatchSnapshot();
+  });
 });

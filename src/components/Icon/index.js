@@ -9,6 +9,7 @@ import {
   GitHub,
   ChevronsDown,
   ChevronsUp,
+  XCircle,
 } from 'react-feather';
 
 import { colors, iconSizes } from '../../constants';
@@ -44,6 +45,8 @@ const Icon = ({ size, type }) => {
       return <ChevronsDown size={validSizes[mSize]} />;
     case 'chevrons-up':
       return <ChevronsUp size={validSizes[mSize]} />;
+    case 'x-circle':
+      return <XCircle size={validSizes[mSize]} />;
     default:
       throw new Error(`Icon type: ${type} does not exist`);
   }
