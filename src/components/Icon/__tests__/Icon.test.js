@@ -42,7 +42,7 @@ describe('<Icon />', () => {
     const wrapper = mount(<Icon type="github" />);
     expect(wrapper).toMatchSnapshot();
   });
-
+  
   test('Icon renders target', () => {
     const wrapper = mount(<Icon type="chevrons-down" />);
     expect(wrapper).toMatchSnapshot();
