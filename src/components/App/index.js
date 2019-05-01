@@ -5,6 +5,7 @@ import {
   Row,
   Col,
   Collapse,
+  Button,
 } from 'reactstrap';
 import Navigation from './Navigation';
 
@@ -19,9 +20,15 @@ export default class App extends Component {
 
   constructor(props) {
     super(props);
+    this.toggle = this.toggle.bind(this);
     this.state = {
       filtersOpen: true,
+      collapse: false,
     };
+  }
+
+  toggle() {
+    this.setState(state => ({ collapse: !state.collapse }));
   }
 
   render() {
@@ -39,7 +46,7 @@ export default class App extends Component {
     return (
       <Fragment>
         <Navigation title="PDX Dashboard" />
-        <Collapse isOpen={filtersOpen}>
+        <Collapse isOpen={this.state.collapse}>
           <Container>
             <Row fluid>
               <Col md="4">
@@ -76,23 +83,26 @@ export default class App extends Component {
               </Col>
             </Row>
           </Container>
-          <Row>
-            <Col lg="12">
-              <Container style={chartStyle}>
-                <div style={{ border: 'solid 1px', height: '200px', width: '200px' }} />
-                <div style={{ border: 'solid 1px', height: '200px', width: '200px' }} />
-                <div style={{ border: 'solid 1px', height: '200px', width: '200px' }} />
-                <div style={{ border: 'solid 1px', height: '200px', width: '200px' }} />
-                <div style={{ border: 'solid 1px', height: '200px', width: '200px' }} />
-                <div style={{ border: 'solid 1px', height: '200px', width: '200px' }} />
-                <div style={{ border: 'solid 1px', height: '200px', width: '200px' }} />
-                <div style={{ border: 'solid 1px', height: '200px', width: '200px' }} />
-                <div style={{ border: 'solid 1px', height: '200px', width: '200px' }} />
-                <div style={{ border: 'solid 1px', height: '200px', width: '200px' }} />
-              </Container>
-            </Col>
-          </Row>
         </Collapse>
+        <Row style={{ 'justify-content': 'center', margin: '10px' }}>
+          <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Filter Options</Button>
+        </Row>
+        <Row>
+          <Col lg="12">
+            <Container style={chartStyle}>
+              <div style={{ border: 'solid 1px', height: '200px', width: '200px' }} />
+              <div style={{ border: 'solid 1px', height: '200px', width: '200px' }} />
+              <div style={{ border: 'solid 1px', height: '200px', width: '200px' }} />
+              <div style={{ border: 'solid 1px', height: '200px', width: '200px' }} />
+              <div style={{ border: 'solid 1px', height: '200px', width: '200px' }} />
+              <div style={{ border: 'solid 1px', height: '200px', width: '200px' }} />
+              <div style={{ border: 'solid 1px', height: '200px', width: '200px' }} />
+              <div style={{ border: 'solid 1px', height: '200px', width: '200px' }} />
+              <div style={{ border: 'solid 1px', height: '200px', width: '200px' }} />
+              <div style={{ border: 'solid 1px', height: '200px', width: '200px' }} />
+            </Container>
+          </Col>
+        </Row>
       </Fragment>
     );
   }
