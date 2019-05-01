@@ -86,6 +86,39 @@ each([
       },
     ],
   },
+  {
+    target_trend: 'UP',
+    target: 100,
+    title: 'dummy line graph',
+    axis_labels: [
+      'x',
+      'y',
+    ],
+    chart_type: 'DONUT',
+    data_sets: [
+      {
+        show_trendline: true,
+        description: 'first datapoint',
+        title: 'line1',
+        color: 'RED',
+        data_values: [
+          [
+            'RED',
+            'BLUE',
+          ],
+          [
+            'derp',
+            'foo',
+          ],
+          [
+            30,
+            70,
+          ],
+        ],
+        metadata: '',
+      },
+    ],
+  },
   ]]).test('genChart with obj: %o', (obj) => {
   if (obj === undefined) {
     expect(genChart(obj)).toBeNull();
