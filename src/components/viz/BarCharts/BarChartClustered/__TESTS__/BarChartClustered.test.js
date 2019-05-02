@@ -31,7 +31,14 @@ const testIconSize = 'md';
 
 describe('<BarChartClustered />', () => {
   test('snapshot', () => {
-    const wrapper = shallow(<BarChartClustered data={testData} title={testTitle} icon_type={testIcon} icon_size={testIconSize} />);
+    const wrapper = shallow(
+      <BarChartClustered
+        data={testData}
+        title={testTitle}
+        icon_type={testIcon}
+        icon_size={testIconSize}
+      />,
+    );
     expect(wrapper).toMatchSnapshot();
   });
 });
