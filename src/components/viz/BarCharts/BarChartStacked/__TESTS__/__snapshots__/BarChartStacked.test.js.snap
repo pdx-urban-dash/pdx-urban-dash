@@ -54,6 +54,8 @@ ShallowWrapper {
         },
       ]
     }
+    iconSize="md"
+    iconType="trending-up"
     title="chart title"
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -90,6 +92,8 @@ ShallowWrapper {
         />,
       ],
       "className": "",
+      "iconSize": "md",
+      "iconType": "trending-up",
       "title": "chart title",
     },
     "ref": null,
@@ -154,6 +158,8 @@ ShallowWrapper {
           />,
         ],
         "className": "",
+        "iconSize": "md",
+        "iconType": "trending-up",
         "title": "chart title",
       },
       "ref": null,

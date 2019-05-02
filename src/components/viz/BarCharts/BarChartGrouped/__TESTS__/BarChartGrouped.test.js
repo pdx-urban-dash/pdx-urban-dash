@@ -26,10 +26,12 @@ const testData = [
 ];
 
 const testTitle = 'chart title';
+const testIcon = 'trending-up';
+const testIconSize = 'md';
 
 describe('<BarChartGrouped />', () => {
   test('snapshot', () => {
-    const wrapper = shallow(<BarChartGrouped data={testData} title={testTitle} />);
+    const wrapper = shallow(<BarChartGrouped data={testData} title={testTitle}  iconType={testIcon} iconSize={testIconSize} />);
     expect(wrapper).toMatchSnapshot();
   });
 });

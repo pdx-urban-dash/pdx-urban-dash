@@ -28,6 +28,8 @@ const BarChartClustered = (
     title,
     className,
     colorScheme,
+    iconType,
+    iconSize
   },
 ) => {
   const colorRange = getColors(data);
@@ -55,7 +57,7 @@ const BarChartClustered = (
     ),
   );
   return (
-    <ChartWrapper title={title} className={className}>
+    <ChartWrapper title={title} className={className} iconType={iconType} iconSize={iconSize}>
       <Graph />
       <Legend
         series={data.map((elem, idx) => ({

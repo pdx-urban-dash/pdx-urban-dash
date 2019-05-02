@@ -2,6 +2,9 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import DonutChart from '../index';
 
+const testIcon = 'trending-up';
+const testIconSize = 'md';
+
 describe('<DonutChart />', () => {
   test('snapshot', () => {
     const wrapper = shallow(
@@ -71,6 +74,8 @@ describe('<DonutChart />', () => {
             value: 10,
           },
         ]}
+        iconType={testIcon} 
+        iconSize={testIconSize}
       />,
     );
     expect(wrapper).toMatchSnapshot();

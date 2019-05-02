@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'react-bootstrap';
+import Icon from '../../../Icon';
 
 import './styles.scss';
 
@@ -9,12 +10,16 @@ const ChartWrapper = (
   {
     title,
     className,
+    iconType,
+    iconSize,
     // eslint-disable-next-line
     children,
   },
 ) => {
+
   const nonLegendChildren = [];
   let legendChild = null;
+
   React.Children.forEach(children, (child) => {
     if (child.type.name === 'Legend') {
       legendChild = child;
@@ -22,6 +27,8 @@ const ChartWrapper = (
       nonLegendChildren.push(child);
     }
   });
+
+
   return (
     <Container className={`ChartWrapper-wrapper ${className}`}>
       <Row>
@@ -31,8 +38,11 @@ const ChartWrapper = (
         <Col />
       </Row>
       <Row>
-        <Col>{nonLegendChildren}</Col>
-        { legendChild }
+        <Col>{nonLegendChildren} </Col>
+        <Col> 
+          <Row> <Icon type={iconType} size={iconSize} /> </Row>
+          <Row> { legendChild } </Row>
+        </Col>
       </Row>
     </Container>
   );
