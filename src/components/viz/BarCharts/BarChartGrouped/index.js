@@ -29,7 +29,7 @@ const BarChartGrouped = (
     className,
     colorScheme,
     iconType,
-    iconSize
+    iconSize,
   },
 ) => {
   const colorRange = getColors(data);
@@ -83,12 +83,16 @@ BarChartGrouped.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
   colorScheme: PropTypes.oneOf(['light', 'dark']),
+  iconType: PropTypes.string,
+  iconSize: PropTypes.string,
 };
 
 BarChartGrouped.defaultProps = {
   title: 'chart title',
   className: '',
   colorScheme: 'light',
+  iconType: '',
+  iconSize: '',
 };
 
 export default BarChartGrouped;

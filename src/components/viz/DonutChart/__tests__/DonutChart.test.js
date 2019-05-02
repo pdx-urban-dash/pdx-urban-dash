@@ -74,7 +74,7 @@ describe('<DonutChart />', () => {
             value: 10,
           },
         ]}
-        iconType={testIcon} 
+        iconType={testIcon}
         iconSize={testIconSize}
       />,
     );

@@ -16,7 +16,6 @@ const ChartWrapper = (
     children,
   },
 ) => {
-
   const nonLegendChildren = [];
   let legendChild = null;
 
@@ -39,7 +38,7 @@ const ChartWrapper = (
       </Row>
       <Row>
         <Col>{nonLegendChildren} </Col>
-        <Col> 
+        <Col>
           <Row> <Icon type={iconType} size={iconSize} /> </Row>
           <Row> { legendChild } </Row>
         </Col>
@@ -51,11 +50,15 @@ const ChartWrapper = (
 ChartWrapper.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
+  iconType: PropTypes.string,
+  iconSize: PropTypes.string,
 };
 
 ChartWrapper.defaultProps = {
   title: '',
   className: '',
+  iconType: '',
+  iconSize: '',
 };
 
 export default ChartWrapper;

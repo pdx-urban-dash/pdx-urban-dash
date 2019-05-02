@@ -26,7 +26,7 @@ const DonutChart = (
     className,
     colorScheme,
     iconType,
-    iconSize
+    iconSize,
   },
 ) => {
   const mColors = getColors(data);
@@ -77,12 +77,16 @@ DonutChart.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
   colorScheme: PropTypes.oneOf(['light', 'dark']),
+  iconType: PropTypes.string,
+  iconSize: PropTypes.string,
 };
 
 DonutChart.defaultProps = {
   title: 'default title',
   className: '',
   colorScheme: 'light',
+  iconType: '',
+  iconSize: '',
 };
 
 export default DonutChart;

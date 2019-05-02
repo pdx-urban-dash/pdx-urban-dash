@@ -31,7 +31,7 @@ const testIconSize = 'md';
 
 describe('<BarChartStacked />', () => {
   test('snapshot', () => {
-    const wrapper = shallow(<BarChartStacked data={testData} title={testTitle}  iconType={testIcon} iconSize={testIconSize} />);
+    const wrapper = shallow(<BarChartStacked data={testData} title={testTitle} icon_type={testIcon} icon_size={testIconSize} />);
     expect(wrapper).toMatchSnapshot();
   });
 });
