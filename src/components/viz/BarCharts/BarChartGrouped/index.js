@@ -91,7 +91,7 @@ BarChartGrouped.defaultProps = {
   title: 'chart title',
   className: '',
   colorScheme: 'light',
-  trend: 'trend-up',
+  trending: trend.up,
   onTarget: false,
 };
 
