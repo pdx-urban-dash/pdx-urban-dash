@@ -1,0 +1,715 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SelectSearch /> snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SelectSearch
+    callback={[Function]}
+    categories={
+      Array [
+        "test1",
+        "test2",
+        "test3",
+      ]
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": <InputGroup
+        tag="div"
+      >
+        <InputGroupButtonDropdown
+          addonType="append"
+          isOpen={false}
+          toggle={[Function]}
+        >
+          <DropdownToggle
+            aria-haspopup={true}
+            caret={true}
+            color="secondary"
+          >
+            Categories
+          </DropdownToggle>
+          <DropdownMenu
+            flip={true}
+            tag="div"
+          >
+            <DropdownItem
+              onClick={[Function]}
+              tag="button"
+              toggle={true}
+            >
+              test1
+            </DropdownItem>
+            <DropdownItem
+              onClick={[Function]}
+              tag="button"
+              toggle={true}
+            >
+              test2
+            </DropdownItem>
+            <DropdownItem
+              onClick={[Function]}
+              tag="button"
+              toggle={true}
+            >
+              test3
+            </DropdownItem>
+          </DropdownMenu>
+        </InputGroupButtonDropdown>
+        <Input
+          name="searchBox"
+          onChange={[Function]}
+          placeholder="Search for a category..."
+          type="text"
+          value=""
+        />
+        <InputGroupAddon
+          addonType="append"
+          tag="div"
+        >
+          <Button
+            color="secondary"
+            onClick={[Function]}
+            tag="button"
+          >
+            Search
+          </Button>
+        </InputGroupAddon>
+      </InputGroup>,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          <InputGroupButtonDropdown
+            addonType="append"
+            isOpen={false}
+            toggle={[Function]}
+          >
+            <DropdownToggle
+              aria-haspopup={true}
+              caret={true}
+              color="secondary"
+            >
+              Categories
+            </DropdownToggle>
+            <DropdownMenu
+              flip={true}
+              tag="div"
+            >
+              <DropdownItem
+                onClick={[Function]}
+                tag="button"
+                toggle={true}
+              >
+                test1
+              </DropdownItem>
+              <DropdownItem
+                onClick={[Function]}
+                tag="button"
+                toggle={true}
+              >
+                test2
+              </DropdownItem>
+              <DropdownItem
+                onClick={[Function]}
+                tag="button"
+                toggle={true}
+              >
+                test3
+              </DropdownItem>
+            </DropdownMenu>
+          </InputGroupButtonDropdown>,
+          <Input
+            name="searchBox"
+            onChange={[Function]}
+            placeholder="Search for a category..."
+            type="text"
+            value=""
+          />,
+          <InputGroupAddon
+            addonType="append"
+            tag="div"
+          >
+            <Button
+              color="secondary"
+              onClick={[Function]}
+              tag="button"
+            >
+              Search
+            </Button>
+          </InputGroupAddon>,
+        ],
+        "tag": "div",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "addonType": "append",
+            "children": Array [
+              <DropdownToggle
+                aria-haspopup={true}
+                caret={true}
+                color="secondary"
+              >
+                Categories
+              </DropdownToggle>,
+              <DropdownMenu
+                flip={true}
+                tag="div"
+              >
+                <DropdownItem
+                  onClick={[Function]}
+                  tag="button"
+                  toggle={true}
+                >
+                  test1
+                </DropdownItem>
+                <DropdownItem
+                  onClick={[Function]}
+                  tag="button"
+                  toggle={true}
+                >
+                  test2
+                </DropdownItem>
+                <DropdownItem
+                  onClick={[Function]}
+                  tag="button"
+                  toggle={true}
+                >
+                  test3
+                </DropdownItem>
+              </DropdownMenu>,
+            ],
+            "isOpen": false,
+            "toggle": [Function],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "aria-haspopup": true,
+                "caret": true,
+                "children": "Categories",
+                "color": "secondary",
+              },
+              "ref": null,
+              "rendered": "Categories",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <DropdownItem
+                    onClick={[Function]}
+                    tag="button"
+                    toggle={true}
+                  >
+                    test1
+                  </DropdownItem>,
+                  <DropdownItem
+                    onClick={[Function]}
+                    tag="button"
+                    toggle={true}
+                  >
+                    test2
+                  </DropdownItem>,
+                  <DropdownItem
+                    onClick={[Function]}
+                    tag="button"
+                    toggle={true}
+                  >
+                    test3
+                  </DropdownItem>,
+                ],
+                "flip": true,
+                "tag": "div",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "test1",
+                    "onClick": [Function],
+                    "tag": "button",
+                    "toggle": true,
+                  },
+                  "ref": null,
+                  "rendered": "test1",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "test2",
+                    "onClick": [Function],
+                    "tag": "button",
+                    "toggle": true,
+                  },
+                  "ref": null,
+                  "rendered": "test2",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "test3",
+                    "onClick": [Function],
+                    "tag": "button",
+                    "toggle": true,
+                  },
+                  "ref": null,
+                  "rendered": "test3",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "name": "searchBox",
+            "onChange": [Function],
+            "placeholder": "Search for a category...",
+            "type": "text",
+            "value": "",
+          },
+          "ref": "search",
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "addonType": "append",
+            "children": <Button
+              color="secondary"
+              onClick={[Function]}
+              tag="button"
+            >
+              Search
+            </Button>,
+            "tag": "div",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "Search",
+              "color": "secondary",
+              "onClick": [Function],
+              "tag": "button",
+            },
+            "ref": null,
+            "rendered": "Search",
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+    "type": Symbol(react.fragment),
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": <InputGroup
+          tag="div"
+        >
+          <InputGroupButtonDropdown
+            addonType="append"
+            isOpen={false}
+            toggle={[Function]}
+          >
+            <DropdownToggle
+              aria-haspopup={true}
+              caret={true}
+              color="secondary"
+            >
+              Categories
+            </DropdownToggle>
+            <DropdownMenu
+              flip={true}
+              tag="div"
+            >
+              <DropdownItem
+                onClick={[Function]}
+                tag="button"
+                toggle={true}
+              >
+                test1
+              </DropdownItem>
+              <DropdownItem
+                onClick={[Function]}
+                tag="button"
+                toggle={true}
+              >
+                test2
+              </DropdownItem>
+              <DropdownItem
+                onClick={[Function]}
+                tag="button"
+                toggle={true}
+              >
+                test3
+              </DropdownItem>
+            </DropdownMenu>
+          </InputGroupButtonDropdown>
+          <Input
+            name="searchBox"
+            onChange={[Function]}
+            placeholder="Search for a category..."
+            type="text"
+            value=""
+          />
+          <InputGroupAddon
+            addonType="append"
+            tag="div"
+          >
+            <Button
+              color="secondary"
+              onClick={[Function]}
+              tag="button"
+            >
+              Search
+            </Button>
+          </InputGroupAddon>
+        </InputGroup>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            <InputGroupButtonDropdown
+              addonType="append"
+              isOpen={false}
+              toggle={[Function]}
+            >
+              <DropdownToggle
+                aria-haspopup={true}
+                caret={true}
+                color="secondary"
+              >
+                Categories
+              </DropdownToggle>
+              <DropdownMenu
+                flip={true}
+                tag="div"
+              >
+                <DropdownItem
+                  onClick={[Function]}
+                  tag="button"
+                  toggle={true}
+                >
+                  test1
+                </DropdownItem>
+                <DropdownItem
+                  onClick={[Function]}
+                  tag="button"
+                  toggle={true}
+                >
+                  test2
+                </DropdownItem>
+                <DropdownItem
+                  onClick={[Function]}
+                  tag="button"
+                  toggle={true}
+                >
+                  test3
+                </DropdownItem>
+              </DropdownMenu>
+            </InputGroupButtonDropdown>,
+            <Input
+              name="searchBox"
+              onChange={[Function]}
+              placeholder="Search for a category..."
+              type="text"
+              value=""
+            />,
+            <InputGroupAddon
+              addonType="append"
+              tag="div"
+            >
+              <Button
+                color="secondary"
+                onClick={[Function]}
+                tag="button"
+              >
+                Search
+              </Button>
+            </InputGroupAddon>,
+          ],
+          "tag": "div",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "addonType": "append",
+              "children": Array [
+                <DropdownToggle
+                  aria-haspopup={true}
+                  caret={true}
+                  color="secondary"
+                >
+                  Categories
+                </DropdownToggle>,
+                <DropdownMenu
+                  flip={true}
+                  tag="div"
+                >
+                  <DropdownItem
+                    onClick={[Function]}
+                    tag="button"
+                    toggle={true}
+                  >
+                    test1
+                  </DropdownItem>
+                  <DropdownItem
+                    onClick={[Function]}
+                    tag="button"
+                    toggle={true}
+                  >
+                    test2
+                  </DropdownItem>
+                  <DropdownItem
+                    onClick={[Function]}
+                    tag="button"
+                    toggle={true}
+                  >
+                    test3
+                  </DropdownItem>
+                </DropdownMenu>,
+              ],
+              "isOpen": false,
+              "toggle": [Function],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "aria-haspopup": true,
+                  "caret": true,
+                  "children": "Categories",
+                  "color": "secondary",
+                },
+                "ref": null,
+                "rendered": "Categories",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <DropdownItem
+                      onClick={[Function]}
+                      tag="button"
+                      toggle={true}
+                    >
+                      test1
+                    </DropdownItem>,
+                    <DropdownItem
+                      onClick={[Function]}
+                      tag="button"
+                      toggle={true}
+                    >
+                      test2
+                    </DropdownItem>,
+                    <DropdownItem
+                      onClick={[Function]}
+                      tag="button"
+                      toggle={true}
+                    >
+                      test3
+                    </DropdownItem>,
+                  ],
+                  "flip": true,
+                  "tag": "div",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "test1",
+                      "onClick": [Function],
+                      "tag": "button",
+                      "toggle": true,
+                    },
+                    "ref": null,
+                    "rendered": "test1",
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "test2",
+                      "onClick": [Function],
+                      "tag": "button",
+                      "toggle": true,
+                    },
+                    "ref": null,
+                    "rendered": "test2",
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "test3",
+                      "onClick": [Function],
+                      "tag": "button",
+                      "toggle": true,
+                    },
+                    "ref": null,
+                    "rendered": "test3",
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "name": "searchBox",
+              "onChange": [Function],
+              "placeholder": "Search for a category...",
+              "type": "text",
+              "value": "",
+            },
+            "ref": "search",
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "addonType": "append",
+              "children": <Button
+                color="secondary"
+                onClick={[Function]}
+                tag="button"
+              >
+                Search
+              </Button>,
+              "tag": "div",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "Search",
+                "color": "secondary",
+                "onClick": [Function],
+                "tag": "button",
+              },
+              "ref": null,
+              "rendered": "Search",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      "type": Symbol(react.fragment),
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+  Symbol(enzyme.__childContext__): null,
+}
+`;
