@@ -61,14 +61,10 @@ export default class Filters extends Component {
     return (
       <Container>
         <Row>
-          <Col>
-
-          </Col>
-          <Col>
-
-          </Col>
+          <Col />
+          <Col />
         </Row>
       </Container>
     );
   }
-};
+}
