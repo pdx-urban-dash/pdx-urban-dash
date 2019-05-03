@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import {
+  CustomInput,
   ButtonGroup,
   Button
 } from 'reactstrap';
@@ -11,34 +12,35 @@ export default class SelectOption extends Component {
 
   static propTypes = {
       text: PropTypes.string.isRequired,
-      icon: PropTypes.node,
     };
 
   constructor (props) {
     super(props);
 
     this.state = { 
-      icon: null,
-      iconWrapper: null,
+      rendered: <Button outline color="primary" onClick={() => this.activateFilter(1)} > { this.props.text }</Button>,
     };
 
-    this.updateIcon = this.updateIcon.bind(this);
+    this.activateFilter = this.activateFilter.bind(this);
+    this.deactivateFilter = this.deactivateFilter.bind(this);
   }
 
-  updateIcon(selected) {
+  activateFilter(selected) {
     this.setState({
-      icon: <Icon type='target' size='sm' />,
-      iconWrapper: <Button color="success" onClick={() => this.updateIcon(1)} active="false"> <Icon type='target' size='sm' /></Button>,
+      rendered: <Button color="success" onClick={() => this.deactivateFilter(1)} > { this.props.text }</Button>,
+    }) 
+  }
+
+  deactivateFilter(selected) {
+    this.setState({
+      rendered: <Button outline color="primary" onClick={() => this.activateFilter(1)} > { this.props.text }</Button>,
     }) 
   }
 
   render() {
     return (
       <Fragment>
-        <ButtonGroup>
-          <Button color="primary" onClick={() => this.updateIcon(1)}>{ this.props.text} </Button>
-          {this.state.iconWrapper}
-        </ButtonGroup>
+          {this.state.rendered}
       </Fragment>
     );
   }
