@@ -56,7 +56,6 @@ ShallowWrapper {
     }
     onTarget={false}
     title="chart title"
-    trend="trend-up"
     trending="trending-up"
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -95,7 +94,6 @@ ShallowWrapper {
       "className": "",
       "onTarget": false,
       "title": "chart title",
-      "trend": "trend-up",
       "trending": "trending-up",
     },
     "ref": null,
@@ -162,7 +160,6 @@ ShallowWrapper {
         "className": "",
         "onTarget": false,
         "title": "chart title",
-        "trend": "trend-up",
         "trending": "trending-up",
       },
       "ref": null,
