@@ -14,18 +14,27 @@ import {
 class SelectSearch extends React.Component {
   constructor(props) {
     super(props);
+
+    //Initialize props
     this.categories = [];
     this.callback = (val) => console.log(val);
-    this.state = {
-      dropdownOpen: false,
-      searchValue: '',
-    };
 
+    //Bind setters
     this.toggleDropDown = this.toggleDropDown.bind(this);
     this.passVal = this.passVal.bind(this);
     this.activateCategory = this.activateCategory.bind(this);
+
+    //Initialize state
+    this.state = {
+      dropdownOpen: false,
+      dropdownLabel: "All",
+      searchValue: '',
+    };
   }
 
+  //////////
+  //Settters
+  //////////
   toggleDropDown() {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
@@ -33,13 +42,14 @@ class SelectSearch extends React.Component {
   }
 
   activateCategory(category) {
-    if (this.props.categories.includes(category)){
+    if (this.props.categories.includes(category) || category === "All"){
       this.setState({
-        searchValue: ''
+        searchValue: '',
+        dropdownLabel: category,
       });
 
       this.props.callback(category);
-    }
+    } 
   }
 
   passVal({ target }) {
@@ -65,10 +75,9 @@ class SelectSearch extends React.Component {
       <Fragment>
         <InputGroup>
           <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
-            <DropdownToggle color="secondary" caret>
-              Categories
-            </DropdownToggle>
+            <DropdownToggle color="secondary" caret>{this.state.dropdownLabel}</DropdownToggle>
             <DropdownMenu>
+              <DropdownItem onClick={()=> this.activateCategory("All")} >All</DropdownItem>
               {categoryDropdownItems}
             </DropdownMenu>
           </InputGroupButtonDropdown>

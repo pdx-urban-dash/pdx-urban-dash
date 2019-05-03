@@ -1,39 +1,58 @@
 import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  CustomInput,
-  ButtonGroup,
-  Button
+  Toast, ToastHeader
 } from 'reactstrap';
-import Icon from "../../Icon";
-
 
 export default class SelectOption extends Component {
 
   static propTypes = {
-      text: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
     };
 
   constructor (props) {
     super(props);
+    this.category = '';
+    this.name = '';
 
     this.state = { 
-      rendered: <Button outline color="primary" onClick={() => this.activateFilter(1)} > { this.props.text }</Button>,
+      rendered: 
+      <Fragment>
+        <Toast data-category={this.props.category} onClick={() => this.activateFilter()}>
+          <ToastHeader icon="warning">
+            { this.props.name }
+          </ToastHeader>
+        </Toast>
+      </Fragment>,
     };
 
     this.activateFilter = this.activateFilter.bind(this);
     this.deactivateFilter = this.deactivateFilter.bind(this);
   }
 
-  activateFilter(selected) {
+  activateFilter() {
     this.setState({
-      rendered: <Button color="success" onClick={() => this.deactivateFilter(1)} > { this.props.text }</Button>,
+      rendered: 
+      <Fragment>
+        <Toast data-category={this.props.category} onClick={() => this.deactivateFilter()}>
+          <ToastHeader icon="success">
+            { this.props.name }
+          </ToastHeader>
+        </Toast>
+      </Fragment>,
     }) 
   }
 
-  deactivateFilter(selected) {
+  deactivateFilter() {
     this.setState({
-      rendered: <Button outline color="primary" onClick={() => this.activateFilter(1)} > { this.props.text }</Button>,
+      rendered: 
+      <Fragment>
+        <Toast data-category={this.props.category} onClick={() => this.activateFilter()}>
+          <ToastHeader icon="warning">
+            { this.props.name }
+          </ToastHeader>
+        </Toast>
+      </Fragment>,
     }) 
   }
 
