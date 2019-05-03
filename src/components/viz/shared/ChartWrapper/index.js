@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'react-bootstrap';
 import Icon from '../../../Icon';
+import { trend } from '../../../../constants';
 
 import './styles.scss';
 
@@ -10,8 +11,8 @@ const ChartWrapper = (
   {
     title,
     className,
-    iconType,
-    iconSize,
+    trending,
+    onTarget,
     // eslint-disable-next-line
     children,
   },
@@ -39,7 +40,10 @@ const ChartWrapper = (
       <Row>
         <Col>{nonLegendChildren} </Col>
         <Col>
-          <Row> <Icon type={iconType} size={iconSize} /> </Row>
+          <Row>
+            <Col> <Icon type={trending} size="sm" /></Col>
+            <Col> <Icon type={onTarget ? ('on-target') : ('off-target')} size="sm" /></Col>
+          </Row>
           <Row> { legendChild } </Row>
         </Col>
       </Row>
@@ -50,15 +54,15 @@ const ChartWrapper = (
 ChartWrapper.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
-  iconType: PropTypes.string,
-  iconSize: PropTypes.string,
+  trending: PropTypes.oneOf(Object.values(trend)),
+  onTarget: PropTypes.bool,
 };
 
 ChartWrapper.defaultProps = {
   title: '',
   className: '',
-  iconType: '',
-  iconSize: '',
+  trending: trend.up,
+  onTarget: false,
 };
 
 export default ChartWrapper;

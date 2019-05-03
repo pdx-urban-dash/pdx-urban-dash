@@ -57,9 +57,10 @@ ShallowWrapper {
         },
       ]
     }
-    iconSize="md"
-    iconType="trending-up"
+    onTarget={false}
     title="chart title"
+    trend="trend-up"
+    trending="trending-up"
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -95,9 +96,10 @@ ShallowWrapper {
         />,
       ],
       "className": "",
-      "iconSize": "md",
-      "iconType": "trending-up",
+      "onTarget": false,
       "title": "chart title",
+      "trend": "trend-up",
+      "trending": "trending-up",
     },
     "ref": null,
     "rendered": Array [
@@ -161,9 +163,10 @@ ShallowWrapper {
           />,
         ],
         "className": "",
-        "iconSize": "md",
-        "iconType": "trending-up",
+        "onTarget": false,
         "title": "chart title",
+        "trend": "trend-up",
+        "trending": "trending-up",
       },
       "ref": null,
       "rendered": Array [

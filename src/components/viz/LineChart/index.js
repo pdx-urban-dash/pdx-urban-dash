@@ -46,8 +46,8 @@ const LineChart = (
     title,
     className,
     colorScheme,
-    iconType,
-    iconSize,
+    trend,
+    onTarget,
   },
 ) => {
   const colorRange = getColors(data);
@@ -75,7 +75,7 @@ const LineChart = (
     ),
   );
   return (
-    <ChartWrapper title={title} className={className} iconType={iconType} iconSize={iconSize}>
+    <ChartWrapper title={title} className={className} trend={trend} onTarget={onTarget}>
       <Graph />
       <Legend
         series={data.map((elem, idx) => ({
@@ -102,16 +102,16 @@ LineChart.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
   colorScheme: PropTypes.oneOf(['light', 'dark']),
-  iconType: PropTypes.string,
-  iconSize: PropTypes.string,
+  trend: PropTypes.oneOf('Object.values(trend)'),
+  onTarget: PropTypes.bool,
 };
 
 LineChart.defaultProps = {
   title: 'chart title',
   className: '',
   colorScheme: 'light',
-  iconType: '',
-  iconSize: '',
+  trend: 'trend-up',
+  onTarget: false,
 };
 
 export default LineChart;

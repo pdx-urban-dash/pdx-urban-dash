@@ -25,8 +25,8 @@ const DonutChart = (
     title,
     className,
     colorScheme,
-    iconType,
-    iconSize,
+    trend,
+    onTarget,
   },
 ) => {
   const mColors = getColors(data);
@@ -54,7 +54,7 @@ const DonutChart = (
     ),
   );
   return (
-    <ChartWrapper title={title} className={className} iconType={iconType} iconSize={iconSize}>
+    <ChartWrapper title={title} className={className} trend={trend} onTarget={onTarget}>
       <Graph />
       <Legend
         series={data.map((elem, idx) => ({
@@ -77,16 +77,16 @@ DonutChart.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
   colorScheme: PropTypes.oneOf(['light', 'dark']),
-  iconType: PropTypes.string,
-  iconSize: PropTypes.string,
+  trend: PropTypes.oneOf('Object.values(trend)'),
+  onTarget: PropTypes.bool,
 };
 
 DonutChart.defaultProps = {
   title: 'default title',
   className: '',
   colorScheme: 'light',
-  iconType: '',
-  iconSize: '',
+  trend: 'trend-up',
+  onTarget: false,
 };
 
 export default DonutChart;

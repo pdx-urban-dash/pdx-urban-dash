@@ -1,9 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import LineChart from '../index';
-
-const testIcon = 'trending-up';
-const testIconSize = 'md';
+import { trend } from '../../../../constants';
 
 describe('<LineChart />', () => {
   test('snapshot', () => {
@@ -34,8 +32,8 @@ describe('<LineChart />', () => {
             ],
           },
         ]}
-        iconType={testIcon}
-        iconSize={testIconSize}
+        trending={trend.up}
+        onTarget={false}
       />,
     );
     expect(wrapper).toMatchSnapshot();

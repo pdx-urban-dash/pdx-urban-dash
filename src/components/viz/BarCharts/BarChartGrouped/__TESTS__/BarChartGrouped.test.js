@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import BarChartGrouped from '../index';
+import { trend } from '../../../../../constants';
 
 const testData = [
   {
@@ -26,8 +27,6 @@ const testData = [
 ];
 
 const testTitle = 'chart title';
-const testIcon = 'trending-up';
-const testIconSize = 'md';
 
 describe('<BarChartGrouped />', () => {
   test('snapshot', () => {
@@ -35,8 +34,8 @@ describe('<BarChartGrouped />', () => {
       <BarChartGrouped
         data={testData}
         title={testTitle}
-        icon_type={testIcon}
-        icon_size={testIconSize}
+        trending={trend.up}
+        onTarget={false}
       />,
     );
     expect(wrapper).toMatchSnapshot();

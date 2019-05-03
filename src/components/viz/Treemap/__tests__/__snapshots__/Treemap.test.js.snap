@@ -82,9 +82,9 @@ ShallowWrapper {
         />,
       ],
       "className": "",
-      "iconSize": "",
-      "iconType": "",
+      "onTarget": false,
       "title": "chart title",
+      "trending": "trending-up",
     },
     "ref": null,
     "rendered": Array [
@@ -148,9 +148,9 @@ ShallowWrapper {
           />,
         ],
         "className": "",
-        "iconSize": "",
-        "iconType": "",
+        "onTarget": false,
         "title": "chart title",
+        "trending": "trending-up",
       },
       "ref": null,
       "rendered": Array [
