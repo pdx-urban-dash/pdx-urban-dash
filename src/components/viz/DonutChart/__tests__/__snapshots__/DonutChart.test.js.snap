@@ -70,7 +70,9 @@ ShallowWrapper {
         },
       ]
     }
+    onTarget={false}
     title="title"
+    trending="trending-up"
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -156,7 +158,9 @@ ShallowWrapper {
         />,
       ],
       "className": "",
+      "onTarget": false,
       "title": "title",
+      "trending": "trending-up",
     },
     "ref": null,
     "rendered": Array [
@@ -320,7 +324,9 @@ ShallowWrapper {
           />,
         ],
         "className": "",
+        "onTarget": false,
         "title": "title",
+        "trending": "trending-up",
       },
       "ref": null,
       "rendered": Array [

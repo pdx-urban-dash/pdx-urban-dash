@@ -82,7 +82,9 @@ ShallowWrapper {
         />,
       ],
       "className": "",
+      "onTarget": false,
       "title": "chart title",
+      "trending": "trending-up",
     },
     "ref": null,
     "rendered": Array [
@@ -146,7 +148,9 @@ ShallowWrapper {
           />,
         ],
         "className": "",
+        "onTarget": false,
         "title": "chart title",
+        "trending": "trending-up",
       },
       "ref": null,
       "rendered": Array [

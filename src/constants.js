@@ -54,3 +54,9 @@ export const iconSizes = {
   large: 48,
   xlarge: 64,
 };
+
+export const trend = {
+  up: 'trending-up',
+  down: 'trending-down',
+  // neutral: 'trend-neutral',
+};
