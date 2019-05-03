@@ -25,6 +25,8 @@ const DonutChart = (
     title,
     className,
     colorScheme,
+    iconType,
+    iconSize,
   },
 ) => {
   const mColors = getColors(data);
@@ -52,7 +54,7 @@ const DonutChart = (
     ),
   );
   return (
-    <ChartWrapper title={title} className={className}>
+    <ChartWrapper title={title} className={className} iconType={iconType} iconSize={iconSize}>
       <Graph />
       <Legend
         series={data.map((elem, idx) => ({
@@ -75,12 +77,16 @@ DonutChart.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
   colorScheme: PropTypes.oneOf(['light', 'dark']),
+  iconType: PropTypes.string,
+  iconSize: PropTypes.string,
 };
 
 DonutChart.defaultProps = {
   title: 'default title',
   className: '',
   colorScheme: 'light',
+  iconType: '',
+  iconSize: '',
 };
 
 export default DonutChart;

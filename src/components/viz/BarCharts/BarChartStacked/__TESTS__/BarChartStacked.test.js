@@ -26,10 +26,19 @@ const testData = [
 ];
 
 const testTitle = 'chart title';
+const testIcon = 'trending-up';
+const testIconSize = 'md';
 
 describe('<BarChartStacked />', () => {
   test('snapshot', () => {
-    const wrapper = shallow(<BarChartStacked data={testData} title={testTitle} />);
+    const wrapper = shallow(
+      <BarChartStacked
+        data={testData}
+        title={testTitle}
+        icon_type={testIcon}
+        icon_size={testIconSize}
+      />,
+    );
     expect(wrapper).toMatchSnapshot();
   });
 });

@@ -28,6 +28,8 @@ const BarChartClustered = (
     title,
     className,
     colorScheme,
+    iconType,
+    iconSize,
   },
 ) => {
   const colorRange = getColors(data);
@@ -55,7 +57,7 @@ const BarChartClustered = (
     ),
   );
   return (
-    <ChartWrapper title={title} className={className}>
+    <ChartWrapper title={title} className={className} iconType={iconType} iconSize={iconSize}>
       <Graph />
       <Legend
         series={data.map((elem, idx) => ({
@@ -81,12 +83,16 @@ BarChartClustered.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
   colorScheme: PropTypes.oneOf(['light', 'dark']),
+  iconType: PropTypes.string,
+  iconSize: PropTypes.string,
 };
 
 BarChartClustered.defaultProps = {
   title: 'chart title',
   className: '',
   colorScheme: 'light',
+  iconType: '',
+  iconSize: '',
 };
 
 export default BarChartClustered;
