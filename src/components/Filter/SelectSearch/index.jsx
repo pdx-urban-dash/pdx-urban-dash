@@ -27,14 +27,11 @@ class SelectSearch extends React.Component {
     //Initialize state
     this.state = {
       dropdownOpen: false,
-      dropdownLabel: "All",
+      dropdownLabel: "Categories",
       searchValue: '',
     };
   }
 
-  //////////
-  //Settters
-  //////////
   toggleDropDown() {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
@@ -61,10 +58,10 @@ class SelectSearch extends React.Component {
   render() {
 
     var categoryDropdownItems = this.props.categories.map(
-      function iterator( cat ) {
+      function ( category ) {
         return (
-          <DropdownItem key={cat.id} onClick={()=> this.activateCategory(cat)} >
-            {cat}
+          <DropdownItem key={category} onClick={()=> this.activateCategory(category)} >
+            {category}
           </DropdownItem>
         )
       },
