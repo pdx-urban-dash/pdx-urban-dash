@@ -18,7 +18,7 @@ class FilterSearchBar extends React.Component {
     //Initialize props
     this.title = '';
     this.categories = [];
-    this.callback = (val) => console.log(val);
+    this.callback = (t) => console.log("FilterSearchBar uninitialized callback: " + t);
 
     //Bind setters
     this.toggleDropDown = this.toggleDropDown.bind(this);
@@ -61,9 +61,14 @@ class FilterSearchBar extends React.Component {
     var categoryDropdownItems = this.props.categories.map(
       function ( category ) {
         return (
-          <DropdownItem key={category} onClick={()=> this.activateCategory(category)} >
-            {category}
-          </DropdownItem>
+          React.createElement(
+            DropdownItem,
+            {
+              key: category,
+              onClick: ()=> this.activateCategory(category)
+            },
+            category
+          )
         )
       },
       this

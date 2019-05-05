@@ -5,8 +5,8 @@ import {
 } from 'reactstrap';
 import {
   FilterSearchGroup,
-  FilterCategory,
-  FilterOption,
+  FilterSearchCategory,
+  FilterSearchOption,
   FilterSearchBar,
 } from '../FilterComponents';
 
@@ -14,87 +14,73 @@ class FilterWrapper extends React.Component {
   constructor(props) {
     super(props);
 
-    this.getFilters = this.getFilters.bind(this);
-    this.hideUnselectedCategories = this.hideUnselectedCategories.bind(this);
-    this.buildCategories = this.buildCategories.bind(this);
-    this.buildOptions = this.buildOptions.bind(this);
-
-    //
-    this.transformData = this.transformData.bind(this);
-    this.updateChildren = this.updateChildren.bind(this);
+    //callbacks
+    this.filterSearchBarCallback = this.filterSearchBarCallback.bind(this);
+    this.filterOptionCallback = this.filterOptionCallback.bind(this);
     
     this.title = '';
-    this.data = []
-
     this.state = {
-      activeCatigories: this.transformData(this.props.data),
-    };
-  };
-
-
-//Formats input from parent
-//[{'category': x, 'name': y}, ...] => {'Category': [optionState, ...]}
-transformData(filters) {
-  //Seperate names into categories
-  //Build dictionary of {catagories: [names]}
-  var filtersByCat = {};
-  for (var i in filters){
-    var filter = filters[i];
-    if (!filtersByCat[filter.category]){
-
-      filtersByCat[filter.category] = [];
-      // console.log("Added " + filtersByCat[filter.category])
+      shownCategories: 'all',
+      selected: [],
     }
 
-    //Sort filters into lists of option prop data by category
-    filtersByCat[filter.category].push(filter.dataSetName);
-  }
-  return filtersByCat;
-}
+  };
 
-
-getFilters() {
-  this.props.data.map(function iterator( data ) {
-    return ([
-      { 
-        'category': data.category,
-        'name': data.dataSetName,
-      }
-    ])
-  });
-}
-
-buildCategories(){
-  var filters = this.transformData(this.props.data);
-  //Build options for each category
-  var categories = [];
-  for (var key in filters)
-    categories.push(<FilterCategory key={key} title={key}>{this.buildOptions(filters[key])}</FilterCategory>);
-  return categories;
-}
-
-buildOptions(catagories){
-  return catagories.map(function(key, id){
-    return<FilterOption key={id} title={key}/>;
+filterSearchBarCallback(data){
+  this.setState({
+    shownCategories: data
   })
+
+  // console.log(data);
+  // console.log("^ (filterSearchBarCallback, FilterWrapper)");
 }
 
-updateChildren(){ 
-  console.log(this.props.children + "(updateChildren, FilterWrapper)");
-  return null;
-}
+filterOptionCallback(data){
+  var temp = this.state.selected;
+  var index = temp.indexOf(data);
+  if (index === -1)
+    temp = temp.concat(data)
+  else if (index > -1)
+    temp.splice(index, 1);
 
-hideUnselectedCategories(category){
-  console.log(category + " (hideUnselectedCategories, FilterWrapper)");
-  return null;
+  this.setState({
+    selected: temp
+  })
+
+  // console.log(temp);
+  // console.log("^ (filterOptionCallback, FilterWrapper)");
 }
 
   render() {
+    var upHidden, downHidden, targetHidden;
+
+    switch(this.state.shownCategories.toLowerCase()){
+      case 'trending down':
+        upHidden = true;
+        downHidden = false;
+        targetHidden = true;
+        break;
+      case 'trending up': 
+        upHidden = false;
+        downHidden = true;
+        targetHidden = true;
+        break;
+      case 'on target':
+        upHidden = true;
+        downHidden = true;
+        targetHidden = false;
+        break;
+      default:
+        upHidden = false;
+        downHidden = false;
+        targetHidden = false;
+        break;
+    }
     
+    let isSelected = title => this.state.selected.includes(title);
     
     return (
       <Fragment>
-
         <Card>
           <CardBody> 
             <CardTitle>Welcome</CardTitle>
@@ -102,14 +88,24 @@ hideUnselectedCategories(category){
           </CardBody>
         </Card>
 
-        <FilterSearchGroup title={this.props.title} data={this.props.getFilters}>
+        <FilterSearchGroup title={this.props.title} data={this.props.getFilters} callback={this.filterSearchGroupCallback}>
           <FilterSearchBar 
             title='search'
-            categories={['Trending Down', 'Trending Up']}
-            callback={this.hideUnselectedCategories}
+            categories={['Trending Down', 'Trending Up', 'On Target']}
+            callback={this.filterSearchBarCallback}
           />
-          {this.buildCategories()}
-          {this.updateChildren()}
+          <FilterSearchCategory title='Trending Up' hidden={upHidden}>
+            <FilterSearchOption title='Police' selected={isSelected('Police')} callback={this.filterOptionCallback}/>
+            <FilterSearchOption title='Fire' selected={isSelected('Fire')} callback={this.filterOptionCallback}/>
+          </FilterSearchCategory>
+          <FilterSearchCategory title='Trending Down' hidden={downHidden}>
+            <FilterSearchOption title='Parks & Rec.' selected={isSelected('Parks & Rec.')} callback={this.filterOptionCallback}/>
+            <FilterSearchOption title='Sanitary' selected={isSelected('Sanitary')} callback={this.filterOptionCallback}/>
+          </FilterSearchCategory>
+          <FilterSearchCategory title='On Target' hidden={targetHidden}>
+            <FilterSearchOption title='Public Relations' selected={isSelected('Public Relations')} callback={this.filterOptionCallback}/>
+            <FilterSearchOption title='Sewage' selected={isSelected('Sewage')} callback={this.filterOptionCallback}/>
+          </FilterSearchCategory>
         </FilterSearchGroup>
 
         <Card>

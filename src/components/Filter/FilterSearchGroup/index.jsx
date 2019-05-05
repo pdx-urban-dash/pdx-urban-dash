@@ -10,11 +10,10 @@ class FilterSearchGroup extends React.Component {
     super(props);
 
     this.title = '';
-  };
+  }
 
   render() {
-    
-    
+
     return (
       <Fragment>
         <Card>

@@ -1,13 +1,13 @@
 import FilterWrapper from './FilterWrapper';
 import FilterSearchGroup from './FilterSearchGroup';
 import FilterSearchBar from './FilterSearchBar';
-import FilterCategory from './FilterSearchCategory';
-import FilterOption from './FilterSearchOption';
+import FilterSearchCategory from './FilterSearchCategory';
+import FilterSearchOption from './FilterSearchOption';
 
 export {
-  FilterOption,
+  FilterSearchOption,
   FilterSearchBar,
   FilterSearchGroup,
-  FilterCategory,
+  FilterSearchCategory,
   FilterWrapper,
 };

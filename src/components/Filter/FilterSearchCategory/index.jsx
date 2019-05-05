@@ -4,7 +4,7 @@ import {
   Card, CardBody, CardTitle,
  } from 'reactstrap';
 
-class FilterCategory extends React.Component {
+class FilterSearchCategory extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     selected: PropTypes.bool,
@@ -13,20 +13,11 @@ class FilterCategory extends React.Component {
   constructor(props) {
     super(props);
 
-    this.checkForChildren = this.checkForChildren.bind(this);
-
     this.title = '';
     this.hidden = false;
-    this.callback = (val) => console.log(val);
-  };
-
-  checkForChildren(category){
-    console.log(this.props.children + " (FilterSearchCategory, checkForChildren)");
-    return null;
   }
 
-  render() {
-
+  render() {      
     if(this.props.hidden)
       return null;
 
@@ -36,7 +27,6 @@ class FilterCategory extends React.Component {
           <CardBody>
             <CardTitle>{this.props.title}</CardTitle>
             {this.props.children}
-            {this.checkForChildren()}
           </CardBody>
         </Card>
       </Fragment>
@@ -44,4 +34,4 @@ class FilterCategory extends React.Component {
   }
 }
 
-export default FilterCategory;
+export default FilterSearchCategory;

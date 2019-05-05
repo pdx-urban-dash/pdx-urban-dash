@@ -27,7 +27,7 @@ export default class FilterSearchOption extends Component {
     this.hidden = false;
     this.clickedOn = 'success';
     this.clickedOff = 'warning';
-    this.callback = (t) => console.log(t);
+    this.callback = (t) => console.log("FilterSearchOption uninitialized callback: " + t);
 
     this.state = { 
       selected: this.props.selected,
@@ -36,11 +36,9 @@ export default class FilterSearchOption extends Component {
   }
 
   activateFilter() {
-    this.callback({
-      'category': this.props.category, 
-      'title': this.props.title,
-      'selected': true,
-    });
+    this.props.callback(
+      this.props.title
+    );
 
     this.setState({
       onclick: this.deactivateFilter,
@@ -49,11 +47,9 @@ export default class FilterSearchOption extends Component {
   }
 
   deactivateFilter() {
-    this.callback({
-      'category': this.props.category, 
-      'title': this.props.title,
-      'selected': false,
-    });
+    this.props.callback(
+      this.props.title
+    );
 
     this.setState({
       onclick: this.activateFilter,
@@ -67,15 +63,11 @@ export default class FilterSearchOption extends Component {
       return null;
     
     return (
-      <Form>
-        <Fragment>
-          <Toast data-category={this.props.category} onClick={this.state.onclick}>
-            <ToastHeader icon={this.state.selected ? (this.clickedOn) : (this.clickedOff)}>
-              { this.props.title }
-            </ToastHeader>
-          </Toast>
-        </Fragment>
-      </Form>
+      <Toast fade={false} onClick={()=>this.state.onclick(this.props.title)}>
+        <ToastHeader icon={this.state.selected ? (this.clickedOn) : (this.clickedOff)}>
+          { this.props.title }
+        </ToastHeader>
+      </Toast>
     );
     
   }
