@@ -5,7 +5,7 @@ import {
   Toast, ToastHeader
 } from 'reactstrap';
 
-export default class SelectOption extends Component {
+export default class FilterSearchOption extends Component {
 
   static propTypes = {
     title: PropTypes.string.isRequired,

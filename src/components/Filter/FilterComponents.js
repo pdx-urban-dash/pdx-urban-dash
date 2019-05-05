@@ -1,11 +1,13 @@
-import SelectOption from './SelectOption';
-import SelectSearch from './SelectSearch';
-import SelectWrapper from './SelectWrapper';
-import OptionWrapper from './OptionWrapper';
+import FilterWrapper from './FilterWrapper';
+import FilterSearchGroup from './FilterSearchGroup';
+import FilterSearchBar from './FilterSearchBar';
+import FilterCategory from './FilterSearchCategory';
+import FilterOption from './FilterSearchOption';
 
 export {
-  SelectOption,
-  SelectSearch,
-  SelectWrapper,
-  OptionWrapper,
+  FilterOption,
+  FilterSearchBar,
+  FilterSearchGroup,
+  FilterCategory,
+  FilterWrapper,
 };

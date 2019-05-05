@@ -5,7 +5,7 @@ import {
   Row, Col,
  } from 'reactstrap';
 
-class SelectWrapper extends React.Component {
+class FilterSearchGroup extends React.Component {
   constructor(props) {
     super(props);
 
@@ -13,6 +13,8 @@ class SelectWrapper extends React.Component {
   };
 
   render() {
+    
+    
     return (
       <Fragment>
         <Card>
@@ -30,8 +32,8 @@ class SelectWrapper extends React.Component {
   }
 }
 
-SelectWrapper.propTypes = {
+FilterSearchGroup.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default SelectWrapper;
+export default FilterSearchGroup;

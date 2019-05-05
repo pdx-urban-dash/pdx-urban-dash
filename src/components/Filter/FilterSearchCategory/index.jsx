@@ -3,11 +3,8 @@ import PropTypes from 'prop-types';
 import {
   Card, CardBody, CardTitle,
  } from 'reactstrap';
- import {
-  SelectOption,
-} from '../FilterComponents';
 
-class OptionWrapper extends React.Component {
+class FilterCategory extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     selected: PropTypes.bool,
@@ -16,12 +13,20 @@ class OptionWrapper extends React.Component {
   constructor(props) {
     super(props);
 
+    this.checkForChildren = this.checkForChildren.bind(this);
+
     this.title = '';
     this.hidden = false;
+    this.callback = (val) => console.log(val);
   };
 
+  checkForChildren(category){
+    console.log(this.props.children + " (FilterSearchCategory, checkForChildren)");
+    return null;
+  }
+
   render() {
-    
+
     if(this.props.hidden)
       return null;
 
@@ -31,6 +36,7 @@ class OptionWrapper extends React.Component {
           <CardBody>
             <CardTitle>{this.props.title}</CardTitle>
             {this.props.children}
+            {this.checkForChildren()}
           </CardBody>
         </Card>
       </Fragment>
@@ -38,4 +44,4 @@ class OptionWrapper extends React.Component {
   }
 }
 
-export default OptionWrapper;
+export default FilterCategory;

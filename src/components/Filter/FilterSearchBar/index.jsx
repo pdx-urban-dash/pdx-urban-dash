@@ -11,11 +11,12 @@ import {
   DropdownItem
  } from 'reactstrap';
 
-class SelectSearch extends React.Component {
+class FilterSearchBar extends React.Component {
   constructor(props) {
     super(props);
 
     //Initialize props
+    this.title = '';
     this.categories = [];
     this.callback = (val) => console.log(val);
 
@@ -86,9 +87,9 @@ class SelectSearch extends React.Component {
   }
 }
 
-SelectSearch.propTypes = {
+FilterSearchBar.propTypes = {
   categories: PropTypes.array.isRequired,
   callback: PropTypes.func.isRequired,
 };
 
-export default SelectSearch;
+export default FilterSearchBar;
