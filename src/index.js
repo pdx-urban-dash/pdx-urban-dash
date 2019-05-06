@@ -5,7 +5,7 @@ import {
   Navbar, NavbarBrand,
   Row,
 } from 'reactstrap';
-// import LineChart from './components/viz/LineChart';
+import LineChart from './components/viz/LineChart';
 import {
   FilterWrapper,
 } from './components/Filter/FilterComponents';

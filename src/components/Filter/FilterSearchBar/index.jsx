@@ -76,7 +76,7 @@ class FilterSearchBar extends React.Component {
           <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
             <DropdownToggle color="secondary" caret>{this.state.dropdownLabel}</DropdownToggle>
             <DropdownMenu>
-              <DropdownItem onClick={()=> this.activateCategory("None")}>None</DropdownItem>
+              <DropdownItem onClick={()=> this.activateCategory("None")} >None</DropdownItem>
               {categoryDropdownItems}
             </DropdownMenu>
           </InputGroupButtonDropdown>

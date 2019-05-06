@@ -20,7 +20,7 @@ class FilterWrapper extends React.Component {
     //callbacks
     this.filterSearchBarCallback = this.filterSearchBarCallback.bind(this);
     this.filterOptionCallback = this.filterOptionCallback.bind(this);
-    this.toggle = this.toggle.bind(this);
+    this.toggleFilterWindow = this.toggleFilterWindow.bind(this);
     
     this.title = '';
     this.show = true;
@@ -33,7 +33,7 @@ class FilterWrapper extends React.Component {
 
   };
 
-toggle() {
+toggleFilterWindow() {
   this.setState({
     show: !this.state.show,
   })
@@ -217,22 +217,38 @@ filterOptionCallback(data){
     
     return (
       <Fragment>
-        <Button onClick={this.toggle}>{!this.state.show ? "Filter Charts" : "Hide Filter"}</Button>
+        <Button onClick={this.toggleFilterWindow}>{!this.state.show ? "Filter results" : "Hide Filter"}</Button>
           <Collapse isOpen={this.state.show}>
             <Jumbotron>
               <h1 style={{ marginBottom: '1rem'}}>{this.props.title}</h1>
-              <FilterSearchGroup title={'Instructions'}> <p> This is a large block of words that tells you how to do stuff. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> </FilterSearchGroup>
-              <FilterSearchGroup title={'Select a Filter'} data={this.props.getFilters} callback={this.filterSearchGroupCallback}>
-                <FilterSearchBar 
-                  title='search'
-                  categories={['Category', 'Trend', 'Strategic Target']}
-                  callback={this.filterSearchBarCallback}
-                />
-                {categories(data, this.filterOptionCallback)}
-              </FilterSearchGroup>
-              <FilterSearchGroup title={'Your Selections'}>
-                {selectedResults(this.state.selected)}
-              </FilterSearchGroup>
+              <Row>
+                <Col lg="2">
+                  <FilterSearchGroup title={'Instructions'}> 
+                  <p> This is a large block of words that tells you how to do stuff. Lorem ipsum dolor sit amet, 
+                  consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> 
+                  </FilterSearchGroup>
+                </Col>
+                <Col lg="6">
+                 <FilterSearchGroup title={'Select a Filter'} data={this.props.getFilters} callback={this.filterSearchGroupCallback}>
+                  <FilterSearchBar 
+                    title='search'
+                    categories={['Category', 'Trend', 'Strategic Target']}
+                    callback={this.filterSearchBarCallback}
+                  />
+                  {categories(data, this.filterOptionCallback)}
+                </FilterSearchGroup>
+                </Col>
+                <Col lg="4">
+                  <FilterSearchGroup title={'Your Selections'} data={[]}>
+                    {selectedResults(this.state.selected)}<br/>
+                  </FilterSearchGroup>
+                </Col>
+              </Row>
+             
+              
             </Jumbotron>
           </Collapse>
 
