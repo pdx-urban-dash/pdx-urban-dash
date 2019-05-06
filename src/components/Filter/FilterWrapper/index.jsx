@@ -59,41 +59,43 @@ filterOptionCallback(data){
 }
 
   render() {
-    var upHidden, downHidden, targetHidden;
+    var categoryHidden, trendHidden, targetHidden;
 
-    switch(this.state.shownCategories.toLowerCase()){
-      case 'trending down':
-        upHidden = true;
-        downHidden = false;
+    switch(this.state.shownCategories){
+      case 'Category':
+        categoryHidden = false;
+        trendHidden = true;
+        targetHidden = true;
+        console.log("Category (render, FilterWrapper");
+        break;
+      case 'Trend': 
+        categoryHidden = true;
+        trendHidden = false;
         targetHidden = true;
         break;
-      case 'trending up': 
-        upHidden = false;
-        downHidden = true;
-        targetHidden = true;
-        break;
-      case 'on target':
-        upHidden = true;
-        downHidden = true;
+      case 'Strategic Target':
+        categoryHidden = true;
+        trendHidden = true;
         targetHidden = false;
         break;
       default:
-        upHidden = false;
-        downHidden = false;
+        categoryHidden = false;
+        trendHidden = false;
         targetHidden = false;
     }
     
 
     let isHidden = (title) => {
+      console.log(title + "(isHidden, FilterWrapper");
       // eslint-disable-next-line
-      switch(title.toLowerCase()){
-        case 'trending down':
-          return downHidden;
+      switch(title){
+        case 'Category':
+          return categoryHidden;
           break;
-        case 'trending up': 
-          return upHidden;
+        case 'Trend': 
+          return trendHidden;
           break;
-        case 'on target':
+        case 'Strategic Target':
           return targetHidden;
           break;
         default:
@@ -102,22 +104,26 @@ filterOptionCallback(data){
       }};
 
     let isSelected = title => this.state.selected.includes(title);
-    
-    //Formats data:
-    //[{'category': x, 'name': y}, ...] => {x: [y, ...]}
-    let formatData = (filters) => {
-      var filtersByCat = {};
+
+    let formatData = (dataset) =>{
+      var filtersByCat = {
+        'Category': [
+          //'anyCat': []  Need to build
+        ],
+        'Trend': ['Treding Up', 'Trending Down'],
+        'Strategic Target': ['On Target', 'Above Target', 'Below Target'],
+      };
 
       //For each data point
-      for (var i in filters){
-        var filter = filters[i];
+      for (var i in dataset){
+        let data = dataset[i];
 
-        //If the category is not in our list, create it
-        if (!filtersByCat[filter.category])
-          filtersByCat[filter.category] = [];
-
-        //Build lists of names in each category
-        filtersByCat[filter.category].push(filter.dataSetName);
+        //Dynamically add each category
+        for (var category in data.categories){
+          //If it isnt already in the list, add it
+          if(!filtersByCat['Category'].includes(data.categories[category]))
+            filtersByCat['Category'].push(data.categories[category]);
+        }
       }
       return filtersByCat;
     }
@@ -175,6 +181,18 @@ filterOptionCallback(data){
       return children;
     }
 
+    function selectedResults(results){
+      var selected = [];
+      for (var result in results ){
+        for(var title in result){
+          if(isSelected(title))
+            selected.push(title);
+        }
+      }
+      console.log(selected)
+      return selected;
+    }
+    
     return (
       <Fragment>
         <Button onClick={this.toggle}>{!this.state.show ? "Filter Charts" : "Hide Filter"}</Button>
@@ -182,15 +200,17 @@ filterOptionCallback(data){
             <Jumbotron>
               <h1 style={{ marginBottom: '1rem'}}>{this.props.title}</h1>
               <FilterSearchGroup title={''}> <p> Choose an option to see only the charts you are looking for.</p> </FilterSearchGroup>
-              <FilterSearchGroup title={'Filter Options'} data={this.props.getFilters} callback={this.filterSearchGroupCallback}>
+              <FilterSearchGroup title={'Select a Filter'} data={this.props.getFilters} callback={this.filterSearchGroupCallback}>
                 <FilterSearchBar 
                   title='search'
-                  categories={uniqueCatagories(this.props.data)}
+                  categories={['Category', 'Trend', 'Strategic Target']}
                   callback={this.filterSearchBarCallback}
                 />
                 {categories(data, this.filterOptionCallback)}
               </FilterSearchGroup>
-              <FilterSearchGroup title={'Your Selections'}/>
+              <FilterSearchGroup title={'Your Selections'}>
+                {selectedResults(data)}
+              </FilterSearchGroup>
             </Jumbotron>
           </Collapse>
 
@@ -204,23 +224,3 @@ FilterWrapper.propTypes = {
 };
 
 export default FilterWrapper;
-
-          // <FilterSearchCategory title='Trending Up' hidden={upHidden}>
-          //   <Row>
-          //     <Col>
-          //       <FilterSearchOption title='Police' selected={isSelected('Police')} callback={this.filterOptionCallback}/>
-          //     </Col>
-          //     <Col>
-          //       <FilterSearchOption title='Fire' selected={isSelected('Fire')} callback={this.filterOptionCallback}/>
-          //     </Col>
-          //   </Row>
-            
-          // </FilterSearchCategory>
-          // <FilterSearchCategory title='Trending Down' hidden={downHidden}>
-          //   <FilterSearchOption title='Parks & Rec.' selected={isSelected('Parks & Rec.')} callback={this.filterOptionCallback}/>
-          //   <FilterSearchOption title='Sanitary' selected={isSelected('Sanitary')} callback={this.filterOptionCallback}/>
-          // </FilterSearchCategory>
-          // <FilterSearchCategory title='On Target' hidden={targetHidden}>
-          //   <FilterSearchOption title='Public Relations' selected={isSelected('Public Relations')} callback={this.filterOptionCallback}/>
-          //   <FilterSearchOption title='Sewage' selected={isSelected('Sewage')} callback={this.filterOptionCallback}/>
-          // </FilterSearchCategory>
