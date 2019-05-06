@@ -1,9 +1,5 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Card, CardBody, CardTitle,
-  Row, Col,
- } from 'reactstrap';
 
 class FilterSearchGroup extends React.Component {
   constructor(props) {

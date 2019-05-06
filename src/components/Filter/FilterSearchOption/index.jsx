@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button,
-  Row, Col,
   Toast, ToastHeader
 } from 'reactstrap';
 
@@ -76,7 +74,7 @@ export default class FilterSearchOption extends Component {
       return null;
     
     return (
-      <Toast fade={false} onClick={()=>this.state.onclick(this.props.title)} style={{ marginBottom: '2rem'}, (this.state.selected ? {"background": "green"} : {"background": ""})}>
+      <Toast fade={false} onClick={()=>this.state.onclick(this.props.title)} style={{ marginBottom: '2rem'}, this.state.selected ? {"background": "green"} : {"background": ""}}>
         <ToastHeader toggle = {!this.state.selected ? false : this.props.callback}  style={{ height: '2rem'}}>
           { this.props.title }
         </ToastHeader>

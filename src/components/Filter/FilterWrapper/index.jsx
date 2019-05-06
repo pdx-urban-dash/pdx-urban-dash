@@ -5,7 +5,6 @@ import {
   Button,
   Collapse,
   Row, Col,
-  Card, CardText, CardBody, CardTitle,
 } from 'reactstrap';
 import {
   FilterSearchGroup,
@@ -54,27 +53,28 @@ filterOptionCallback(data){
     if(data.title === selected[i].title){
       selected.splice(i, 1);
       this.setState({selected})
-      console.log("exists")
       return;
     }
   }
 
   //Not in the list, add it
-  console.log("pushing")
   selected.push(data);
   this.setState({selected})
-
-  // var index = selected.indexOf(data);
-  // if (index === -1)
-  //   selected.push(data)
-  // else if (index > -1)
-  //   selected.splice(index, 1);
-  
-  
 }
 
   render() {
     var categoryHidden, trendHidden, targetHidden;
+    let data = formatData(this.props.data);
+
+    let isSelected = (title) => {
+      var selected = this.state.selected;
+      for (var i in selected){
+        //If the option already exists, remove it
+        if(title === selected[i].title){
+          return true;
+        }
+      }
+    }
 
     switch(this.state.shownCategories){
       case 'Category':
@@ -97,10 +97,8 @@ filterOptionCallback(data){
         trendHidden = true;
         targetHidden = true;
     }
-    
 
-    let isHidden = (title) => {
-      // eslint-disable-next-line
+    function isHidden(title) {
       switch(title){
         case 'Category':
           return categoryHidden;
@@ -116,22 +114,9 @@ filterOptionCallback(data){
           break;
       }};
 
-    let isSelected = (title) => {
-      var selected = this.state.selected;
-      for (var i in selected){
-        //If the option already exists, remove it
-        if(title === selected[i].title){
-          return true;
-        }
-      }
-      this.state.selected.includes(title)
-    }
-
-    let formatData = (dataset) =>{
+    function formatData(dataset){
       var filtersByCat = {
-        'Category': [
-          //'anyCat': []  Need to build
-        ],
+        'Category': [],
         'Trend': ['Treding Up', 'Trending Down'],
         'Strategic Target': ['On Target', 'Above Target', 'Below Target'],
       };
@@ -142,7 +127,7 @@ filterOptionCallback(data){
 
         //Dynamically add each category
         for (var category in data.categories){
-          //If it isnt already in the list, add it
+          //If it isn't already in the list, add it
           if(!filtersByCat['Category'].includes(data.categories[category]))
             filtersByCat['Category'].push(data.categories[category]);
         }
@@ -150,18 +135,33 @@ filterOptionCallback(data){
       return filtersByCat;
     }
 
-    let data = formatData(this.props.data);
-
-    function uniqueCatagories(dataArr) {
-      var allCats = dataArr.map(function(data){return data.category});
-      var uniqueCats = Array.from(new Set(allCats));
-      return uniqueCats;
-    }
-
     function categories (filters, callback) {
       var children = [];
-      for (var key in filters ){
 
+      let child = data => data.map((elem, id) => {
+        return (
+          React.createElement(
+          Col,
+          {
+            key: id,
+            md: 6,
+          },
+          React.createElement(
+            FilterSearchOption,
+            {
+              key: key,
+              title: elem,
+              category: key,
+              selected: isSelected(elem),
+              callback: callback,
+            }, 
+            this
+            )
+          )
+        )
+      })
+
+      for (var key in filters ){
         var childData = filters[key];
         children.push (
           React.createElement(
@@ -176,30 +176,10 @@ filterOptionCallback(data){
               {
                 key: key
               },
-              childData.map((elem, id) => {
-                return (
-                  React.createElement(
-                  Col,
-                  {
-                    key: id,
-                    md: 6,
-                  },
-                  React.createElement(
-                    FilterSearchOption,
-                    {
-                      key: id,
-                      title: elem,
-                      category: key,
-                      selected: isSelected(elem),
-                      callback: callback,
-                    }, 
-                    this
-                  )
-                )
-              )}
+              child(childData)
             )
           )
-        ))
+        )
       }
       return children;
     }
@@ -226,7 +206,7 @@ filterOptionCallback(data){
         options += "   (x)";
         
         selected.push(
-          <div>
+          <div key={option}>
             <hr/>
             {category + ": " + options}
           </div>

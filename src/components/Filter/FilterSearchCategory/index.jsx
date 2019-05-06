@@ -1,8 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Container,
-  Card, CardBody, CardTitle,
  } from 'reactstrap';
 
 class FilterSearchCategory extends React.Component {
