@@ -2,6 +2,7 @@ import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   Form,
+  Input,
   Toast, ToastHeader
 } from 'reactstrap';
 

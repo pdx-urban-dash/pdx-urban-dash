@@ -36,10 +36,14 @@ filterSearchBarCallback(data){
 }
 
 filterOptionCallback(data){
+
+  //Toggle weather an option is selected or not
+  //If a category exists in selected, remove it.
+  //Otherwise add it
   var temp = this.state.selected;
   var index = temp.indexOf(data);
   if (index === -1)
-    temp = temp.concat(data)
+    temp.push(data)
   else if (index > -1)
     temp.splice(index, 1);
 
