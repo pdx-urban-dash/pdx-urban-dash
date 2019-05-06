@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import {
+  Container,
   Card, CardBody, CardTitle,
  } from 'reactstrap';
 
@@ -22,14 +23,12 @@ class FilterSearchCategory extends React.Component {
       return null;
 
     return (
-      <Fragment>
-        <Card>
-          <CardBody>
-            <CardTitle>{this.props.title}</CardTitle>
-            {this.props.children}
-          </CardBody>
-        </Card>
-      </Fragment>
+      <Container>
+      <hr/>
+        <h3 style={{ marginBottom: '1rem'}}>{this.props.title}</h3>
+        
+        {this.props.children}
+      </Container>
     );
   }
 }

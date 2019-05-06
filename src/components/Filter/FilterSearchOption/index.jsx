@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
+  Row, Col,
   Toast, ToastHeader
 } from 'reactstrap';
 
@@ -25,7 +26,7 @@ export default class FilterSearchOption extends Component {
     this.selected = false;
     this.hidden = false;
     this.clickedOn = 'success';
-    this.clickedOff = 'warning';
+    this.clickedOff = false;
     this.callback = (t) => console.log("FilterSearchOption uninitialized callback: " + t);
 
     this.state = { 
@@ -67,8 +68,8 @@ export default class FilterSearchOption extends Component {
       return null;
     
     return (
-      <Toast fade={false} onClick={()=>this.state.onclick(this.props.title)}>
-        <ToastHeader toggle = {!this.state.selected ? false : this.props.callback} icon={this.state.selected ? (this.clickedOn) : (this.clickedOff)}>
+      <Toast fade={false} onClick={()=>this.state.onclick(this.props.title)} style={{ marginBottom: '1rem'}}>
+        <ToastHeader toggle = {!this.state.selected ? false : this.props.callback} icon={this.state.selected ? (this.clickedOn) : (this.clickedOff)} style={{ height: '2rem'}}>
           { this.props.title }
         </ToastHeader>
       </Toast>
@@ -76,3 +77,5 @@ export default class FilterSearchOption extends Component {
     
   }
 }
+
+//icon={this.state.selected ? (this.clickedOn) : (this.clickedOff)}

@@ -16,16 +16,9 @@ class FilterSearchGroup extends React.Component {
 
     return (
       <Fragment>
-        <Card>
-          <CardBody>
-            <CardTitle>{this.props.title}</CardTitle>
-            <Row>
-              <Col>
-                {this.props.children}
-              </Col>
-            </Row>
-          </CardBody>
-        </Card>
+        <hr/>
+        <h2 style={{ marginBottom: '1rem'}}>{this.props.title}</h2>
+        {this.props.children}
       </Fragment>
     );
   }

@@ -1,16 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Form,
-  FormGroup,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButtonDropdown,
-  Input,
+  Form, 
   Button,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
+  Input, InputGroup, InputGroupAddon, InputGroupButtonDropdown, 
+  DropdownMenu, DropdownToggle, DropdownItem
  } from 'reactstrap';
 
 class FilterSearchBar extends React.Component {

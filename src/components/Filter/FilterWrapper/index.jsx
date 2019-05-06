@@ -1,6 +1,9 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import {
+  Jumbotron,
+  Button,
+  Collapse,
   Row, Col,
   Card, CardText, CardBody, CardTitle,
 } from 'reactstrap';
@@ -11,10 +14,6 @@ import {
   FilterSearchBar,
 } from '../FilterComponents';
 
-console.ignoredRedBox = [
-  "Warning: Failed prop type...",
-];
-
 class FilterWrapper extends React.Component {
   constructor(props) {
     super(props);
@@ -22,22 +21,30 @@ class FilterWrapper extends React.Component {
     //callbacks
     this.filterSearchBarCallback = this.filterSearchBarCallback.bind(this);
     this.filterOptionCallback = this.filterOptionCallback.bind(this);
+    this.toggle = this.toggle.bind(this);
     
     this.title = '';
+    this.show = true;
     this.data = [];
     this.state = {
+      show: this.props.show,
       shownCategories: 'all',
       selected: [],
     }
 
   };
 
+toggle() {
+  this.setState({
+    show: !this.state.show,
+  })
+}
+
 filterSearchBarCallback(shownCategories){
   this.setState({shownCategories})
 }
 
 filterOptionCallback(data){
-
   //Toggle weather an option is selected or not
   //If a category exists in selected, remove it.
   //Otherwise add it
@@ -54,7 +61,6 @@ filterOptionCallback(data){
   render() {
     var upHidden, downHidden, targetHidden;
 
-    // eslint-disable-next-line
     switch(this.state.shownCategories.toLowerCase()){
       case 'trending down':
         upHidden = true;
@@ -165,35 +171,28 @@ filterOptionCallback(data){
             )
           )
         ))
-
       }
       return children;
     }
 
     return (
       <Fragment>
-        <Card>
-          <CardBody> 
-            <CardTitle>Welcome</CardTitle>
-            <CardText>Some text stuff is here</CardText>
-          </CardBody>
-        </Card>
-
-        <FilterSearchGroup title={this.props.title} data={this.props.getFilters} callback={this.filterSearchGroupCallback}>
-          <FilterSearchBar 
-            title='search'
-            categories={uniqueCatagories(this.props.data)}
-            callback={this.filterSearchBarCallback}
-          />
-
-          {categories(data, this.filterOptionCallback)}
-        </FilterSearchGroup>
-
-        <Card>
-          <CardBody>
-            <CardTitle>Your Selections</CardTitle>
-          </CardBody>
-        </Card>
+        <Button onClick={this.toggle}>{!this.state.show ? "Filter Charts" : "Hide Filter"}</Button>
+          <Collapse isOpen={this.state.show}>
+            <Jumbotron>
+              <h1 style={{ marginBottom: '1rem'}}>{this.props.title}</h1>
+              <FilterSearchGroup title={''}> <p> Choose an option to see only the charts you are looking for.</p> </FilterSearchGroup>
+              <FilterSearchGroup title={'Filter Options'} data={this.props.getFilters} callback={this.filterSearchGroupCallback}>
+                <FilterSearchBar 
+                  title='search'
+                  categories={uniqueCatagories(this.props.data)}
+                  callback={this.filterSearchBarCallback}
+                />
+                {categories(data, this.filterOptionCallback)}
+              </FilterSearchGroup>
+              <FilterSearchGroup title={'Your Selections'}/>
+            </Jumbotron>
+          </Collapse>
 
       </Fragment>
     );
