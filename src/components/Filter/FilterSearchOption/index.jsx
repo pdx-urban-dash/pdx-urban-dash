@@ -33,6 +33,7 @@ export default class FilterSearchOption extends Component {
     this.state = { 
       selected: this.props.selected,
       onclick: this.props.selected ? this.deactivateFilter : this.activateFilter,
+      showx: false
     }      
   }
 
@@ -44,7 +45,9 @@ export default class FilterSearchOption extends Component {
     this.setState({
       onclick: this.deactivateFilter,
       selected: true,
-    }) 
+      showx: true,
+    })
+    return false;
   }
 
   deactivateFilter() {
@@ -55,7 +58,9 @@ export default class FilterSearchOption extends Component {
     this.setState({
       onclick: this.activateFilter,
       selected: false,
-    }) 
+      showx: false,
+    })
+    return false;
   }
 
   render() {
@@ -65,7 +70,7 @@ export default class FilterSearchOption extends Component {
     
     return (
       <Toast fade={false} onClick={()=>this.state.onclick(this.props.title)}>
-        <ToastHeader icon={this.state.selected ? (this.clickedOn) : (this.clickedOff)}>
+        <ToastHeader toggle = {!this.state.selected ? false: this.props.callback} icon={this.state.selected ? (this.clickedOn) : (this.clickedOff)}>
           { this.props.title }
         </ToastHeader>
       </Toast>
