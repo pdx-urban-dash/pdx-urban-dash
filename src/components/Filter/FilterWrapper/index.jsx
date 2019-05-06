@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import {
+  Row, Col,
   Card, CardText, CardBody, CardTitle,
 } from 'reactstrap';
 import {
@@ -19,6 +20,7 @@ class FilterWrapper extends React.Component {
     this.filterOptionCallback = this.filterOptionCallback.bind(this);
     
     this.title = '';
+    this.data = [];
     this.state = {
       shownCategories: 'all',
       selected: [],
@@ -26,13 +28,8 @@ class FilterWrapper extends React.Component {
 
   };
 
-filterSearchBarCallback(data){
-  this.setState({
-    shownCategories: data
-  })
-
-  // console.log(data);
-  // console.log("^ (filterSearchBarCallback, FilterWrapper)");
+filterSearchBarCallback(shownCategories){
+  this.setState({shownCategories})
 }
 
 filterOptionCallback(data){
@@ -40,23 +37,19 @@ filterOptionCallback(data){
   //Toggle weather an option is selected or not
   //If a category exists in selected, remove it.
   //Otherwise add it
-  var temp = this.state.selected;
-  var index = temp.indexOf(data);
+  var selected = this.state.selected;
+  var index = selected.indexOf(data);
   if (index === -1)
-    temp.push(data)
+    selected.push(data)
   else if (index > -1)
-    temp.splice(index, 1);
+    selected.splice(index, 1);
 
-  this.setState({
-    selected: temp
-  })
-
-  // console.log(temp);
-  // console.log("^ (filterOptionCallback, FilterWrapper)");
+  this.setState({selected})
 }
 
   render() {
     var upHidden, downHidden, targetHidden;
+
 
     switch(this.state.shownCategories.toLowerCase()){
       case 'trending down':
@@ -78,11 +71,99 @@ filterOptionCallback(data){
         upHidden = false;
         downHidden = false;
         targetHidden = false;
-        break;
     }
     
+    let isHidden = (title) => {
+      switch(title.toLowerCase()){
+        case 'trending down':
+          return downHidden;
+          break;
+        case 'trending up': 
+          return upHidden;
+          break;
+        case 'on target':
+          return targetHidden;
+          break;
+        default:
+          return false;
+          break;
+      }};
+
     let isSelected = title => this.state.selected.includes(title);
     
+    //Formats data:
+    //[{'category': x, 'name': y}, ...] => {x: [y, ...]}
+    let formatData = (filters) => {
+      var filtersByCat = {};
+
+      //For each data point
+      for (var i in filters){
+        var filter = filters[i];
+
+        //If the category is not in our list, create it
+        if (!filtersByCat[filter.category])
+          filtersByCat[filter.category] = [];
+
+        //Build lists of names in each category
+        filtersByCat[filter.category].push(filter.dataSetName);
+      }
+      return filtersByCat;
+    }
+
+    let data = formatData(this.props.data);
+
+    function uniqueCatagories(dataArr) {
+      var allCats = dataArr.map(function(data){return data.category});
+      var uniqueCats = Array.from(new Set(allCats));
+      return uniqueCats;
+    }
+
+    function categories (filters, callback) {
+      var children = [];
+      for (var key in filters ){
+
+        var childData = filters[key];
+        children.push (
+          React.createElement(
+            FilterSearchCategory,
+            {
+              key: key,
+              title: key,
+              hidden: isHidden(key),
+            },
+            React.createElement(
+              Row,
+              {
+                key: key
+              },
+              childData.map((elem, id) => {
+                return (
+                  React.createElement(
+                  Col,
+                  {
+                    key: id,
+                    md: 6,
+                  },
+                  React.createElement(
+                    FilterSearchOption,
+                    {
+                      key: id,
+                      title: elem,
+                      selected: isSelected(elem),
+                      callback: callback,
+                    }, 
+                    this
+                  )
+                )
+              )}
+            )
+          )
+        ))
+
+      }
+      return children;
+    }
+
     return (
       <Fragment>
         <Card>
@@ -95,21 +176,11 @@ filterOptionCallback(data){
         <FilterSearchGroup title={this.props.title} data={this.props.getFilters} callback={this.filterSearchGroupCallback}>
           <FilterSearchBar 
             title='search'
-            categories={['Trending Down', 'Trending Up', 'On Target']}
+            categories={uniqueCatagories(this.props.data)}
             callback={this.filterSearchBarCallback}
           />
-          <FilterSearchCategory title='Trending Up' hidden={upHidden}>
-            <FilterSearchOption title='Police' selected={isSelected('Police')} callback={this.filterOptionCallback}/>
-            <FilterSearchOption title='Fire' selected={isSelected('Fire')} callback={this.filterOptionCallback}/>
-          </FilterSearchCategory>
-          <FilterSearchCategory title='Trending Down' hidden={downHidden}>
-            <FilterSearchOption title='Parks & Rec.' selected={isSelected('Parks & Rec.')} callback={this.filterOptionCallback}/>
-            <FilterSearchOption title='Sanitary' selected={isSelected('Sanitary')} callback={this.filterOptionCallback}/>
-          </FilterSearchCategory>
-          <FilterSearchCategory title='On Target' hidden={targetHidden}>
-            <FilterSearchOption title='Public Relations' selected={isSelected('Public Relations')} callback={this.filterOptionCallback}/>
-            <FilterSearchOption title='Sewage' selected={isSelected('Sewage')} callback={this.filterOptionCallback}/>
-          </FilterSearchCategory>
+
+          {categories(data, this.filterOptionCallback)}
         </FilterSearchGroup>
 
         <Card>
@@ -128,3 +199,23 @@ FilterWrapper.propTypes = {
 };
 
 export default FilterWrapper;
+
+          // <FilterSearchCategory title='Trending Up' hidden={upHidden}>
+          //   <Row>
+          //     <Col>
+          //       <FilterSearchOption title='Police' selected={isSelected('Police')} callback={this.filterOptionCallback}/>
+          //     </Col>
+          //     <Col>
+          //       <FilterSearchOption title='Fire' selected={isSelected('Fire')} callback={this.filterOptionCallback}/>
+          //     </Col>
+          //   </Row>
+            
+          // </FilterSearchCategory>
+          // <FilterSearchCategory title='Trending Down' hidden={downHidden}>
+          //   <FilterSearchOption title='Parks & Rec.' selected={isSelected('Parks & Rec.')} callback={this.filterOptionCallback}/>
+          //   <FilterSearchOption title='Sanitary' selected={isSelected('Sanitary')} callback={this.filterOptionCallback}/>
+          // </FilterSearchCategory>
+          // <FilterSearchCategory title='On Target' hidden={targetHidden}>
+          //   <FilterSearchOption title='Public Relations' selected={isSelected('Public Relations')} callback={this.filterOptionCallback}/>
+          //   <FilterSearchOption title='Sewage' selected={isSelected('Sewage')} callback={this.filterOptionCallback}/>
+          // </FilterSearchCategory>
