@@ -579,7 +579,7 @@ ReactDOM.render(
       <NavbarBrand><img src={logo} width={"40"} height={"40"} alt={'City of Portland'}/> City of Portland Dashboard</NavbarBrand>
       
     </Navbar>
-    <FilterWrapper data={testData} title={"Filter"} />
+    <FilterWrapper data={testData} title={""} />
     <Row>
     </Row>
   </Fragment>,

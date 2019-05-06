@@ -1,0 +1,38 @@
+    // let filters = {
+    //   'Categories': {
+    //     'Bureau': [''],
+    //     'City Service Area': [],
+    //     'Council Priority Area': [],
+    //   },
+    //   'trend': {
+    //     'Trending Up': [],
+    //     'Trending Down': [],
+    //   },
+    //   'target': {
+    //     'On Target': [],
+    //     'Off Target': [],
+    //   },
+    // }
+
+    // let data = [
+    //   {
+    //     'title': 'Percentage of 9-1-1 calls answered within 20 seconds',
+    //     "target": false,
+    //     "trend": true,//true is up
+    //     'categories': [
+    //       'Development Services',
+    //       'Community Development',
+    //       'Housing & Homelessness',
+    //     ],
+    //   },
+    //   {
+    //     'title': 'Total crimes against persons',
+    //     "target": true,
+    //     "trend": false,//false is down
+    //     'categories': [
+    //       'Bureau of Emergency Communications',
+    //       'Public Safety',
+    //       'Public Safety',
+    //     ],
+    //   },
+    // ]

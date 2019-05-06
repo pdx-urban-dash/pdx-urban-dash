@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
+  Button,
   Row, Col,
   Toast, ToastHeader
 } from 'reactstrap';
@@ -23,6 +24,7 @@ export default class FilterSearchOption extends Component {
     this.deactivateFilter = this.deactivateFilter.bind(this);
 
     this.title = '';
+    this.category = '';
     this.selected = false;
     this.hidden = false;
     this.clickedOn = 'success';
@@ -38,7 +40,10 @@ export default class FilterSearchOption extends Component {
 
   activateFilter() {
     this.props.callback(
-      this.props.title
+      {
+        'title': this.props.title,
+        'category': this.props.category,
+      }
     );
 
     this.setState({
@@ -51,7 +56,10 @@ export default class FilterSearchOption extends Component {
 
   deactivateFilter() {
     this.props.callback(
-      this.props.title
+      {
+        'title': this.props.title,
+        'category': this.props.category,
+      }
     );
 
     this.setState({
@@ -68,8 +76,8 @@ export default class FilterSearchOption extends Component {
       return null;
     
     return (
-      <Toast fade={false} onClick={()=>this.state.onclick(this.props.title)} style={{ marginBottom: '1rem'}}>
-        <ToastHeader toggle = {!this.state.selected ? false : this.props.callback} icon={this.state.selected ? (this.clickedOn) : (this.clickedOff)} style={{ height: '2rem'}}>
+      <Toast fade={false} onClick={()=>this.state.onclick(this.props.title)} style={{ marginBottom: '2rem'}, (this.state.selected ? {"background": "green"} : {"background": ""})}>
+        <ToastHeader toggle = {!this.state.selected ? false : this.props.callback}  style={{ height: '2rem'}}>
           { this.props.title }
         </ToastHeader>
       </Toast>
@@ -78,4 +86,12 @@ export default class FilterSearchOption extends Component {
   }
 }
 
-//icon={this.state.selected ? (this.clickedOn) : (this.clickedOff)}
+
+// <Button onClick={()=>this.state.onclick(this.props.title)} style={{ marginBottom: '1rem'}} color={this.state.selected ? "success" : "secondary"}>
+//     { this.props.title }
+// </Button>
+// <Toast fade={false} onClick={()=>this.state.onclick(this.props.title)} style={{ marginBottom: '1rem'} style={{"background": "green"}}>
+//   <ToastHeader toggle = {!this.state.selected ? false : this.props.callback} icon={this.state.selected ? (this.clickedOn) : (this.clickedOff)} style={{ height: '2rem'}}>
+//     { this.props.title }
+//   </ToastHeader>
+// </Toast>

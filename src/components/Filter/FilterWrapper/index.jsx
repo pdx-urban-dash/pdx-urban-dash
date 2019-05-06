@@ -28,7 +28,7 @@ class FilterWrapper extends React.Component {
     this.data = [];
     this.state = {
       show: this.props.show,
-      shownCategories: 'all',
+      shownCategories: '',
       selected: [],
     }
 
@@ -49,13 +49,28 @@ filterOptionCallback(data){
   //If a category exists in selected, remove it.
   //Otherwise add it
   var selected = this.state.selected;
-  var index = selected.indexOf(data);
-  if (index === -1)
-    selected.push(data)
-  else if (index > -1)
-    selected.splice(index, 1);
+  for (var i in selected){
+    //If the option already exists, remove it
+    if(data.title === selected[i].title){
+      selected.splice(i, 1);
+      this.setState({selected})
+      console.log("exists")
+      return;
+    }
+  }
 
+  //Not in the list, add it
+  console.log("pushing")
+  selected.push(data);
   this.setState({selected})
+
+  // var index = selected.indexOf(data);
+  // if (index === -1)
+  //   selected.push(data)
+  // else if (index > -1)
+  //   selected.splice(index, 1);
+  
+  
 }
 
   render() {
@@ -66,7 +81,6 @@ filterOptionCallback(data){
         categoryHidden = false;
         trendHidden = true;
         targetHidden = true;
-        console.log("Category (render, FilterWrapper");
         break;
       case 'Trend': 
         categoryHidden = true;
@@ -79,14 +93,13 @@ filterOptionCallback(data){
         targetHidden = false;
         break;
       default:
-        categoryHidden = false;
-        trendHidden = false;
-        targetHidden = false;
+        categoryHidden = true;
+        trendHidden = true;
+        targetHidden = true;
     }
     
 
     let isHidden = (title) => {
-      console.log(title + "(isHidden, FilterWrapper");
       // eslint-disable-next-line
       switch(title){
         case 'Category':
@@ -103,7 +116,16 @@ filterOptionCallback(data){
           break;
       }};
 
-    let isSelected = title => this.state.selected.includes(title);
+    let isSelected = (title) => {
+      var selected = this.state.selected;
+      for (var i in selected){
+        //If the option already exists, remove it
+        if(title === selected[i].title){
+          return true;
+        }
+      }
+      this.state.selected.includes(title)
+    }
 
     let formatData = (dataset) =>{
       var filtersByCat = {
@@ -167,6 +189,7 @@ filterOptionCallback(data){
                     {
                       key: id,
                       title: elem,
+                      category: key,
                       selected: isSelected(elem),
                       callback: callback,
                     }, 
@@ -183,13 +206,32 @@ filterOptionCallback(data){
 
     function selectedResults(results){
       var selected = [];
-      for (var result in results ){
-        for(var title in result){
-          if(isSelected(title))
-            selected.push(title);
+
+      var filtersByCat = {};
+      for (var i in results ){
+        if(results[i].title){
+          if(!filtersByCat[results[i].category])
+              filtersByCat[results[i].category] = [];
+
+          filtersByCat[results[i].category].push(results[i].title);
         }
       }
-      console.log(selected)
+
+      for(var category in filtersByCat){
+        var options = '';
+        for (var option in filtersByCat[category])
+          options += filtersByCat[category][option] + ", ";
+
+        options = options.substring(0, options.length-2);
+        options += "   (x)";
+        
+        selected.push(
+          <div>
+            <hr/>
+            {category + ": " + options}
+          </div>
+        )
+      }
       return selected;
     }
     
@@ -199,7 +241,7 @@ filterOptionCallback(data){
           <Collapse isOpen={this.state.show}>
             <Jumbotron>
               <h1 style={{ marginBottom: '1rem'}}>{this.props.title}</h1>
-              <FilterSearchGroup title={''}> <p> Choose an option to see only the charts you are looking for.</p> </FilterSearchGroup>
+              <FilterSearchGroup title={'Instructions'}> <p> This is a large block of words that tells you how to do stuff. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> </FilterSearchGroup>
               <FilterSearchGroup title={'Select a Filter'} data={this.props.getFilters} callback={this.filterSearchGroupCallback}>
                 <FilterSearchBar 
                   title='search'
@@ -209,7 +251,7 @@ filterOptionCallback(data){
                 {categories(data, this.filterOptionCallback)}
               </FilterSearchGroup>
               <FilterSearchGroup title={'Your Selections'}>
-                {selectedResults(data)}
+                {selectedResults(this.state.selected)}
               </FilterSearchGroup>
             </Jumbotron>
           </Collapse>

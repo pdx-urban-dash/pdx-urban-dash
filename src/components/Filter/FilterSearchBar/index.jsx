@@ -24,7 +24,7 @@ class FilterSearchBar extends React.Component {
     //Initialize state
     this.state = {
       dropdownOpen: false,
-      dropdownLabel: "Categories",
+      dropdownLabel: "Select a Filter",
       searchValue: '',
     };
   }
@@ -36,7 +36,7 @@ class FilterSearchBar extends React.Component {
   }
 
   activateCategory(category) {
-    if (this.props.categories.includes(category) || category === "All"){
+    if (this.props.categories.includes(category) || category === "None"){
       this.setState({
         searchValue: '',
         dropdownLabel: category,
@@ -76,7 +76,7 @@ class FilterSearchBar extends React.Component {
           <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
             <DropdownToggle color="secondary" caret>{this.state.dropdownLabel}</DropdownToggle>
             <DropdownMenu>
-              <DropdownItem onClick={()=> this.activateCategory("All")} >All</DropdownItem>
+              <DropdownItem onClick={()=> this.activateCategory("None")} >None</DropdownItem>
               {categoryDropdownItems}
             </DropdownMenu>
           </InputGroupButtonDropdown>
