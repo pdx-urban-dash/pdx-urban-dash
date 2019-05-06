@@ -1,8 +1,6 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Form,
-  Input,
   Toast, ToastHeader
 } from 'reactstrap';
 
@@ -70,7 +68,7 @@ export default class FilterSearchOption extends Component {
     
     return (
       <Toast fade={false} onClick={()=>this.state.onclick(this.props.title)}>
-        <ToastHeader toggle = {!this.state.selected ? false: this.props.callback} icon={this.state.selected ? (this.clickedOn) : (this.clickedOff)}>
+        <ToastHeader toggle = {!this.state.selected ? false : this.props.callback} icon={this.state.selected ? (this.clickedOn) : (this.clickedOff)}>
           { this.props.title }
         </ToastHeader>
       </Toast>

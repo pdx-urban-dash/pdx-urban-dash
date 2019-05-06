@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import SelectSearch from '../index';
 
 const testData = ['test1', 'test2', 'test3'];
-const testFunc = () => {console.log()};
+const testFunc = () => { console.log(); };
 
 describe('<SelectSearch />', () => {
   test('snapshot', () => {

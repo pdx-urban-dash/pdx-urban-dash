@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Form,
@@ -88,7 +88,9 @@ class FilterSearchBar extends React.Component {
               </DropdownMenu>
             </InputGroupButtonDropdown>
             <Input type="search" name="searchBox" placeholder="Search for a category..."  value={this.state.searchValue} onChange={this.passVal}/>
-            <Button type="submit" color="secondary" onClick={() => this.activateCategory(this.state.searchValue)}>Search</Button>
+            <InputGroupAddon addonType="append">
+              <Button type="submit" color="secondary" onClick={() => this.activateCategory(this.state.searchValue)}>Search</Button>
+            </InputGroupAddon>
           </InputGroup>
         </FormGroup>
 

@@ -11,6 +11,10 @@ import {
   FilterSearchBar,
 } from '../FilterComponents';
 
+console.ignoredRedBox = [
+  "Warning: Failed prop type...",
+];
+
 class FilterWrapper extends React.Component {
   constructor(props) {
     super(props);
@@ -50,7 +54,7 @@ filterOptionCallback(data){
   render() {
     var upHidden, downHidden, targetHidden;
 
-
+    // eslint-disable-next-line
     switch(this.state.shownCategories.toLowerCase()){
       case 'trending down':
         upHidden = true;
@@ -73,7 +77,9 @@ filterOptionCallback(data){
         targetHidden = false;
     }
     
+
     let isHidden = (title) => {
+      // eslint-disable-next-line
       switch(title.toLowerCase()){
         case 'trending down':
           return downHidden;
