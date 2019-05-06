@@ -190,10 +190,10 @@ filterOptionCallback(data){
       var filtersByCat = {};
       for (var i in results ){
         if(results[i].title){
-          if(!filtersByCat[results[i].category])
-              filtersByCat[results[i].category] = [];
+          if(!filtersByCat[results[i].category.toUpperCase()])
+              filtersByCat[results[i].category.toUpperCase()] = [];
 
-          filtersByCat[results[i].category].push(results[i].title);
+          filtersByCat[results[i].category.toUpperCase()].push(results[i].title);
         }
       }
 
@@ -206,15 +206,19 @@ filterOptionCallback(data){
         options += "   (x)";
         
         selected.push(
-          <div key={option}>
+          <Col key={option} md="4">
             <hr/>
             {category + ": " + options}
-          </div>
+          </Col>
         )
       }
       return selected;
     }
     
+    function selectedGroupCallback(){
+
+    }
+
     return (
       <Fragment>
         <Button onClick={this.toggleFilterWindow}>{!this.state.show ? "Filter results" : "Hide Filter"}</Button>
@@ -243,15 +247,14 @@ filterOptionCallback(data){
                 </Col>
                 <Col lg="4">
                   <FilterSearchGroup title={'Your Selections'} data={[]}>
-                    {selectedResults(this.state.selected)}<br/>
+                    <Row>
+                      {selectedResults(this.state.selected)}
+                    </Row>
                   </FilterSearchGroup>
                 </Col>
               </Row>
-             
-              
             </Jumbotron>
           </Collapse>
-
       </Fragment>
     );
   }
