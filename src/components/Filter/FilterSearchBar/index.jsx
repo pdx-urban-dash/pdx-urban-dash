@@ -78,22 +78,19 @@ class FilterSearchBar extends React.Component {
 
     return (
       <Form inline onSubmit={(e) => e.preventDefault()}>
-        <FormGroup>
-          <InputGroup>
-            <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
-              <DropdownToggle color="secondary" caret>{this.state.dropdownLabel}</DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem onClick={()=> this.activateCategory("All")} >All</DropdownItem>
-                {categoryDropdownItems}
-              </DropdownMenu>
-            </InputGroupButtonDropdown>
-            <Input type="search" name="searchBox" placeholder="Search for a category..."  value={this.state.searchValue} onChange={this.passVal}/>
-            <InputGroupAddon addonType="append">
-              <Button type="submit" color="secondary" onClick={() => this.activateCategory(this.state.searchValue)}>Search</Button>
-            </InputGroupAddon>
-          </InputGroup>
-        </FormGroup>
-
+        <InputGroup>
+          <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
+            <DropdownToggle color="secondary" caret>{this.state.dropdownLabel}</DropdownToggle>
+            <DropdownMenu>
+              <DropdownItem onClick={()=> this.activateCategory("All")} >All</DropdownItem>
+              {categoryDropdownItems}
+            </DropdownMenu>
+          </InputGroupButtonDropdown>
+          <Input type="search" name="searchBox" placeholder="Search..."  value={this.state.searchValue} onChange={this.passVal}/>
+          <InputGroupAddon addonType="append">
+            <Button type="submit" color="secondary" onClick={() => this.activateCategory(this.state.searchValue)}>Search</Button>
+          </InputGroupAddon>
+        </InputGroup>
       </Form>
     );
   }
