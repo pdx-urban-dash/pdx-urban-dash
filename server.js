@@ -10,6 +10,7 @@ const port = process.env.PORT || 8080;
 const graphQlServer = new ApolloServer({
   typeDefs: graphSchema.typeDef,
   resolvers: graphSchema.resolvers,
+  mocks: true,
 });
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(bodyParser.json());
