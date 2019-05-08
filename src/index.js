@@ -10,6 +10,7 @@ import {
   FilterWrapper,
 } from './components/Filter/FilterComponents';
 import logo from './components/Filter/images/SealofPortland.png';
+import Icon from './components/Icon';
 
 const testData = [
   {
