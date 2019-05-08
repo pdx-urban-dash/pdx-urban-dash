@@ -7,6 +7,7 @@ import {
   Maximize,
   Minimize,
   GitHub,
+  X,
   XCircle,
   HelpCircle,
 } from 'react-feather';
@@ -40,6 +41,8 @@ const Icon = ({ size, type }) => {
       return <Minimize size={validSizes[mSize]} />;
     case 'github':
       return <GitHub size={validSizes[mSize]} />;
+    case 'x':
+      return <X size={validSizes[mSize]} />;
     case 'x-circle':
       return <XCircle size={validSizes[mSize]} />;
     case 'help-circle':
