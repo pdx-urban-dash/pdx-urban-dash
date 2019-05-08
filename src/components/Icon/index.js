@@ -8,6 +8,7 @@ import {
   Minimize,
   GitHub,
   XCircle,
+  HelpCircle,
 } from 'react-feather';
 
 import { colors, iconSizes } from '../../constants';
@@ -41,6 +42,8 @@ const Icon = ({ size, type }) => {
       return <GitHub size={validSizes[mSize]} />;
     case 'x-circle':
       return <XCircle size={validSizes[mSize]} />;
+    case 'help-circle':
+      return <HelpCircle size={validSizes[mSize]} />;
     default:
       throw new Error(`Icon type: ${type} does not exist`);
   }
