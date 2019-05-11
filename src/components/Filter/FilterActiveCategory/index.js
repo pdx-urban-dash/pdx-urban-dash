@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container } from 'reactstrap';
+import { Toast, ToastBody, ToastHeader } from 'reactstrap';
 import FilterActiveOption from '../FilterActiveOption';
-
-import './styles.scss';
 
 export default class FilterActiveCategory extends React.Component {
   constructor(props) {
@@ -52,12 +50,14 @@ export default class FilterActiveCategory extends React.Component {
       return null;
     }
     return (
-      <Container>
-        <h1 className="filter-active-category">
+      <Toast>
+        <ToastHeader>
           { title }
-          {activeFilters.map(c => this.renderCategory(c))}
-        </h1>
-      </Container>
+        </ToastHeader>
+        <ToastBody>
+          { activeFilters.map(c => this.renderCategory(c)) }
+        </ToastBody>
+      </Toast>
     );
   }
 }

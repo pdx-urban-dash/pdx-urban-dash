@@ -47,9 +47,10 @@ FilterSearchOption.propTypes = {
   title: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   selected: PropTypes.bool,
-  callback: PropTypes.func.isRequired,
+  callback: PropTypes.func,
 };
 
 FilterSearchOption.defaultProps = {
   selected: false,
+  callback: t => console.log(`FilterSearchOption uninitialized callback: ${t}`),
 };

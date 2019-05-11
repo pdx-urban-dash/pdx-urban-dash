@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container } from 'reactstrap';
-import Icon from '../../Icon';
-
-import './styles.scss';
+import { Toast, ToastHeader } from 'reactstrap';
 
 export default class FilterActiveOption extends React.Component {
   constructor(props) {
@@ -19,14 +16,12 @@ export default class FilterActiveOption extends React.Component {
   }
 
   handleClick() {
+    const { category } = this.props;
+    const { callback } = this.props;
+    callback({ category });
     this.setState(state => ({
       active: !state.active,
     }));
-    this.props.callback(
-      {
-        category: this.props.category,
-      },
-    );
     return false;
   }
 
@@ -39,14 +34,11 @@ export default class FilterActiveOption extends React.Component {
       return null;
     }
     return (
-      <Container className="filter-active-option" style={{ height: '22px', width: '220px', margin: '4px' }}>
-        <Container style={{ height: '20px', width: '220px' }}>
+      <Toast>
+        <ToastHeader toggle={this.handleClick}>
           { category }
-          <span onClick={this.handleClick} toggle={active ? true : this.callback} style={{ float: 'right', cursor: 'pointer' }}>
-            <Icon size="sm" type="x-circle" />
-          </span>
-        </Container>
-      </Container>
+        </ToastHeader>
+      </Toast>
     );
   }
 }
@@ -54,5 +46,9 @@ export default class FilterActiveOption extends React.Component {
 FilterActiveOption.propTypes = {
   title: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
-  callback: PropTypes.func.isRequired,
+  callback: PropTypes.func,
+};
+
+FilterActiveOption.defaultProps = {
+  callback: t => console.log(`FilterSearchOption uninitialized callback: ${t}`),
 };

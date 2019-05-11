@@ -13,7 +13,8 @@ import logo from './components/Filter/images/SealofPortland.png';
 import Icon from './components/Icon';
 import FilterActiveCategory from './components/Filter/FilterActiveCategory';
 import FilterActiveOption from './components/Filter/FilterActiveOption';
-import FilterSearchOption from './components/Filter/FilterSearchOption2';
+import FilterSearchOption from './components/Filter/FilterSearchOption';
+import FilterSearchGroup from './components/Filter/FilterSearchGroup';
 
 const testData = [
   {
