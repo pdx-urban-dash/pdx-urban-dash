@@ -1,68 +1,133 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Jumbotron,
-  Button,
-  Collapse,
-  Row, Col,
+  Jumbotron, Button, Collapse, Row, Col,
 } from 'reactstrap';
 import {
+  FilterActiveGroup,
+  FilterActiveCategory,
+  FilterActiveOption,
   FilterSearchGroup,
   FilterSearchCategory,
   FilterSearchOption,
   FilterSearchBar,
 } from '../FilterComponents';
 
-class FilterWrapper extends React.Component {
+export default class FilterWrapper extends React.Component {
   constructor(props) {
     super(props);
 
-    //callbacks
+    this.title = props.title;
+
     this.filterSearchBarCallback = this.filterSearchBarCallback.bind(this);
     this.filterOptionCallback = this.filterOptionCallback.bind(this);
     this.toggleFilterWindow = this.toggleFilterWindow.bind(this);
-    
-    this.title = '';
-    this.show = true;
-    this.data = [];
+
     this.state = {
-      show: this.props.show,
+      show: false,
       shownCategories: '',
       selected: [],
-    }
+    };
 
-  };
-
-toggleFilterWindow() {
-  this.setState({
-    show: !this.state.show,
-  })
-}
-
-filterSearchBarCallback(shownCategories){
-  this.setState({shownCategories})
-}
-
-filterOptionCallback(data){
-  //Toggle weather an option is selected or not
-  //If a category exists in selected, remove it.
-  //Otherwise add it
-  var selected = this.state.selected;
-  for (var i in selected){
-    //If the option already exists, remove it
-    if(data.title === selected[i].title){
-      selected.splice(i, 1);
-      this.setState({selected})
-      return;
-    }
+    this.renderActiveCategories = this.renderActiveCategories.bind(this);
+    this.removeCategoryFilter = this.removeCategoryFilter.bind(this);
+    this.addCategoryFilter = this.addCategoryFilter.bind(this);
   }
 
-  //Not in the list, add it
-  selected.push(data);
-  this.setState({selected})
-}
+  removeCategoryFilter(title, category) {
+    const { updatedSelected } = [];
+    const { selected } = this.state;
+    selected.forEach((filter) => {
+      if (filter.title !== title) {
+        updatedSelected.push(filter);
+      } else {
+        const { updatedCategories } = [];
+        filter.categories.forEach((cat) => {
+          if (cat !== category) {
+            updatedCategories.push(cat);
+          }
+        });
+        updatedSelected.push({
+          title: filter.title,
+          categories: updatedCategories,
+        });
+      }
+    });
+    this.setState({
+      selected: updatedSelected,
+    });
+  }
+
+  addCategoryFilter(title, category) {
+    const { updatedSelected } = [];
+    const { selected } = this.state;
+    selected.forEach((filter) => {
+      if (filter.title === title) {
+        const { sortedCategories } = [];
+        let pushed = false;
+        filter.categories.forEach((cat) => {
+          if (!pushed) {
+            if (category.compareTo(cat) <= 0) {
+              sortedCategories.push(category);
+              pushed = true;
+            }
+          }
+          sortedCategories.push(cat);
+        });
+        if (!pushed) {
+          sortedCategories.push(category);
+        }
+        updatedSelected.push({
+          title,
+          categories: sortedCategories,
+        });
+      } else {
+        updatedSelected.push(filter);
+      }
+    });
+    this.setState({
+      selected: updatedSelected,
+    });
+  }
+
+  toggleFilterWindow() {
+    const { show } = this.state;
+    this.setState({
+      show: !show,
+    });
+  }
+
+  filterSearchBarCallback(shownCategories) {
+    this.setState({ shownCategories });
+  }
+
+  filterOptionCallback(data) {
+    const { selected } = this.state;
+    for (var i in selected) {
+      //If the option already exists, remove it
+      if (data.title === selected[i].title) {
+        selected.splice(i, 1);
+        this.setState({ selected });
+        return;
+      }
+    }
+    selected.push(data);
+    this.setState({ selected });
+  }
+
+  renderActiveCategories() {
+    const { selected } = this.state;
+    return (
+      <FilterActiveGroup
+        activeFilters={selected}
+        callback={this.removeCategoryFilter}
+      />
+    );
+  }
 
   render() {
+    const { selected } = this.state;
+    const { shownCategories } = this.state;
     var categoryHidden, trendHidden, targetHidden;
     let data = formatData(this.props.data);
 
@@ -76,13 +141,13 @@ filterOptionCallback(data){
       }
     }
 
-    switch(this.state.shownCategories){
+    switch (shownCategories) {
       case 'Category':
         categoryHidden = false;
         trendHidden = true;
         targetHidden = true;
         break;
-      case 'Trend': 
+      case 'Trend':
         categoryHidden = true;
         trendHidden = false;
         targetHidden = true;
@@ -99,30 +164,25 @@ filterOptionCallback(data){
     }
 
     function isHidden(title) {
-      switch(title){
+      switch (title) {
         case 'Category':
           return categoryHidden;
-          break;
-        case 'Trend': 
+        case 'Trend':
           return trendHidden;
-          break;
         case 'Strategic Target':
           return targetHidden;
-          break;
         default:
           return false;
-          break;
-      }};
+      }
+    }
 
-    function formatData(dataset){
-      var filtersByCat = {
-        'Category': [],
-        'Trend': ['Treding Up', 'Trending Down'],
+    function formatData(dataset) {
+      const filtersByCat = {
+        Category: [],
+        Trend: ['Treding Up', 'Trending Down'],
         'Strategic Target': ['On Target', 'Above Target', 'Below Target'],
       };
-
-      //For each data point
-      for (var i in dataset){
+      for (var i in dataset) {
         let data = dataset[i];
 
         //Dynamically add each category
@@ -214,38 +274,36 @@ filterOptionCallback(data){
       }
       return selected;
     }
-    
-    function selectedGroupCallback(){
 
-    }
+    
 
     return (
       <Fragment>
-        <Button onClick={this.toggleFilterWindow}>{!this.state.show ? "Filter results" : "Hide Filter"}</Button>
-          <Collapse isOpen={this.state.show}>
-            <Jumbotron>
-              <h1 style={{ marginBottom: '1rem'}}>{this.props.title}</h1>
-              <Row>
-                <Col lg="8">
-                 <FilterSearchGroup title={'Select a Filter'} data={this.props.getFilters} callback={this.filterSearchGroupCallback}>
-                  <FilterSearchBar 
-                    title='search'
+        <Button onClick={this.toggleFilterWindow}>{!this.state.show ? "Filter Results" : "Hide Filter"}</Button>
+        <Collapse isOpen={this.state.show}>
+          <Jumbotron>
+            <h1 style={{ marginBottom: '1rem'}}>{this.props.title}</h1>
+            <Row>
+              <Col lg="8">
+                <FilterSearchGroup title="Select a Filter">
+                  <FilterSearchBar
+                    title="search"
                     categories={['Category', 'Trend', 'Strategic Target']}
                     callback={this.filterSearchBarCallback}
                   />
-                  {categories(data, this.filterOptionCallback)}
+                  { categories(data, this.filterOptionCallback) }
                 </FilterSearchGroup>
-                </Col>
-                <Col lg="4">
-                  <FilterSearchGroup title={'Your Selections'} data={[]}>
-                    <Row>
-                      {selectedResults(this.state.selected)}
-                    </Row>
-                  </FilterSearchGroup>
-                </Col>
-              </Row>
-            </Jumbotron>
-          </Collapse>
+              </Col>
+              <Col lg="4">
+                <FilterSearchGroup title="Your Selections">
+                  <Row>
+                    { this.renderActiveCategories }
+                  </Row>
+                </FilterSearchGroup>
+              </Col>
+            </Row>
+          </Jumbotron>
+        </Collapse>
       </Fragment>
     );
   }
@@ -254,5 +312,3 @@ filterOptionCallback(data){
 FilterWrapper.propTypes = {
   title: PropTypes.string.isRequired,
 };
-
-export default FilterWrapper;

@@ -9,44 +9,47 @@ export default class FilterActiveCategory extends React.Component {
 
     this.title = props.title;
     this.categories = props.categories;
+    this.callback = props.callback;
 
     this.state = {
-      activeFilters: this.categories,
+      activeOptions: this.categories,
     };
 
-    this.renderCategory = this.renderCategory.bind(this);
-    this.removeCategory = this.removeCategory.bind(this);
+    this.renderOption = this.renderOption.bind(this);
+    this.removeOption = this.removeOption.bind(this);
   }
 
-  removeCategory(cat) {
-    const updatedActiveFilters = [];
-    const { activeFilters } = this.state;
-    activeFilters.forEach((element) => {
+  removeOption(cat) {
+    const updatedActiveOptions = [];
+    const { activeOptions } = this.state;
+    activeOptions.forEach((element) => {
       if (element !== cat.category) {
-        updatedActiveFilters.push(element);
+        updatedActiveOptions.push(element);
       }
     });
+    const { callback } = this.props;
+    callback({ cat });
     this.setState({
-      activeFilters: updatedActiveFilters,
+      activeOptions: updatedActiveOptions,
     });
     return false;
   }
 
-  renderCategory(cat) {
+  renderOption(option) {
     return (
       <FilterActiveOption
-        key={cat}
+        key={option}
         title={this.title}
-        category={cat}
-        callback={this.removeCategory}
+        category={option}
+        callback={this.removeOption}
       />
     );
   }
 
   render() {
     const { title } = this.props;
-    const { activeFilters } = this.state;
-    if (title === '' || activeFilters.length === 0) {
+    const { activeOptions } = this.state;
+    if (title === '' || activeOptions.length === 0) {
       return null;
     }
     return (
@@ -55,7 +58,7 @@ export default class FilterActiveCategory extends React.Component {
           { title }
         </ToastHeader>
         <ToastBody>
-          { activeFilters.map(c => this.renderCategory(c)) }
+          { activeOptions.map(option => this.renderOption(option)) }
         </ToastBody>
       </Toast>
     );
@@ -65,4 +68,9 @@ export default class FilterActiveCategory extends React.Component {
 FilterActiveCategory.propTypes = {
   title: PropTypes.string.isRequired,
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  callback: PropTypes.func,
+};
+
+FilterActiveCategory.defaultProps = {
+  callback: t => console.log(`FilterSearchOption uninitialized callback: ${t}`),
 };

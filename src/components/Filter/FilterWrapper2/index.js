@@ -9,7 +9,6 @@ import {
 import {
   FilterActiveCategory,
   FilterSearchGroup,
-  FilterSearchCategory,
   FilterSearchOption,
   FilterSearchBar,
 } from '../FilterComponents';
@@ -26,7 +25,7 @@ export default class FilterWrapper2 extends React.Component {
 
     this.toggleFilterWindow = this.toggleFilterWindow.bind(this);
     this.updateShownCategory = this.updateShownCategory.bind(this);
-    this.addOrRemoveSelectedFilter = this.addSelectedFilter.bind(this);
+    this.addOrRemoveSelectedFilter = this.addOrRemoveSelectedFilter.bind(this);
 
     this.renderActiveFilter = this.renderActiveFilter.bind(this);
     this.renderSearchOption = this.renderSearchOption.bind(this);
@@ -65,18 +64,19 @@ export default class FilterWrapper2 extends React.Component {
     const { selectedTitle } = selectedFilter.title;
     const { selectedCategory } = selectedFilter.category;
     const { activeFilters } = this.state;
-    for (const filter in activeFilters) {
+
+    activeFilters.forEach((filter) => {
       if (filter.title === selectedTitle) {
         const { filterCategories } = filter.categories;
-        for (const category in filterCategories) {
+        filterCategories.forEach((category) => {
           if (category === selectedCategory) {
             filterCategories.splice(category, 1);
             this.setState({ activeFilters });
             return false;
           }
-        }
+        });
       }
-    }
+    });
     activeFilters.push(
       {
         title: selectedTitle,
@@ -137,7 +137,6 @@ export default class FilterWrapper2 extends React.Component {
                     categories={['Category', 'Trend', 'Strategic Target']}
                     callback={this.updateShownCategory}
                   />
-
                   { this.renderSearchCategory() }
                 </FilterSearchGroup>
               </Col>

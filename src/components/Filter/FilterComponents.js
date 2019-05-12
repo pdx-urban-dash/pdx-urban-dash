@@ -3,6 +3,7 @@ import FilterSearchGroup from './FilterSearchGroup';
 import FilterSearchBar from './FilterSearchBar';
 import FilterSearchCategory from './FilterSearchCategory';
 import FilterSearchOption from './FilterSearchOption';
+import FilterActiveGroup from './FilterActiveGroup';
 import FilterActiveCategory from './FilterActiveCategory';
 import FilterActiveOption from './FilterActiveOption';
 
@@ -12,6 +13,7 @@ export {
   FilterSearchGroup,
   FilterSearchCategory,
   FilterWrapper,
+  FilterActiveGroup,
   FilterActiveCategory,
   FilterActiveOption,
 };

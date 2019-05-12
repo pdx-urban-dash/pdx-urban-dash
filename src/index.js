@@ -8,13 +8,15 @@ import {
 import LineChart from './components/viz/LineChart';
 import {
   FilterWrapper,
+  FilterActiveGroup,
+  FilterActiveCategory,
+  FilterActiveOption,
+  FilterSearchGroup,
+  FilterSearchCategory,
+  FilterSearchOption,
+  FilterSearchBar,
 } from './components/Filter/FilterComponents';
 import logo from './components/Filter/images/SealofPortland.png';
-import Icon from './components/Icon';
-import FilterActiveCategory from './components/Filter/FilterActiveCategory';
-import FilterActiveOption from './components/Filter/FilterActiveOption';
-import FilterSearchOption from './components/Filter/FilterSearchOption';
-import FilterSearchGroup from './components/Filter/FilterSearchGroup';
 
 const testData = [
   {
@@ -589,3 +591,21 @@ ReactDOM.render(
   </Fragment>,
   document.getElementById('root'),
 );
+/*
+<FilterActiveGroup
+    activeFilters={[
+      {
+        title: 'Title 1',
+        categories: ['T1 C1', 'T1 C2', 'T1 C3'],
+      },
+      {
+        title: 'Title 2',
+        categories: ['T2 C1', 'T2 C2', 'T2 C3'],
+      },
+      {
+        title: 'Title ',
+        categories: ['T3 C1', 'T3 C2', 'T3 C3'],
+      },
+    ]}
+  />
+*/
