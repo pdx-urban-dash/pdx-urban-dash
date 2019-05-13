@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button, DropdownMenu, DropdownToggle, DropdownItem, Form,
-  Input, InputGroup, InputGroupAddon, InputGroupButtonDropdown,
+  ButtonDropdown, DropdownMenu, DropdownToggle, DropdownItem,
 } from 'reactstrap';
 
 export default class FilterSearchBar extends React.Component {
@@ -15,7 +14,6 @@ export default class FilterSearchBar extends React.Component {
     this.state = {
       dropdownOpen: false,
       dropdownLabel: 'Select a Filter',
-      searchValue: '',
     };
 
     this.toggleDropDown = this.toggleDropDown.bind(this);
@@ -34,7 +32,6 @@ export default class FilterSearchBar extends React.Component {
     const { categories } = this.props;
     if (categories.includes(category) || category === 'None') {
       this.setState({
-        searchValue: '',
         dropdownLabel: category,
       });
       const { callback } = this.props;
@@ -42,17 +39,10 @@ export default class FilterSearchBar extends React.Component {
     }
   }
 
-  passVal({ target }) {
-    this.setState({
-      searchValue: target.value,
-    });
-  }
-
   render() {
     const { categories } = this.props;
     const { dropdownOpen } = this.state;
     const { dropdownLabel } = this.state;
-    const { searchValue } = this.state;
     const categoryDropdownItems = categories.map(
       function generate(category) {
         return (
@@ -70,25 +60,17 @@ export default class FilterSearchBar extends React.Component {
     );
 
     return (
-      <Form inline onSubmit={e => e.preventDefault()}>
-        <InputGroup>
-          <InputGroupButtonDropdown addonType="append" isOpen={dropdownOpen} toggle={this.toggleDropDown}>
-            <DropdownToggle color="secondary" caret>{dropdownLabel}</DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem onClick={() => this.activateCategory('None')}>
-                None
-              </DropdownItem>
-              {categoryDropdownItems}
-            </DropdownMenu>
-          </InputGroupButtonDropdown>
-          <Input type="search" name="searchBox" placeholder="Search..." value={searchValue} onChange={this.passVal} />
-          <InputGroupAddon addonType="append">
-            <Button type="submit" color="secondary" onClick={this.activateCategory(searchValue)}>
-              Search
-            </Button>
-          </InputGroupAddon>
-        </InputGroup>
-      </Form>
+      <ButtonDropdown isOpen={dropdownOpen} toggle={this.toggleDropDown} className="btn-block">
+        <DropdownToggle color="secondary" caret className="btn-block">
+          {dropdownLabel}
+        </DropdownToggle>
+        <DropdownMenu className="btn-block">
+          <DropdownItem onClick={() => this.activateCategory('None')}>
+            None
+          </DropdownItem>
+          {categoryDropdownItems}
+        </DropdownMenu>
+      </ButtonDropdown>
     );
   }
 }
