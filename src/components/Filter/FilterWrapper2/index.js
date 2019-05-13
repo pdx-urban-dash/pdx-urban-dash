@@ -7,6 +7,7 @@ import {
   Row, Col,
 } from 'reactstrap';
 import {
+  FilterActiveGroup,
   FilterActiveCategory,
   FilterSearchGroup,
   FilterSearchOption,
@@ -17,29 +18,23 @@ export default class FilterWrapper2 extends React.Component {
   constructor(props) {
     super(props);
 
+    this.title = props.title;
+
     this.state = {
       show: this.props,
       shownCategory: '',
+      categoryFilters: [],
       activeFilters: [],
     };
 
+    this.getFiltersByCat = this.getFiltersByCat.bind(this);
     this.toggleFilterWindow = this.toggleFilterWindow.bind(this);
     this.updateShownCategory = this.updateShownCategory.bind(this);
-    this.addOrRemoveSelectedFilter = this.addOrRemoveSelectedFilter.bind(this);
-
-    this.renderActiveFilter = this.renderActiveFilter.bind(this);
-    this.renderSearchOption = this.renderSearchOption.bind(this);
-
-    this.getFiltersByCat = this.getFiltersByCat.bind(this);
-  }
-
-  static renderActiveFilter(filter) {
-    return (
-      <FilterActiveCategory
-        title={filter.title}
-        categories={filter.categories}
-      />
-    );
+    this.updateCategoryFilters = this.updateCategoryFilters.bind(this);
+    this.addOrRemoveActiveFilter = this.addOrRemoveActiveFilter.bind(this);
+    this.addActiveFilter = this.addActiveFilter.bind(this);
+    this.removeActiveFilter = this.removeActiveFilter.bind(this);
+    this.renderSearchGroup = this.renderSearchGroup.bind(this);
   }
 
   getFiltersByCat() {
@@ -60,33 +55,6 @@ export default class FilterWrapper2 extends React.Component {
     return [];
   }
 
-  addOrRemoveSelectedFilter(selectedFilter) {
-    const { selectedTitle } = selectedFilter.title;
-    const { selectedCategory } = selectedFilter.category;
-    const { activeFilters } = this.state;
-
-    activeFilters.forEach((filter) => {
-      if (filter.title === selectedTitle) {
-        const { filterCategories } = filter.categories;
-        filterCategories.forEach((category) => {
-          if (category === selectedCategory) {
-            filterCategories.splice(category, 1);
-            this.setState({ activeFilters });
-            return false;
-          }
-        });
-      }
-    });
-    activeFilters.push(
-      {
-        title: selectedTitle,
-        categories: [{ selectedCategory }],
-      },
-    );
-    this.setState({ activeFilters });
-    return false;
-  }
-
   toggleFilterWindow() {
     const { show } = this.state;
     this.setState({
@@ -95,25 +63,113 @@ export default class FilterWrapper2 extends React.Component {
   }
 
   updateShownCategory(category) {
-    this.setState(
-      {
-        shownCategory: category,
-      },
-    );
+    this.setState({ shownCategory: category });
+    this.updateCategoryFilters();
+    this.renderSearchGroup();
   }
 
-  renderSearchCategory() {
+  updateCategoryFilters() {
+    const { updated } = this.getFiltersByCat();
+    this.setState({
+      categoryFilters: updated,
+    });
+  }
+
+  addOrRemoveActiveFilter(title, category, selected) {
+    if (selected) {
+      this.addActiveFilter(title, category);
+    } else {
+      this.removeActiveFilter(title, category);
+    }
+  }
+
+  addActiveFilter(title, category) {
+    const { activeFilters } = this.state;
+    const { updatedActiveFilters } = [];
+    let { added } = false;
+    activeFilters.forEach((filter) => {
+      if (!added) {
+        if (title === filter.title) {
+          const { filterCategories } = filter.categories;
+          const { updatedFilterCategories } = [];
+          let { addedCategory } = false;
+          filterCategories.forEach((cat) => {
+            if (!addedCategory) {
+              if (category.compareTo(cat) <= 0) {
+                updatedFilterCategories.push(category);
+                addedCategory = true;
+              }
+            }
+            updatedFilterCategories.push(cat);
+          });
+          if (!addedCategory) {
+            updatedFilterCategories.push(category);
+          }
+          updatedActiveFilters.push({ title, category: updatedFilterCategories });
+          added = true;
+        } else if (title.compareTo(filter.title) < 0) {
+          updatedActiveFilters.push({ title, category: [{ category }] });
+          added = true;
+        }
+        updatedActiveFilters.push(filter);
+      } else {
+        updatedActiveFilters.push(filter);
+      }
+    });
+    this.setState({
+      activeFilters: updatedActiveFilters,
+    });
+  }
+
+  removeActiveFilter(title, category) {
+    const { activeFilters } = this.state;
+    const { updatedActiveFilters } = [];
+    let { removed } = false;
+    activeFilters.forEach((filter) => {
+      if (!removed) {
+        if (title === filter.title) {
+          const { filterCategories } = filter.categories;
+          const { updatedFilterCategories } = [];
+          filterCategories.forEach((cat) => {
+            if (category !== cat) {
+              updatedFilterCategories.push(cat);
+            }
+          });
+          updatedActiveFilters.push({ title: filter.title, categories: updatedFilterCategories });
+          removed = true;
+        } else {
+          updatedActiveFilters.push(filter);
+        }
+      } else {
+        updatedActiveFilters.push(filter);
+      }
+    });
+    this.setState({
+      activeFilters: updatedActiveFilters,
+    });
+  }
+
+  renderSearchGroup() {
     const { shownCategory } = this.state;
-    const child = this.getFiltersByCat();
-
-    /* Need to finish this function */
-    /* Looks like I may need to refactor the SearchCategory/Group/Option */
-  }
-
-  static renderSearchOption(option) {
+    const { categoryFilters } = this.state;
+    const { activeFilters } = this.state;
+    const { activeOptions } = [];
+    activeFilters.forEach((filter) => {
+      if (filter.title === shownCategory) {
+        const { activeFilterCategories } = filter.activeFilters;
+        activeFilterCategories.forEach((category) => {
+          activeOptions.push(category);
+        });
+      }
+    });
+    console.log(activeOptions);
     return (
-      <FilterSearchOption
-        title={option}
+      <FilterSearchGroup
+        wrapperTitle="Filters"
+        title={shownCategory}
+        categories={categoryFilters}
+        activeOptions={activeOptions}
+        callback={this.addOrRemoveActiveFilter}
       />
     );
   }
@@ -125,27 +181,28 @@ export default class FilterWrapper2 extends React.Component {
 
     return (
       <Fragment>
-        <Button onClick={this.toggleFilterWindow}>{!show ? 'Filter results' : 'Hide Filter'}</Button>
+        <Button onClick={this.toggleFilterWindow}>
+          { !show ? 'Filter results' : 'Hide Filter' }
+        </Button>
         <Collapse isOpen={show}>
           <Jumbotron>
-            <h1 style={{ marginBottom: '1rem' }}>{title}</h1>
+            <h1 style={{ marginBottom: '1rem' }}>
+              { title }
+            </h1>
             <Row>
               <Col lg="6">
-                <FilterSearchGroup title="Select a Filter">
-                  <FilterSearchBar
-                    title="search"
-                    categories={['Category', 'Trend', 'Strategic Target']}
-                    callback={this.updateShownCategory}
-                  />
-                  { this.renderSearchCategory() }
-                </FilterSearchGroup>
+                <FilterSearchBar
+                  title="search"
+                  categories={['Category', 'Trend', 'Strategic Target']}
+                  callback={this.updateShownCategory}
+                />
               </Col>
               <Col lg="4">
-                <FilterSearchGroup title="Your Selections">
+                <FilterActiveGroup activeFilters={activeFilters} callback={this.removeActiveFilter}>
                   <Row>
                     { activeFilters.map(filter => this.renderActiveFilter(filter)) }
                   </Row>
-                </FilterSearchGroup>
+                </FilterActiveGroup>
               </Col>
             </Row>
           </Jumbotron>

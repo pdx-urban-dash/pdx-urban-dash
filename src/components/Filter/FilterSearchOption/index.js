@@ -14,29 +14,27 @@ export default class FilterSearchOption extends Component {
   }
 
   handleClick() {
-    const { title } = this.props;
     const { category } = this.props;
+    const { selected } = this.state;
     const { callback } = this.props;
-    callback({ title, category });
+    callback({ category, selected });
     this.setState(state => ({
       selected: !state.selected,
     }));
-    return false;
   }
 
   render() {
-    const { title } = this.props;
     const { category } = this.props;
     const { selected } = this.props;
     const { hidden } = this.state;
 
-    if (hidden || category === '' || title === '') {
+    if (hidden || category === '') {
       return null;
     }
     return (
       <Toast onClick={this.handleClick} style={{ background: selected ? 'green' : '', cursor: 'pointer', height: '2rem' }}>
         <ToastHeader>
-          { title }
+          { category }
         </ToastHeader>
       </Toast>
     );
@@ -44,13 +42,11 @@ export default class FilterSearchOption extends Component {
 }
 
 FilterSearchOption.propTypes = {
-  title: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
-  selected: PropTypes.bool,
+  selected: PropTypes.bool.isRequired,
   callback: PropTypes.func,
 };
 
 FilterSearchOption.defaultProps = {
-  selected: false,
   callback: t => console.log(`FilterSearchOption uninitialized callback: ${t}`),
 };

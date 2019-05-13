@@ -1,4 +1,4 @@
-import FilterWrapper from './FilterWrapper';
+import FilterWrapper from './FilterWrapper2';
 import FilterSearchGroup from './FilterSearchGroup';
 import FilterSearchBar from './FilterSearchBar';
 import FilterSearchCategory from './FilterSearchCategory';

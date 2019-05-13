@@ -83,7 +83,9 @@ export default class FilterSearchBar extends React.Component {
           </InputGroupButtonDropdown>
           <Input type="search" name="searchBox" placeholder="Search..." value={searchValue} onChange={this.passVal} />
           <InputGroupAddon addonType="append">
-            <Button type="submit" color="secondary" onClick={() => this.activateCategory(searchValue)}>Search</Button>
+            <Button type="submit" color="secondary" onClick={this.activateCategory(searchValue)}>
+              Search
+            </Button>
           </InputGroupAddon>
         </InputGroup>
       </Form>

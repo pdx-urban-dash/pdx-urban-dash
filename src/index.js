@@ -582,17 +582,12 @@ const testData = [
 
 ReactDOM.render(
   <Fragment>
-    <Navbar color="light" light expand="md">
-      <NavbarBrand><img src={logo} width="40" height="40" alt="City of Portland" /> City of Portland Dashboard</NavbarBrand>
-
-    </Navbar>
-    <FilterWrapper data={testData} title="" />
-    <Row />
+    <FilterWrapper title="Filter Wrapper Title" />
   </Fragment>,
   document.getElementById('root'),
 );
 /*
-<FilterActiveGroup
+  <FilterActiveGroup
     activeFilters={[
       {
         title: 'Title 1',
@@ -608,4 +603,16 @@ ReactDOM.render(
       },
     ]}
   />
+
+  ReactDOM.render(
+  <Fragment>
+    <Navbar color="light" light expand="md">
+      <NavbarBrand><img src={logo} width="40" height="40" alt="City of Portland" /> City of Portland Dashboard</NavbarBrand>
+
+    </Navbar>
+    <FilterWrapper data={testData} title="Title" />
+    <Row />
+  </Fragment>,
+  document.getElementById('root'),
+);
 */

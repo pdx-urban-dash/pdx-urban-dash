@@ -103,6 +103,18 @@ export default class FilterWrapper extends React.Component {
 
   filterOptionCallback(data) {
     const { selected } = this.state;
+    /*
+    let { removed } = false;
+    selected.forEach((filter) => {
+      if (filter.title === title) {
+        this.removeCategoryFilter(title, category);
+        removed = true;
+      }
+    });
+    if (!removed) {
+      this.addCategoryFilter(title, category);
+    }
+    */
     for (var i in selected) {
       //If the option already exists, remove it
       if (data.title === selected[i].title) {
@@ -126,6 +138,8 @@ export default class FilterWrapper extends React.Component {
   }
 
   render() {
+    const { title } = this.props;
+    const { show } = this.state;
     const { selected } = this.state;
     const { shownCategories } = this.state;
     var categoryHidden, trendHidden, targetHidden;
@@ -244,7 +258,7 @@ export default class FilterWrapper extends React.Component {
       return children;
     }
 
-    function selectedResults(results){
+    function selectedResults(results) {
       var selected = [];
 
       var filtersByCat = {};
@@ -279,10 +293,14 @@ export default class FilterWrapper extends React.Component {
 
     return (
       <Fragment>
-        <Button onClick={this.toggleFilterWindow}>{!this.state.show ? "Filter Results" : "Hide Filter"}</Button>
-        <Collapse isOpen={this.state.show}>
+        <Button onClick={this.toggleFilterWindow}>
+          {!show ? 'Filter Results' : 'Hide Filter'}
+        </Button>
+        <Collapse isOpen={show}>
           <Jumbotron>
-            <h1 style={{ marginBottom: '1rem'}}>{this.props.title}</h1>
+            <h1 style={{ marginBottom: '1rem' }}>
+              { title }
+            </h1>
             <Row>
               <Col lg="8">
                 <FilterSearchGroup title="Select a Filter">
@@ -297,7 +315,7 @@ export default class FilterWrapper extends React.Component {
               <Col lg="4">
                 <FilterSearchGroup title="Your Selections">
                   <Row>
-                    { this.renderActiveCategories }
+                    { /* this.renderActivecategories */ selectedResults(selected) }
                   </Row>
                 </FilterSearchGroup>
               </Col>

@@ -8,6 +8,11 @@ export default class FilterSearchCategory extends React.Component {
 
     this.title = props.title;
     this.hidden = props.hidden;
+    this.callback = props.callback;
+  }
+
+  renderGroup() {
+
   }
 
   render() {
@@ -33,9 +38,11 @@ FilterSearchCategory.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.arrayOf(PropTypes.string),
   hidden: PropTypes.bool,
+  callback: PropTypes.func,
 };
 
 FilterSearchCategory.defaultProps = {
   hidden: false,
   children: [],
+  callback: t => console.log(`FilterSearchOption uninitialized callback: ${t}`),
 };
