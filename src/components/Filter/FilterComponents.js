@@ -3,6 +3,10 @@ import FilterSearchGroup from './FilterSearchGroup';
 import FilterSearchBar from './FilterSearchBar';
 import FilterSearchCategory from './FilterSearchCategory';
 import FilterSearchOption from './FilterSearchOption';
+import FilterSelectedCategory from './FilterSelectedCategory';
+import FilterSelectedOption from './FilterSelectedOption';
+
+
 
 export {
   FilterSearchOption,
@@ -10,4 +14,6 @@ export {
   FilterSearchGroup,
   FilterSearchCategory,
   FilterWrapper,
+  FilterSelectedCategory,
+  FilterSelectedOption,
 };

@@ -18,8 +18,8 @@ export default class FilterSearchOption extends Component {
   constructor (props) {
     super(props);
 
-    this.activateFilter = this.activateFilter.bind(this);
-    this.deactivateFilter = this.deactivateFilter.bind(this);
+    this.activate = this.activate.bind(this);
+    this.deactivate = this.deactivate.bind(this);
 
     this.title = '';
     this.category = '';
@@ -30,13 +30,11 @@ export default class FilterSearchOption extends Component {
     this.callback = (t) => console.log("FilterSearchOption uninitialized callback: " + t);
 
     this.state = { 
-      selected: this.props.selected,
-      onclick: this.props.selected ? this.deactivateFilter : this.activateFilter,
-      showx: false
+      activation: this.props.selected ? this.deactivate : this.activate,
     }      
   }
 
-  activateFilter() {
+  activate() {
     this.props.callback(
       {
         'title': this.props.title,
@@ -45,14 +43,12 @@ export default class FilterSearchOption extends Component {
     );
 
     this.setState({
-      onclick: this.deactivateFilter,
-      selected: true,
-      showx: true,
+      activation: this.deactivate,
     })
     return false;
   }
 
-  deactivateFilter() {
+  deactivate() {
     this.props.callback(
       {
         'title': this.props.title,
@@ -61,9 +57,7 @@ export default class FilterSearchOption extends Component {
     );
 
     this.setState({
-      onclick: this.activateFilter,
-      selected: false,
-      showx: false,
+      activation: this.activate,
     })
     return false;
   }
@@ -74,8 +68,8 @@ export default class FilterSearchOption extends Component {
       return null;
     
     return (
-      <Toast fade={false} onClick={()=>this.state.onclick(this.props.title)} style={{ marginBottom: '2rem'}, this.state.selected ? {"background": "green"} : {"background": ""}}>
-        <ToastHeader toggle = {!this.state.selected ? false : this.props.callback}  style={{ height: '2rem'}}>
+      <Toast fade={false} onClick={this.state.activation} style={this.props.selected ? {"background": "green"} : {"background": ""}}>
+        <ToastHeader toggle = {!this.props.selected ? ()=>{} : this.props.callback}  style={{ height: '2rem'}}>
           { this.props.title }
         </ToastHeader>
       </Toast>

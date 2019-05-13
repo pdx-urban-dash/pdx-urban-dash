@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Container,
+  Col,
  } from 'reactstrap';
 
-class FilterSearchCategory extends React.Component {
+class FilterSelectedCategory extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     selected: PropTypes.bool,
@@ -22,14 +22,13 @@ class FilterSearchCategory extends React.Component {
       return null;
 
     return (
-      <Container>
+      <Col>
         <hr/>
-        <h3 style={{ marginBottom: '1rem'}}>{this.props.title}</h3>
-        
+        <h4 style={{ marginBottom: '1rem'}}>{this.props.title}</h4>
         {this.props.children}
-      </Container>
+      </Col>
     );
   }
 }
 
-export default FilterSearchCategory;
+export default FilterSelectedCategory;

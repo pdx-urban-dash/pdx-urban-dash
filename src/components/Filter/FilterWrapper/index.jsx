@@ -11,6 +11,8 @@ import {
   FilterSearchCategory,
   FilterSearchOption,
   FilterSearchBar,
+  FilterSelectedCategory,
+  FilterSelectedOption,
 } from '../FilterComponents';
 
 class FilterWrapper extends React.Component {
@@ -27,7 +29,7 @@ class FilterWrapper extends React.Component {
     this.data = [];
     this.state = {
       show: this.props.show,
-      shownCategories: '',
+      shownCategory: '',
       selected: [],
     }
 
@@ -39,8 +41,8 @@ toggleFilterWindow() {
   })
 }
 
-filterSearchBarCallback(shownCategories){
-  this.setState({shownCategories})
+filterSearchBarCallback(shownCategory){
+  this.setState({shownCategory})
 }
 
 filterOptionCallback(data){
@@ -63,56 +65,7 @@ filterOptionCallback(data){
 }
 
   render() {
-    var categoryHidden, trendHidden, targetHidden;
     let data = formatData(this.props.data);
-
-    let isSelected = (title) => {
-      var selected = this.state.selected;
-      for (var i in selected){
-        //If the option already exists, remove it
-        if(title === selected[i].title){
-          return true;
-        }
-      }
-    }
-
-    switch(this.state.shownCategories){
-      case 'Category':
-        categoryHidden = false;
-        trendHidden = true;
-        targetHidden = true;
-        break;
-      case 'Trend': 
-        categoryHidden = true;
-        trendHidden = false;
-        targetHidden = true;
-        break;
-      case 'Strategic Target':
-        categoryHidden = true;
-        trendHidden = true;
-        targetHidden = false;
-        break;
-      default:
-        categoryHidden = true;
-        trendHidden = true;
-        targetHidden = true;
-    }
-
-    function isHidden(title) {
-      switch(title){
-        case 'Category':
-          return categoryHidden;
-          break;
-        case 'Trend': 
-          return trendHidden;
-          break;
-        case 'Strategic Target':
-          return targetHidden;
-          break;
-        default:
-          return false;
-          break;
-      }};
 
     function formatData(dataset){
       var filtersByCat = {
@@ -126,55 +79,55 @@ filterOptionCallback(data){
         let data = dataset[i];
 
         //Dynamically add each category
-        for (var category in data.categories){
+        for (var category in data.categories)
           //If it isn't already in the list, add it
           if(!filtersByCat['Category'].includes(data.categories[category]))
             filtersByCat['Category'].push(data.categories[category]);
-        }
       }
       return filtersByCat;
     }
 
-    function categories (filters, callback) {
+    function selectAFilterCategories (filters, selections, shownCategory, callback) {
+      
       var children = [];
+      var selectedOptions = selections.map((option)=>{return option.title})      
 
       let child = data => data.map((elem, id) => {
         return (
           React.createElement(
           Col,
           {
-            key: id,
+            key: category,
             md: 6,
           },
           React.createElement(
             FilterSearchOption,
             {
-              key: key,
+              key: category,
               title: elem,
-              category: key,
-              selected: isSelected(elem),
+              category: category,
+              selected: selectedOptions.includes(elem),
               callback: callback,
             }, 
-            this
             )
           )
         )
       })
 
-      for (var key in filters ){
-        var childData = filters[key];
+      for (var category in filters ){
+        var childData = filters[category].sort();
         children.push (
           React.createElement(
             FilterSearchCategory,
             {
-              key: key,
-              title: key,
-              hidden: isHidden(key),
+              key: category,
+              title: category,
+              hidden: (shownCategory !== category),
             },
             React.createElement(
               Row,
               {
-                key: key
+                key: category
               },
               child(childData)
             )
@@ -184,39 +137,51 @@ filterOptionCallback(data){
       return children;
     }
 
-    function selectedResults(results){
+    function yourSelections(selections, shownCategory, callback){
       var selected = [];
+      var selectedCategories = selections.map((option)=>{return option.category})
 
       var filtersByCat = {};
-      for (var i in results ){
-        if(results[i].title){
-          if(!filtersByCat[results[i].category.toUpperCase()])
-              filtersByCat[results[i].category.toUpperCase()] = [];
+      for (var i in selections ){
+        var selection = selections[i];
+        if(selection.title){
+          if(!filtersByCat[selection.category])
+              filtersByCat[selection.category] = [];
 
-          filtersByCat[results[i].category.toUpperCase()].push(results[i].title);
+          filtersByCat[selection.category].push(selection.title);
+          filtersByCat[selection.category].sort();
         }
       }
 
       for(var category in filtersByCat){
-        var options = '';
+        var options = [];
+        var hidden = !selectedCategories.includes(category);
         for (var option in filtersByCat[category])
-          options += filtersByCat[category][option] + ", ";
-
-        options = options.substring(0, options.length-2);
-        options += "   (x)";
+          options.push(
+            React.createElement(
+              FilterSelectedOption,
+              {
+                key: option,
+                title: filtersByCat[category][option],
+                category,
+                callback,
+              },
+            )
+          )
         
         selected.push(
-          <Col key={option} md="4">
-            <hr/>
-            {category + ": " + options}
-          </Col>
+          React.createElement(
+            FilterSelectedCategory,
+            {
+              key: option,
+              title: category,
+              hidden,
+            },
+            options
+          )
         )
       }
       return selected;
-    }
-    
-    function selectedGroupCallback(){
-
     }
 
     return (
@@ -226,29 +191,20 @@ filterOptionCallback(data){
             <Jumbotron>
               <h1 style={{ marginBottom: '1rem'}}>{this.props.title}</h1>
               <Row>
-                <Col lg="2">
-                  <FilterSearchGroup title={'Instructions'}> 
-                  <p> This is a large block of words that tells you how to do stuff. Lorem ipsum dolor sit amet, 
-                  consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> 
-                  </FilterSearchGroup>
-                </Col>
-                <Col lg="6">
+                <Col lg="8">
                  <FilterSearchGroup title={'Select a Filter'} data={this.props.getFilters} callback={this.filterSearchGroupCallback}>
                   <FilterSearchBar 
                     title='search'
                     categories={['Category', 'Trend', 'Strategic Target']}
                     callback={this.filterSearchBarCallback}
                   />
-                  {categories(data, this.filterOptionCallback)}
+                  {selectAFilterCategories(data, this.state.selected, this.state.shownCategory, this.filterOptionCallback)}
                 </FilterSearchGroup>
                 </Col>
                 <Col lg="4">
                   <FilterSearchGroup title={'Your Selections'} data={[]}>
                     <Row>
-                      {selectedResults(this.state.selected)}
+                      {yourSelections(this.state.selected, this.state.shownCategory, this.filterOptionCallback)}
                     </Row>
                   </FilterSearchGroup>
                 </Col>

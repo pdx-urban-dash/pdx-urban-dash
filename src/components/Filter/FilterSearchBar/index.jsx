@@ -1,98 +1,78 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Form, 
-  Button,
-  Input, InputGroup, InputGroupAddon, InputGroupButtonDropdown, 
-  DropdownMenu, DropdownToggle, DropdownItem
- } from 'reactstrap';
+  ButtonDropdown, DropdownMenu, DropdownToggle, DropdownItem,
+} from 'reactstrap';
 
-class FilterSearchBar extends React.Component {
+export default class FilterSearchBar extends React.Component {
   constructor(props) {
     super(props);
 
-    //Initialize props
-    this.title = '';
-    this.categories = [];
-    this.callback = (t) => console.log("FilterSearchBar uninitialized callback: " + t);
+    this.categories = props.categories;
+    this.callback = props.callback;
 
-    //Bind setters
-    this.toggleDropDown = this.toggleDropDown.bind(this);
-    this.passVal = this.passVal.bind(this);
-    this.activateCategory = this.activateCategory.bind(this);
-
-    //Initialize state
     this.state = {
       dropdownOpen: false,
-      dropdownLabel: "Select a Filter",
-      searchValue: '',
+      dropdownLabel: 'Select a Filter',
     };
+
+    this.toggleDropDown = this.toggleDropDown.bind(this);
+    this.activateCategory = this.activateCategory.bind(this);
+    this.renderCategoryDropdownItem = this.renderCategoryDropdownItem.bind(this);
   }
 
   toggleDropDown() {
+    const { dropdownOpen } = this.state;
     this.setState({
-      dropdownOpen: !this.state.dropdownOpen
+      dropdownOpen: !dropdownOpen,
     });
   }
 
   activateCategory(category) {
-    if (this.props.categories.includes(category) || category === "None"){
+    const { categories } = this.props;
+    if (categories.includes(category) || category === 'None') {
       this.setState({
-        searchValue: '',
         dropdownLabel: category,
       });
-
-      this.props.callback(category);
-    } 
+      const { callback } = this.props;
+      callback(category);
+    }
   }
 
-  passVal({ target }) {
-    this.setState({
-      searchValue: target.value
-    });
+  renderCategoryDropdownItem(category) {
+    return (
+      <DropdownItem key={category} onClick={() => this.activateCategory(category)}>
+        { category }
+      </DropdownItem>
+    );
   }
 
   render() {
-
-    var categoryDropdownItems = this.props.categories.map(
-      function ( category ) {
-        return (
-          React.createElement(
-            DropdownItem,
-            {
-              key: category,
-              onClick: ()=> this.activateCategory(category)
-            },
-            category
-          )
-        )
-      },
-      this
-    );
+    const { categories } = this.props;
+    const { dropdownOpen } = this.state;
+    const { dropdownLabel } = this.state;
 
     return (
-      <Form inline onSubmit={(e) => e.preventDefault()}>
-        <InputGroup>
-          <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
-            <DropdownToggle color="secondary" caret>{this.state.dropdownLabel}</DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem onClick={()=> this.activateCategory("None")} >None</DropdownItem>
-              {categoryDropdownItems}
-            </DropdownMenu>
-          </InputGroupButtonDropdown>
-          <Input type="search" name="searchBox" placeholder="Search..."  value={this.state.searchValue} onChange={this.passVal}/>
-          <InputGroupAddon addonType="append">
-            <Button type="submit" color="secondary" onClick={() => this.activateCategory(this.state.searchValue)}>Search</Button>
-          </InputGroupAddon>
-        </InputGroup>
-      </Form>
+      <ButtonDropdown isOpen={dropdownOpen} toggle={this.toggleDropDown} className="btn-block">
+        <DropdownToggle color="secondary" caret className="btn-block">
+          {dropdownLabel}
+        </DropdownToggle>
+        <DropdownMenu className="btn-block">
+          <DropdownItem onClick={() => this.activateCategory('None')}>
+            None
+          </DropdownItem>
+          { categories.map(category => this.renderCategoryDropdownItem(category))}
+        </DropdownMenu>
+      </ButtonDropdown>
     );
   }
 }
 
 FilterSearchBar.propTypes = {
-  categories: PropTypes.array.isRequired,
-  callback: PropTypes.func.isRequired,
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  callback: PropTypes.func,
 };
 
-export default FilterSearchBar;
+FilterSearchBar.defaultProps = {
+  callback: t => console.log(`FilterSearchOption uninitialized callback: ${t}`),
+};
