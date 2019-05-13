@@ -582,7 +582,12 @@ const testData = [
 
 ReactDOM.render(
   <Fragment>
-    <FilterWrapper title="Filter Wrapper Title" />
+    <Navbar color="light" light expand="md">
+      <NavbarBrand><img src={logo} width="40" height="40" alt="City of Portland" /> City of Portland Dashboard</NavbarBrand>
+
+    </Navbar>
+    <FilterWrapper data={testData} title="Filter Wrapper" />
+    <Row />
   </Fragment>,
   document.getElementById('root'),
 );

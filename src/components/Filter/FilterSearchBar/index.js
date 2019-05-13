@@ -17,8 +17,8 @@ export default class FilterSearchBar extends React.Component {
     };
 
     this.toggleDropDown = this.toggleDropDown.bind(this);
-    this.passVal = this.passVal.bind(this);
     this.activateCategory = this.activateCategory.bind(this);
+    this.renderCategoryDropdownItem = this.renderCategoryDropdownItem.bind(this);
   }
 
   toggleDropDown() {
@@ -39,25 +39,18 @@ export default class FilterSearchBar extends React.Component {
     }
   }
 
+  renderCategoryDropdownItem(category) {
+    return (
+      <DropdownItem key={category} onClick={() => this.activateCategory(category)}>
+        { category }
+      </DropdownItem>
+    );
+  }
+
   render() {
     const { categories } = this.props;
     const { dropdownOpen } = this.state;
     const { dropdownLabel } = this.state;
-    const categoryDropdownItems = categories.map(
-      function generate(category) {
-        return (
-          React.createElement(
-            DropdownItem,
-            {
-              key: category,
-              onClick: () => this.activateCategory(category),
-            },
-            category,
-          )
-        );
-      },
-      this,
-    );
 
     return (
       <ButtonDropdown isOpen={dropdownOpen} toggle={this.toggleDropDown} className="btn-block">
@@ -68,7 +61,7 @@ export default class FilterSearchBar extends React.Component {
           <DropdownItem onClick={() => this.activateCategory('None')}>
             None
           </DropdownItem>
-          {categoryDropdownItems}
+          { categories.map(category => this.renderCategoryDropdownItem(category))}
         </DropdownMenu>
       </ButtonDropdown>
     );

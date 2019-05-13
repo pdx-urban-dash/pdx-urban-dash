@@ -21,7 +21,7 @@ export default class FilterWrapper2 extends React.Component {
     this.title = props.title;
 
     this.state = {
-      show: this.props,
+      show: false,
       shownCategory: '',
       categoryFilters: [],
       activeFilters: [],
@@ -162,7 +162,6 @@ export default class FilterWrapper2 extends React.Component {
         });
       }
     });
-    console.log(activeOptions);
     return (
       <FilterSearchGroup
         wrapperTitle="Filters"
@@ -178,6 +177,8 @@ export default class FilterWrapper2 extends React.Component {
     const { show } = this.state;
     const { title } = this.props;
     const { activeFilters } = this.state;
+    const { shownCategory } = this.state;
+    const { categoryFilters } = this.state;
 
     return (
       <Fragment>
@@ -192,17 +193,15 @@ export default class FilterWrapper2 extends React.Component {
             <Row>
               <Col lg="6">
                 <FilterSearchBar
-                  title="search"
                   categories={['Category', 'Trend', 'Strategic Target']}
                   callback={this.updateShownCategory}
                 />
+                <FilterSearchGroup wrapperTitle="Select a Filter" title={shownCategory} categories={categoryFilters} activeOptions={[]} callback={this.filterSearchGroupCallback}>
+                  { this.renderSearchGroup }
+                </FilterSearchGroup>
               </Col>
               <Col lg="4">
-                <FilterActiveGroup activeFilters={activeFilters} callback={this.removeActiveFilter}>
-                  <Row>
-                    { activeFilters.map(filter => this.renderActiveFilter(filter)) }
-                  </Row>
-                </FilterActiveGroup>
+                <FilterActiveGroup title="Your Selections" activeFilters={activeFilters} callback={this.removeActiveFilter} />
               </Col>
             </Row>
           </Jumbotron>
