@@ -33,7 +33,7 @@ class FilterSelectedOption extends React.Component {
 
     return (
       <Row>
-        <h5 style={{ marginBottom: '1rem'}} onClick={this.onClick}>{this.props.title+'   '} <Icon type={'x-circle'} size={'sm'}/></h5>
+        <h5 style={{ marginBottom: '1rem',marginLeft: '2em', whiteSpace: 'nowrap'}} onClick={this.onClick}>{this.props.title+'   '} <Icon type={'x-circle'} size={'sm'}/></h5>
       </Row>
     );
   }

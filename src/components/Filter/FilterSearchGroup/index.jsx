@@ -1,4 +1,7 @@
 import React, { Fragment } from 'react';
+import {
+  Container,
+} from 'reactstrap';
 import PropTypes from 'prop-types';
 
 class FilterSearchGroup extends React.Component {
@@ -11,11 +14,10 @@ class FilterSearchGroup extends React.Component {
   render() {
 
     return (
-      <Fragment>
-        <hr/>
+      <Container style={{borderLeft:"2px solid rgba(0,0,0,.1)"}}>
         <h2 style={{ marginBottom: '1rem'}}>{this.props.title}</h2>
         {this.props.children}
-      </Fragment>
+      </Container>
     );
   }
 }

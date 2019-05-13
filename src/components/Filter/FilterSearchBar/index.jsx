@@ -57,7 +57,7 @@ export default class FilterSearchBar extends React.Component {
         <DropdownToggle color="secondary" caret className="btn-block">
           {dropdownLabel}
         </DropdownToggle>
-        <DropdownMenu className="btn-block">
+        <DropdownMenu className="btn-block" right>
           <DropdownItem onClick={() => this.activateCategory('None')}>
             None
           </DropdownItem>

@@ -22,9 +22,10 @@ class FilterSelectedCategory extends React.Component {
       return null;
 
     return (
-      <Col>
-        <hr/>
+      <Col style={{marginLeft: "1em"}}>
+        
         <h4 style={{ marginBottom: '1rem'}}>{this.props.title}</h4>
+        <hr/>
         {this.props.children}
       </Col>
     );

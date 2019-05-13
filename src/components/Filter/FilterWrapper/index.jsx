@@ -5,6 +5,7 @@ import {
   Button,
   Collapse,
   Row, Col,
+  Nav, Navbar, NavbarBrand, NavItem, 
 } from 'reactstrap';
 import {
   FilterSearchGroup,
@@ -14,21 +15,23 @@ import {
   FilterSelectedCategory,
   FilterSelectedOption,
 } from '../FilterComponents';
+import logo from '../../../components/Filter/images/SealofPortland.png';
+
 
 class FilterWrapper extends React.Component {
   constructor(props) {
     super(props);
+
+    this.callback = console.log("Default FilterWrapper callback")
 
     //callbacks
     this.filterSearchBarCallback = this.filterSearchBarCallback.bind(this);
     this.filterOptionCallback = this.filterOptionCallback.bind(this);
     this.toggleFilterWindow = this.toggleFilterWindow.bind(this);
     
-    this.title = '';
     this.show = true;
     this.data = [];
     this.state = {
-      show: this.props.show,
       shownCategory: '',
       selected: [],
     }
@@ -62,6 +65,7 @@ filterOptionCallback(data){
   //Not in the list, add it
   selected.push(data);
   this.setState({selected})
+  this.props.callback(selected);
 }
 
   render() {
@@ -186,38 +190,36 @@ filterOptionCallback(data){
 
     return (
       <Fragment>
-        <Button onClick={this.toggleFilterWindow}>{!this.state.show ? "Filter results" : "Hide Filter"}</Button>
-          <Collapse isOpen={this.state.show}>
-            <Jumbotron>
-              <h1 style={{ marginBottom: '1rem'}}>{this.props.title}</h1>
-              <Row>
-                <Col lg="8">
-                 <FilterSearchGroup title={'Select a Filter'} data={this.props.getFilters} callback={this.filterSearchGroupCallback}>
-                  <FilterSearchBar 
-                    title='search'
-                    categories={['Category', 'Trend', 'Strategic Target']}
-                    callback={this.filterSearchBarCallback}
-                  />
-                  {selectAFilterCategories(data, this.state.selected, this.state.shownCategory, this.filterOptionCallback)}
+        <Collapse isOpen={this.props.show}>
+          <Jumbotron>
+            <h1 style={{ marginBottom: '1rem'}}>{this.props.title}</h1>
+            <Row>
+              <Col lg="8">
+               <FilterSearchGroup title={'Select a Filter'} data={this.props.getFilters} callback={this.filterSearchGroupCallback}>
+                <FilterSearchBar 
+                  title='search'
+                  categories={['Category', 'Trend', 'Strategic Target']}
+                  callback={this.filterSearchBarCallback}
+                />
+                {selectAFilterCategories(data, this.state.selected, this.state.shownCategory, this.filterOptionCallback)}
+              </FilterSearchGroup>
+              </Col>
+              <Col lg="4">
+                <FilterSearchGroup title={'Your Selections'} data={[]}>
+                  <Row>
+                    {yourSelections(this.state.selected, this.state.shownCategory, this.filterOptionCallback)}
+                  </Row>
                 </FilterSearchGroup>
-                </Col>
-                <Col lg="4">
-                  <FilterSearchGroup title={'Your Selections'} data={[]}>
-                    <Row>
-                      {yourSelections(this.state.selected, this.state.shownCategory, this.filterOptionCallback)}
-                    </Row>
-                  </FilterSearchGroup>
-                </Col>
-              </Row>
-            </Jumbotron>
-          </Collapse>
+              </Col>
+            </Row>
+          </Jumbotron>
+        </Collapse>
       </Fragment>
     );
   }
 }
 
 FilterWrapper.propTypes = {
-  title: PropTypes.string.isRequired,
 };
 
 export default FilterWrapper;

@@ -22,10 +22,7 @@ class FilterSearchCategory extends React.Component {
       return null;
 
     return (
-      <Container>
-        <hr/>
-        <h3 style={{ marginBottom: '1rem'}}>{this.props.title}</h3>
-        
+      <Container style={{ marginTop: '1rem'}}>        
         {this.props.children}
       </Container>
     );

@@ -1,14 +1,7 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import {
-  // Card, CardText, CardBody, CardTitle,
-  Navbar, NavbarBrand,
-  Row,
-} from 'reactstrap';
 import LineChart from './components/viz/LineChart';
-import {
-  FilterWrapper,
-} from './components/Filter/FilterComponents';
+import StateManager from './components/StateManager';
 import logo from './components/Filter/images/SealofPortland.png';
 import Icon from './components/Icon';
 
@@ -574,14 +567,14 @@ const testData = [
   },
 ];
 
+var showFilter = false;
+function toggleFilter() {
+  showFilter = !showFilter;
+}
+
 ReactDOM.render(
   <Fragment>
-    <Navbar color="light" light expand="md">
-      <NavbarBrand><img src={logo} width="40" height="40" alt="City of Portland" /> City of Portland Dashboard</NavbarBrand>
-
-    </Navbar>
-    <FilterWrapper data={testData} title="" />
-    <Row />
+    <StateManager data={testData}/>
   </Fragment>,
   document.getElementById('root'),
 );
