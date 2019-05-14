@@ -30,10 +30,6 @@ export default class FilterSearchOption extends Component {
   render() {
     const { category } = this.props;
     const { selected } = this.state;
-
-    if (category === '') {
-      return null;
-    }
     return (
       <Toast onClick={this.handleClick} style={{ background: selected ? 'green' : '', cursor: 'pointer', height: '2rem' }}>
         <ToastHeader>
