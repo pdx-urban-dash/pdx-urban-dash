@@ -17,38 +17,53 @@ export default class FilterSearchGroup extends React.Component {
       activeOptions: this.activeOptions,
     };
 
-    this.renderSearchOption = this.renderSearchOption.bind(this);
     this.toggleSelectedOption = this.toggleSelectedOption.bind(this);
+    this.addOption = this.addOption.bind(this);
+    this.removeOption = this.removeOption.bind(this);
+    this.renderSearchOption = this.renderSearchOption.bind(this);
   }
 
   toggleSelectedOption(category, selected) {
-    const { activeOptions } = this.state;
-    const updatedActiveOptions = [];
     if (selected) {
-      let pushed = false;
-      activeOptions.forEach((option) => {
-        if (category.compareTo(option) <= 0) {
-          updatedActiveOptions.push(category);
-          pushed = true;
-        }
-        updatedActiveOptions.push(category);
-      });
-      if (!pushed) {
-        updatedActiveOptions.push(category);
-      }
+      this.addOption(category);
     } else {
-      activeOptions.forEach((option) => {
-        if (option !== category) {
-          updatedActiveOptions.push(option);
-        }
-      });
+      this.removeOption(category);
     }
+  }
+  
+  addOption(option) {
+    const { activeOptions } = this.state;
+    const { updatedActiveOptions } = [];
+    let added = false;
+    activeOptions.forEach((activeOption) => {
+      if (!added) {
+        if (option <= activeOption) {
+          updatedActiveOptions.push(option);
+          added = true;
+        }
+      }
+      updatedActiveOptions.push(activeOption);
+    });
     this.setState({
       activeOptions: updatedActiveOptions,
     });
-    const { title } = this.props;
     const { callback } = this.props;
-    callback({ title, category, selected });
+    callback(props.title, updatedActiveOptions);
+  }
+  
+  removeOption(option) {
+    const { activeOptions } = this.state;
+    const { updatedActiveOptions } = [];
+    activeOptions.forEach((active) => {
+      if (active !== option) {
+        updatedActiveOptions.push(active);
+      }
+    });
+    this.setState({
+      activeOptions: updatedActiveOptions,
+    });
+    const { callback } = this.props;
+    callback(props.title, updatedActiveOptions);
   }
 
   renderSearchOption(category) {
