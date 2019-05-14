@@ -36,7 +36,7 @@ export default class FilterActiveGroup extends React.Component {
       activeCategories: updatedActiveCategories,
     });
     const { callback } = this.props;
-    callback(title, activeCategories);
+    callback(activeCategories);
   }
 
   renderCategory(category) {
