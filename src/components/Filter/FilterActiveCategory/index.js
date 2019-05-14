@@ -12,34 +12,31 @@ export default class FilterActiveCategory extends React.Component {
     this.callback = props.callback;
 
     this.state = {
-      activeOptions: this.categories,
+      categories: this.props,
     };
 
     this.renderOption = this.renderOption.bind(this);
     this.removeOption = this.removeOption.bind(this);
   }
 
-  removeOption(cat) {
-    const updatedActiveOptions = [];
-    const { activeOptions } = this.state;
-    activeOptions.forEach((element) => {
-      if (element !== cat.category) {
-        updatedActiveOptions.push(element);
+  removeOption(category) {
+    const { categories } = this.state;
+    const updatedCategories = [];
+    categories.forEach((element) => {
+      if (element !== category) {
+        updatedCategories.push(element);
       }
     });
-    const { callback } = this.props;
-    callback({ cat });
     this.setState({
-      activeOptions: updatedActiveOptions,
+      categories: updatedCategories,
     });
-    return false;
+    const { callback } = this.props;
+    callback(category);
   }
 
   renderOption(option) {
     return (
       <FilterActiveOption
-        key={option}
-        title={this.title}
         category={option}
         callback={this.removeOption}
       />
@@ -48,17 +45,14 @@ export default class FilterActiveCategory extends React.Component {
 
   render() {
     const { title } = this.props;
-    const { activeOptions } = this.state;
-    if (title === '' || activeOptions.length === 0) {
-      return null;
-    }
+    const { categories } = this.state;
     return (
       <Toast>
         <ToastHeader>
           { title }
         </ToastHeader>
         <ToastBody>
-          { activeOptions.map(option => this.renderOption(option)) }
+          { categories.map(option => this.renderOption(option)) }
         </ToastBody>
       </Toast>
     );
