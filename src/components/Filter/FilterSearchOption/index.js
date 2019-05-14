@@ -5,10 +5,13 @@ import { Toast, ToastHeader } from 'reactstrap';
 export default class FilterSearchOption extends Component {
   constructor(props) {
     super(props);
-
+    
+    this.category = props.category;
+    this.selected = props.selected;
+    this.callback = props.callback;
+    
     this.state = {
       selected: this.props,
-      hidden: false,
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -16,19 +19,19 @@ export default class FilterSearchOption extends Component {
   handleClick() {
     const { category } = this.props;
     const { selected } = this.state;
-    this.setState(state => ({
-      selected: !state.selected,
-    }));
+    const { updatedSelected } = !selected;
+    this.setState({
+      selected: updatedSelected,
+    });
     const { callback } = this.props;
-    callback({ category, selected });
+    callback(category, updatedSelected);
   }
 
   render() {
     const { category } = this.props;
-    const { selected } = this.props;
-    const { hidden } = this.state;
+    const { selected } = this.state;
 
-    if (hidden || category === '') {
+    if (category === '') {
       return null;
     }
     return (
