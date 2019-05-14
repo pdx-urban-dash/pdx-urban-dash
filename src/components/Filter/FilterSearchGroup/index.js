@@ -14,7 +14,6 @@ export default class FilterSearchGroup extends React.Component {
     this.callback = props.callback;
 
     this.state = {
-      allCategories: this.categories,
       activeOptions: this.activeOptions,
     };
 
@@ -73,12 +72,12 @@ export default class FilterSearchGroup extends React.Component {
   render() {
     const { wrapperTitle } = this.props;
     const { title } = this.props;
-    const { allCategories } = this.state;
+    const { categories } = this.props;
     if (title === 'None') {
       return null;
     }
     return (
-      <Toast>
+      <Toast style={{ minHeight: '350px' }}>
         <ToastHeader>
           { wrapperTitle }
         </ToastHeader>
@@ -87,7 +86,7 @@ export default class FilterSearchGroup extends React.Component {
             { title }
           </ToastHeader>
           <ToastBody>
-            { allCategories.map(category => this.renderSearchOption(category)) }
+            { categories.map(category => this.renderSearchOption(category)) }
           </ToastBody>
         </ToastBody>
       </Toast>

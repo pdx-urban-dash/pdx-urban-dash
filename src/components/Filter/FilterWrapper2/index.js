@@ -61,6 +61,7 @@ export default class FilterWrapper2 extends React.Component {
       shownCategory: category,
       categoryFilters: updatedCategoryFilters,
     });
+    console.log(updatedCategoryFilters);
   }
 
   addOrRemoveActiveFilter(title, category, selected) {
@@ -150,8 +151,6 @@ export default class FilterWrapper2 extends React.Component {
       categoryFiltersCopy.push(cat);
     });
 
-    console.log(shownCategory);
-    console.log(categoryFilters);
     activeFilters.forEach((filter) => {
       if (filter.title === shownCategory) {
         const { activeFilterCategories } = filter.activeFilters;
@@ -183,7 +182,7 @@ export default class FilterWrapper2 extends React.Component {
                     <FilterSearchGroup
                       wrapperTitle="Filters"
                       title={shownCategory}
-                      categories={categoryFiltersCopy}
+                      categories={categoryFilters}
                       activeOptions={activeOptions}
                       callback={this.addOrRemoveActiveFilter}
                     />
