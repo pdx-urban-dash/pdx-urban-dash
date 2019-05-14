@@ -1,19 +1,19 @@
-import FilterWrapper from './FilterWrapper';
-import FilterSearchGroup from './FilterSearchGroup';
-import FilterSearchBar from './FilterSearchBar';
-import FilterSearchCategory from './FilterSearchCategory';
-import FilterSearchOption from './FilterSearchOption';
-import FilterSelectedCategory from './FilterSelectedCategory';
-import FilterSelectedOption from './FilterSelectedOption';
+import FilterManager from './FilterManager';
+import FilterGroup from './FilterGroup';
+import FilterDropdown from './FilterDropdown';
+import FilterItemGroup from './FilterItemGroup';
+import FilterItem from './FilterItem';
+import FilterSelectGroup from './FilterSelectGroup';
+import FilterSelect from './FilterSelect';
 
 
 
 export {
-  FilterSearchOption,
-  FilterSearchBar,
-  FilterSearchGroup,
-  FilterSearchCategory,
-  FilterWrapper,
-  FilterSelectedCategory,
-  FilterSelectedOption,
+  FilterItem,
+  FilterDropdown,
+  FilterGroup,
+  FilterItemGroup,
+  FilterManager,
+  FilterSelectGroup,
+  FilterSelect,
 };

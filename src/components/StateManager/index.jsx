@@ -1,54 +1,62 @@
-import React, { Fragment } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Fragment } from "react";
+import PropTypes from "prop-types";
 import {
-  // Card, CardText, CardBody, CardTitle,
   Button,
-  Nav, NavItem, Navbar, NavbarBrand,
-  Row, Col
-} from 'reactstrap';
-import LineChart from './../viz/LineChart';
-import {
-  FilterWrapper,
-} from './../Filter/FilterComponents';
-import logo from './../Filter/images/SealofPortland.png';
-import Icon from './../Icon';
+  Nav,
+  NavItem,
+  Navbar,
+  NavbarBrand,
+  Row,
+  Col
+} from "reactstrap";
+import { FilterManager } from "./../Filter/FilterComponents";
+import logo from "./../Filter/images/SealofPortland.png";
 
-class StateManager extends React.Component {
+export default class StateManager extends React.Component {
+  static propTypes = {
+    hidden: PropTypes.bool,
+    data: PropTypes.array.isRequired
+  };
+
   constructor(props) {
     super(props);
 
     this.toggleFilterWindow = this.toggleFilterWindow.bind(this);
     this.filterCallback = this.filterCallback.bind(this);
 
-    this.show = false;
+    this.hidden = false;
     this.data = [];
     this.state = {
-      show: this.props.show,
-      selected: [],
-    }
-  };
+      hidden: this.props.hidden,
+      selected: []
+    };
+  }
 
   toggleFilterWindow() {
     this.setState({
-      show: !this.state.show,
-    })
+      hidden: !this.state.hidden
+    });
   }
 
   filterCallback(returned) {
-    this.setState({selected: returned})
+    this.setState({ selected: returned });
   }
 
   render() {
-    
     return (
       <Fragment>
         <Row>
           <Col>
             <Navbar color="light" light expand="md">
-             <NavbarBrand><img src={logo} width="40" height="40" alt="City of Portland" /> City of Portland Dashboard</NavbarBrand>
+              <NavbarBrand>
+                <img src={logo} width="40" height="40" alt="City of Portland" />{" "}
+                City of Portland Dashboard
+              </NavbarBrand>
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <Button onClick={this.toggleFilterWindow}>{this.state.show ? "Hide Filter" : "Filter results"}</Button>
+                  <Button onClick={this.toggleFilterWindow}>
+                    {this.state.hidden ? "Filter results" : "Hide Filter"}
+                  </Button>
                 </NavItem>
               </Nav>
             </Navbar>
@@ -56,7 +64,11 @@ class StateManager extends React.Component {
         </Row>
         <Row>
           <Col>
-            <FilterWrapper data={this.props.data} show={this.state.show} callback={this.filterCallback}/>
+            <FilterManager
+              data={this.props.data}
+              hidden={this.state.hidden}
+              callback={this.filterCallback}
+            />
           </Col>
         </Row>
         <Row>
@@ -69,5 +81,3 @@ class StateManager extends React.Component {
     );
   }
 }
-
-export default StateManager;
