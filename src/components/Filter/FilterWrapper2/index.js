@@ -29,9 +29,7 @@ export default class FilterWrapper2 extends React.Component {
 
     this.toggleFilterWindow = this.toggleFilterWindow.bind(this);
     this.updateShownCategory = this.updateShownCategory.bind(this);
-    this.addOrRemoveActiveFilter = this.addOrRemoveActiveFilter.bind(this);
-    this.addActiveFilter = this.addActiveFilter.bind(this);
-    this.removeActiveFilter = this.removeActiveFilter.bind(this);
+    this.updateActiveFilters = this.updateActiveFilters.bind(this);
   }
 
   toggleFilterWindow() {
@@ -61,73 +59,15 @@ export default class FilterWrapper2 extends React.Component {
       shownCategory: category,
       categoryFilters: updatedCategoryFilters,
     });
-    console.log(updatedCategoryFilters);
   }
 
-  addOrRemoveActiveFilter(title, category, selected) {
-    if (selected) {
-      this.addActiveFilter(title, category);
-    } else {
-      this.removeActiveFilter(title, category);
-    }
-  }
-
-  addActiveFilter(title, category) {
+  updateActiveFilters(title, activeOptions) {
     const { activeFilters } = this.state;
     const { updatedActiveFilters } = [];
-    let { added } = false;
     activeFilters.forEach((filter) => {
-      if (!added) {
-        if (title === filter.title) {
-          const { filterCategories } = filter.categories;
-          const { updatedFilterCategories } = [];
-          let { addedCategory } = false;
-          filterCategories.forEach((cat) => {
-            if (!addedCategory) {
-              if (category.compareTo(cat) <= 0) {
-                updatedFilterCategories.push(category);
-                addedCategory = true;
-              }
-            }
-            updatedFilterCategories.push(cat);
-          });
-          if (!addedCategory) {
-            updatedFilterCategories.push(category);
-          }
-          updatedActiveFilters.push({ title, category: updatedFilterCategories });
-          added = true;
-        } else if (title.compareTo(filter.title) < 0) {
-          updatedActiveFilters.push({ title, category: [{ category }] });
-          added = true;
-        }
-        updatedActiveFilters.push(filter);
-      } else {
-        updatedActiveFilters.push(filter);
-      }
-    });
-    this.setState({
-      activeFilters: updatedActiveFilters,
-    });
-  }
-
-  removeActiveFilter(title, category) {
-    const { activeFilters } = this.state;
-    const { updatedActiveFilters } = [];
-    let { removed } = false;
-    activeFilters.forEach((filter) => {
-      if (!removed) {
-        if (title === filter.title) {
-          const { filterCategories } = filter.categories;
-          const { updatedFilterCategories } = [];
-          filterCategories.forEach((cat) => {
-            if (category !== cat) {
-              updatedFilterCategories.push(cat);
-            }
-          });
-          updatedActiveFilters.push({ title: filter.title, categories: updatedFilterCategories });
-          removed = true;
-        } else {
-          updatedActiveFilters.push(filter);
+      if (filter.title === title) {
+        if (activeOptions.length !== 0) {
+           updatedActiveFilters.push({ title, activeOptions });
         }
       } else {
         updatedActiveFilters.push(filter);
@@ -137,7 +77,7 @@ export default class FilterWrapper2 extends React.Component {
       activeFilters: updatedActiveFilters,
     });
   }
-
+  
   render() {
     const { show } = this.state;
     const { title } = this.props;
@@ -145,12 +85,6 @@ export default class FilterWrapper2 extends React.Component {
     const { categoryFilters } = this.state;
     const { activeFilters } = this.state;
     const activeOptions = [];
-
-    const categoryFiltersCopy = [];
-    categoryFilters.forEach((cat) => {
-      categoryFiltersCopy.push(cat);
-    });
-
     activeFilters.forEach((filter) => {
       if (filter.title === shownCategory) {
         const { activeFilterCategories } = filter.activeFilters;
@@ -184,7 +118,7 @@ export default class FilterWrapper2 extends React.Component {
                       title={shownCategory}
                       categories={categoryFilters}
                       activeOptions={activeOptions}
-                      callback={this.addOrRemoveActiveFilter}
+                      callback={this.updateActiveFilters}
                     />
                   </ToastBody>
                 </Toast>
@@ -193,7 +127,7 @@ export default class FilterWrapper2 extends React.Component {
                 <FilterActiveGroup
                   title="Your Selections"
                   activeFilters={activeFilters}
-                  callback={this.removeActiveFilter}
+                  callback={this.updateActiveFilters}
                 />
               </Col>
             </Row>
