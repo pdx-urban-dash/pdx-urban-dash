@@ -32,7 +32,7 @@ export default class FilterActiveCategory extends React.Component {
       categories: updatedCategories,
     });
     const { callback } = this.props;
-    callback(title, category);
+    callback(title, categories);
   }
 
   renderOption(option) {
