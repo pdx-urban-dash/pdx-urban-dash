@@ -20,6 +20,7 @@ export default class FilterActiveCategory extends React.Component {
   }
 
   removeOption(category) {
+    const { title } = this.props;
     const { categories } = this.state;
     const updatedCategories = [];
     categories.forEach((element) => {
@@ -31,7 +32,7 @@ export default class FilterActiveCategory extends React.Component {
       categories: updatedCategories,
     });
     const { callback } = this.props;
-    callback(category);
+    callback(title, category);
   }
 
   renderOption(option) {
