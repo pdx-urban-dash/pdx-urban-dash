@@ -586,7 +586,7 @@ ReactDOM.render(
       <NavbarBrand><img src={logo} width="40" height="40" alt="City of Portland" /> City of Portland Dashboard</NavbarBrand>
 
     </Navbar>
-    <FilterWrapper data={testData} title="Filter Wrapper" />
+    <FilterWrapper data={testData} title="Filter Wrapper" categories={['Category', 'Trend', 'Strategic Target']} />
     <Row />
   </Fragment>,
   document.getElementById('root'),
@@ -607,6 +607,13 @@ ReactDOM.render(
         categories: ['T3 C1', 'T3 C2', 'T3 C3'],
       },
     ]}
+  />
+
+  <FilterSearchGroup
+    wrapperTitle="FilterSearchGroup Wrapper Title"
+    titile="Filter Title"
+    categories={['Category 1', 'Category 2', 'Category 3']}
+    activeOptions={['Category 1']}
   />
 
   ReactDOM.render(

@@ -5,12 +5,11 @@ import {
   Button,
   Collapse,
   Row, Col,
+  Toast, ToastBody, ToastHeader,
 } from 'reactstrap';
 import {
   FilterActiveGroup,
-  FilterActiveCategory,
   FilterSearchGroup,
-  FilterSearchOption,
   FilterSearchBar,
 } from '../FilterComponents';
 
@@ -19,6 +18,7 @@ export default class FilterWrapper2 extends React.Component {
     super(props);
 
     this.title = props.title;
+    this.categories = props.categories;
 
     this.state = {
       show: false,
@@ -27,32 +27,11 @@ export default class FilterWrapper2 extends React.Component {
       activeFilters: [],
     };
 
-    this.getFiltersByCat = this.getFiltersByCat.bind(this);
     this.toggleFilterWindow = this.toggleFilterWindow.bind(this);
     this.updateShownCategory = this.updateShownCategory.bind(this);
-    this.updateCategoryFilters = this.updateCategoryFilters.bind(this);
     this.addOrRemoveActiveFilter = this.addOrRemoveActiveFilter.bind(this);
     this.addActiveFilter = this.addActiveFilter.bind(this);
     this.removeActiveFilter = this.removeActiveFilter.bind(this);
-    this.renderSearchGroup = this.renderSearchGroup.bind(this);
-  }
-
-  getFiltersByCat() {
-    const { shownCategory } = this.state;
-    if (shownCategory === 'Category') {
-      const data = [];
-      for (let i = 0; i < 7; i += 1) {
-        data.push(`Category ${i}`);
-      }
-      return data;
-    }
-    if (shownCategory === 'Trend') {
-      return ['Trending Up', 'Trending Down'];
-    }
-    if (shownCategory === 'Strategic Target') {
-      return ['On Target', 'Above Target', 'Below Target'];
-    }
-    return [];
   }
 
   toggleFilterWindow() {
@@ -63,15 +42,24 @@ export default class FilterWrapper2 extends React.Component {
   }
 
   updateShownCategory(category) {
-    this.setState({ shownCategory: category });
-    this.updateCategoryFilters();
-    this.renderSearchGroup();
-  }
-
-  updateCategoryFilters() {
-    const { updated } = this.getFiltersByCat();
+    const updatedCategoryFilters = [];
+    if (category === 'Category') {
+      for (let i = 0; i < 7; i += 1) {
+        updatedCategoryFilters.push(`Category ${i}`);
+      }
+    }
+    if (category === 'Trend') {
+      updatedCategoryFilters.push('Trending Up');
+      updatedCategoryFilters.push('Trending Down');
+    }
+    if (category === 'Strategic Target') {
+      updatedCategoryFilters.push('On Target');
+      updatedCategoryFilters.push('Above Target');
+      updatedCategoryFilters.push('Below Target');
+    }
     this.setState({
-      categoryFilters: updated,
+      shownCategory: category,
+      categoryFilters: updatedCategoryFilters,
     });
   }
 
@@ -149,11 +137,21 @@ export default class FilterWrapper2 extends React.Component {
     });
   }
 
-  renderSearchGroup() {
+  render() {
+    const { show } = this.state;
+    const { title } = this.props;
     const { shownCategory } = this.state;
     const { categoryFilters } = this.state;
     const { activeFilters } = this.state;
-    const { activeOptions } = [];
+    const activeOptions = [];
+
+    const categoryFiltersCopy = [];
+    categoryFilters.forEach((cat) => {
+      categoryFiltersCopy.push(cat);
+    });
+
+    console.log(shownCategory);
+    console.log(categoryFilters);
     activeFilters.forEach((filter) => {
       if (filter.title === shownCategory) {
         const { activeFilterCategories } = filter.activeFilters;
@@ -162,24 +160,6 @@ export default class FilterWrapper2 extends React.Component {
         });
       }
     });
-    return (
-      <FilterSearchGroup
-        wrapperTitle="Filters"
-        title={shownCategory}
-        categories={categoryFilters}
-        activeOptions={activeOptions}
-        callback={this.addOrRemoveActiveFilter}
-      />
-    );
-  }
-
-  render() {
-    const { show } = this.state;
-    const { title } = this.props;
-    const { activeFilters } = this.state;
-    const { shownCategory } = this.state;
-    const { categoryFilters } = this.state;
-
     return (
       <Fragment>
         <Button onClick={this.toggleFilterWindow}>
@@ -191,17 +171,31 @@ export default class FilterWrapper2 extends React.Component {
               { title }
             </h1>
             <Row>
-              <Col lg="6">
-                <FilterSearchBar
-                  categories={['Category', 'Trend', 'Strategic Target']}
-                  callback={this.updateShownCategory}
-                />
-                <FilterSearchGroup wrapperTitle="Select a Filter" title={shownCategory} categories={categoryFilters} activeOptions={[]} callback={this.filterSearchGroupCallback}>
-                  { this.renderSearchGroup }
-                </FilterSearchGroup>
+              <Col lg="8">
+                <Toast>
+                  <ToastHeader>
+                    <FilterSearchBar
+                      categories={this.categories}
+                      callback={this.updateShownCategory}
+                    />
+                  </ToastHeader>
+                  <ToastBody>
+                    <FilterSearchGroup
+                      wrapperTitle="Filters"
+                      title={shownCategory}
+                      categories={categoryFiltersCopy}
+                      activeOptions={activeOptions}
+                      callback={this.addOrRemoveActiveFilter}
+                    />
+                  </ToastBody>
+                </Toast>
               </Col>
               <Col lg="4">
-                <FilterActiveGroup title="Your Selections" activeFilters={activeFilters} callback={this.removeActiveFilter} />
+                <FilterActiveGroup
+                  title="Your Selections"
+                  activeFilters={activeFilters}
+                  callback={this.removeActiveFilter}
+                />
               </Col>
             </Row>
           </Jumbotron>
@@ -213,4 +207,5 @@ export default class FilterWrapper2 extends React.Component {
 
 FilterWrapper2.propTypes = {
   title: PropTypes.string.isRequired,
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

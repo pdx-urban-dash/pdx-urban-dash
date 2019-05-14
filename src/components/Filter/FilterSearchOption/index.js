@@ -16,11 +16,11 @@ export default class FilterSearchOption extends Component {
   handleClick() {
     const { category } = this.props;
     const { selected } = this.state;
-    const { callback } = this.props;
-    callback({ category, selected });
     this.setState(state => ({
       selected: !state.selected,
     }));
+    const { callback } = this.props;
+    callback({ category, selected });
   }
 
   render() {
