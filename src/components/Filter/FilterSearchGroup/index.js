@@ -6,7 +6,6 @@ import FilterSearchOption from '../FilterSearchOption';
 export default class FilterSearchGroup extends React.Component {
   constructor(props) {
     super(props);
-
     this.wrapperTitle = props.wrapperTitle;
     this.title = props.title;
     this.categories = props.categories;

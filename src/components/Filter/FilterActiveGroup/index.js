@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Toast, ToastBody, ToastHeader } from 'reactstrap';
-
 import FilterActiveCategory from '../FilterActiveCategory';
 
 export default class FilterActiveGroup extends React.Component {

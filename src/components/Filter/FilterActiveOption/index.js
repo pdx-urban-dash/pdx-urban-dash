@@ -8,7 +8,6 @@ export default class FilterActiveOption extends React.Component {
 
     this.category = this.props;
     this.callback = this.props;
-
     this.handleClick = this.handleClick.bind(this);
   }
 
