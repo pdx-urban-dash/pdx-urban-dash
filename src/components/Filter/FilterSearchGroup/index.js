@@ -32,6 +32,7 @@ export default class FilterSearchGroup extends React.Component {
   }
 
   addOption(option) {
+    const { title } = this.props;
     const { activeOptions } = this.state;
     const updatedActiveOptions = [];
     let added = false;
@@ -51,10 +52,11 @@ export default class FilterSearchGroup extends React.Component {
       activeOptions: updatedActiveOptions,
     });
     const { callback } = this.props;
-    callback(this.title, updatedActiveOptions);
+    callback(title, updatedActiveOptions);
   }
 
   removeOption(option) {
+    const { title } = this.props;
     const { activeOptions } = this.state;
     const updatedActiveOptions = [];
     activeOptions.forEach((active) => {
@@ -66,7 +68,7 @@ export default class FilterSearchGroup extends React.Component {
       activeOptions: updatedActiveOptions,
     });
     const { callback } = this.props;
-    callback(this.title, updatedActiveOptions);
+    callback(title, updatedActiveOptions);
   }
 
   renderSearchOption(category) {
@@ -92,7 +94,9 @@ export default class FilterSearchGroup extends React.Component {
     const { title } = this.props;
     const { categories } = this.props;
     if (title === 'None') {
-      return null;
+      return (
+        <Toast style={{ minHeight: '350px' }} />
+      );
     }
     return (
       <Toast style={{ minHeight: '350px' }}>

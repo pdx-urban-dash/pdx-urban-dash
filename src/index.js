@@ -581,6 +581,18 @@ const testData = [
 ];
 
 ReactDOM.render(
+  <FilterWrapper
+    title="FilterWrapper Title"
+    categories={['Category', 'Trend', 'Strategic Target']}
+  />,
+  document.getElementById('root'),
+);
+/*
+  <FilterWrapper
+    title="FilterWrapper Title"
+    categories={['Category', 'Trend', 'Strategic Target']}
+  />
+
   <Row>
     <Col>
       <FilterSearchOption
@@ -602,34 +614,25 @@ ReactDOM.render(
         title="Category 1 Title"
         categories={['Title 1 Category 1', 'Title 1 Category 2', 'Title 1 Category 3']}
       />
+      <FilterActiveGroup
+        title="FilterActiveGroup Title"
+        activeFilters={[
+          {
+            title: 'Title 1',
+            categories: ['Title 1 Category 1', 'Title 1 Category 2', 'Title 1 Category 3'],
+          },
+          {
+            title: 'Title 2',
+            categories: ['Title 2 Category 1', 'Title 2 Category 2', 'Title 2 Category 3'],
+          },
+          {
+            title: 'Title 3',
+            categories: ['Title 3 Category 1', 'Title 3 Category 2', 'Title 3 Category 3'],
+          },
+        ]}
+      />
     </Col>
-  </Row>,
-  document.getElementById('root'),
-);
-/*
-  <FilterActiveGroup
-    activeFilters={[
-      {
-        title: 'Title 1',
-        categories: ['T1 C1', 'T1 C2', 'T1 C3'],
-      },
-      {
-        title: 'Title 2',
-        categories: ['T2 C1', 'T2 C2', 'T2 C3'],
-      },
-      {
-        title: 'Title ',
-        categories: ['T3 C1', 'T3 C2', 'T3 C3'],
-      },
-    ]}
-  />
-
-  <FilterSearchGroup
-    wrapperTitle="FilterSearchGroup Wrapper Title"
-    titile="Filter Title"
-    categories={['Category 1', 'Category 2', 'Category 3']}
-    activeOptions={['Category 1']}
-  />
+  </Row>
 
   ReactDOM.render(
   <Fragment>

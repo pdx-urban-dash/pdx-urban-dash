@@ -37,7 +37,7 @@ export default class FilterActiveCategory extends React.Component {
   renderOption(option) {
     return (
       <FilterActiveOption
-        keey={option}
+        key={option}
         category={option}
         callback={this.removeOption}
       />

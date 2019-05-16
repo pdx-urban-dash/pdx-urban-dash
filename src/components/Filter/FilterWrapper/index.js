@@ -62,42 +62,40 @@ export default class FilterWrapper2 extends React.Component {
   }
 
   updateActiveFilters(title, activeOptions) {
+    console.log(`Title: ${title} ActiveOptions: ${activeOptions}`);
     const { activeFilters } = this.state;
     const updatedActiveFilters = [];
     let added = false;
-    activeFilters.forEach((filter) => {
-      if (filter.title === title) {
+    activeFilters.forEach((activeFilter) => {
+      if (title === activeFilter.title) {
         if (activeOptions.length !== 0) {
-          updatedActiveFilters.push({ title, activeOptions });
+          updatedActiveFilters.push({ title, categories: activeOptions });
           added = true;
         }
       } else {
-        updatedActiveFilters.push(filter);
+        updatedActiveFilters.push(activeFilter);
       }
     });
     if (!added) {
-      updatedActiveFilters.push({ title, activeOptions });
+      updatedActiveFilters.push({ title, categories: activeOptions });
+      console.log(`ADDED: Title: ${updatedActiveFilters[0].title} ActiveOptions: ${updatedActiveFilters[0].categories[0]}`);
     }
     this.setState({
       activeFilters: updatedActiveFilters,
     });
+    console.log(`\nupdateActiveFilters: Title:${this.state} ActiveOptions:${activeOptions} updatedActiveFilters:${updatedActiveFilters}`);
   }
 
   render() {
-    const { show } = this.state;
     const { title } = this.props;
+    const { show } = this.state;
     const { shownCategory } = this.state;
     const { categoryFilters } = this.state;
     const { activeFilters } = this.state;
     const activeOptions = [];
-    activeFilters.forEach((filter) => {
-      if (filter.title === shownCategory) {
-        const { activeFilterCategories } = filter.activeFilters;
-        activeFilterCategories.forEach((category) => {
-          activeOptions.push(category);
-        });
-      }
-    });
+
+    console.log(`\nActiveFilters: ${activeFilters.map(filter => console.log(`\nFilter Name: ${filter.title}\nActive Categories:${filter.categories}`))} `);
+
     return (
       <Fragment>
         <Button onClick={this.toggleFilterWindow}>
@@ -110,7 +108,7 @@ export default class FilterWrapper2 extends React.Component {
             </h1>
             <Row>
               <Col lg="8">
-                <Toast>
+                <Toast style={{ display: 'block' }}>
                   <ToastHeader>
                     <FilterSearchBar
                       categories={this.categories}

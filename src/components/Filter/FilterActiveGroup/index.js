@@ -17,10 +17,10 @@ export default class FilterActiveGroup extends React.Component {
     };
 
     this.renderCategory = this.renderCategory.bind(this);
-    this.removeEmptyCategory = this.removeEmptyCategory.bind(this);
+    this.updateActiveFilters = this.updateActiveFilters.bind(this);
   }
 
-  removeEmptyCategory(title, categories) {
+  updateActiveFilters(title, categories) {
     const { activeCategories } = this.state;
     const updatedActiveCategories = [];
     activeCategories.forEach((category) => {
@@ -40,10 +40,10 @@ export default class FilterActiveGroup extends React.Component {
   renderCategory(category) {
     return (
       <FilterActiveCategory
-        key={category}
+        key={category.title}
         title={category.title}
         categories={category.categories}
-        callback={this.removeEmptyCategory}
+        callback={this.updateActiveFilters}
       />
     );
   }
@@ -74,5 +74,5 @@ FilterActiveGroup.propTypes = {
 };
 
 FilterActiveGroup.defaultProps = {
-  callback: (title, updatedActiveCategories) => console.log(`FilterActiveGroup Returning\nTitle: ${title}\nUpdatedActiveCategories: ${updatedActiveCategories}`),
+  callback: (title, updatedActiveCategories) => console.log(`FilterActiveGroup Returning\nTitle: ${title}\nUpdatedActiveFilters: ${updatedActiveCategories}`),
 };
