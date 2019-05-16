@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import BarChartClustered from '../index';
-import { trend } from '../../../../../constants';
 
 const testData = [
   {
@@ -30,14 +29,7 @@ const testTitle = 'chart title';
 
 describe('<BarChartClustered />', () => {
   test('snapshot', () => {
-    const wrapper = shallow(
-      <BarChartClustered
-        data={testData}
-        title={testTitle}
-        trending={trend.up}
-        onTarget={false}
-      />,
-    );
+    const wrapper = shallow(<BarChartClustered data={testData} title={testTitle} />);
     expect(wrapper).toMatchSnapshot();
   });
 });
