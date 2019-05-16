@@ -9,30 +9,17 @@ export default class FilterActiveOption extends React.Component {
     this.category = this.props;
     this.callback = this.props;
 
-    this.state = {
-      active: true,
-    };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
     const { category } = this.props;
     const { callback } = this.props;
-    callback({ category });
-    this.setState(state => ({
-      active: !state.active,
-    }));
-    return false;
+    callback(category);
   }
 
   render() {
-    const { title } = this.props;
     const { category } = this.props;
-    const { active } = this.state;
-
-    if (!active || title === '' || category === '') {
-      return null;
-    }
     return (
       <Toast>
         <ToastHeader toggle={this.handleClick}>
@@ -44,11 +31,10 @@ export default class FilterActiveOption extends React.Component {
 }
 
 FilterActiveOption.propTypes = {
-  title: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   callback: PropTypes.func,
 };
 
 FilterActiveOption.defaultProps = {
-  callback: t => console.log(`FilterSearchOption uninitialized callback: ${t}`),
+  callback: category => console.log(`FilterActiveOption Return\nCategory: ${category}`),
 };

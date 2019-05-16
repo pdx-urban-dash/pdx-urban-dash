@@ -51,7 +51,6 @@ export default class FilterSearchBar extends React.Component {
     const { categories } = this.props;
     const { dropdownOpen } = this.state;
     const { dropdownLabel } = this.state;
-
     return (
       <ButtonDropdown isOpen={dropdownOpen} toggle={this.toggleDropDown} className="btn-block">
         <DropdownToggle color="secondary" caret className="btn-block">

@@ -1,7 +1,6 @@
-import FilterWrapper from './FilterWrapper2';
+import FilterWrapper from './FilterWrapper';
 import FilterSearchGroup from './FilterSearchGroup';
 import FilterSearchBar from './FilterSearchBar';
-import FilterSearchCategory from './FilterSearchCategory';
 import FilterSearchOption from './FilterSearchOption';
 import FilterActiveGroup from './FilterActiveGroup';
 import FilterActiveCategory from './FilterActiveCategory';
@@ -11,7 +10,6 @@ export {
   FilterSearchOption,
   FilterSearchBar,
   FilterSearchGroup,
-  FilterSearchCategory,
   FilterWrapper,
   FilterActiveGroup,
   FilterActiveCategory,

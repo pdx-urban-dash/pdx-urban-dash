@@ -17,38 +17,56 @@ export default class FilterSearchGroup extends React.Component {
       activeOptions: this.activeOptions,
     };
 
-    this.renderSearchOption = this.renderSearchOption.bind(this);
     this.toggleSelectedOption = this.toggleSelectedOption.bind(this);
+    this.addOption = this.addOption.bind(this);
+    this.removeOption = this.removeOption.bind(this);
+    this.renderSearchOption = this.renderSearchOption.bind(this);
   }
 
   toggleSelectedOption(category, selected) {
+    if (selected) {
+      this.addOption(category);
+    } else {
+      this.removeOption(category);
+    }
+  }
+
+  addOption(option) {
     const { activeOptions } = this.state;
     const updatedActiveOptions = [];
-    if (selected) {
-      let pushed = false;
-      activeOptions.forEach((option) => {
-        if (category.compareTo(option) <= 0) {
-          updatedActiveOptions.push(category);
-          pushed = true;
-        }
-        updatedActiveOptions.push(category);
-      });
-      if (!pushed) {
-        updatedActiveOptions.push(category);
-      }
-    } else {
-      activeOptions.forEach((option) => {
-        if (option !== category) {
+    let added = false;
+    activeOptions.forEach((activeOption) => {
+      if (!added) {
+        if (option <= activeOption) {
           updatedActiveOptions.push(option);
+          added = true;
         }
-      });
+      }
+      updatedActiveOptions.push(activeOption);
+    });
+    if (!added) {
+      updatedActiveOptions.push(option);
     }
     this.setState({
       activeOptions: updatedActiveOptions,
     });
-    const { title } = this.props;
     const { callback } = this.props;
-    callback({ title, category, selected });
+    callback(this.title, updatedActiveOptions);
+  }
+
+  removeOption(option) {
+    const { activeOptions } = this.state;
+    const updatedActiveOptions = [];
+    activeOptions.forEach((active) => {
+      if (active !== option) {
+        updatedActiveOptions.push(active);
+      }
+    });
+    this.setState({
+      activeOptions: updatedActiveOptions,
+    });
+    const { callback } = this.props;
+    callback(this.title, updatedActiveOptions);
   }
 
   renderSearchOption(category) {
@@ -103,5 +121,5 @@ FilterSearchGroup.propTypes = {
 };
 
 FilterSearchGroup.defaultProps = {
-  callback: t => console.log(`FilterSearchOption uninitialized callback: ${t}`),
+  callback: (title, activeOptions) => console.log(`FilterSearchGroup Returning\nTitle: ${title}\nActiveOptions: ${activeOptions}`),
 };

@@ -8,6 +8,7 @@ export default class FilterActiveGroup extends React.Component {
   constructor(props) {
     super(props);
 
+    this.title = props.title;
     this.activeFilters = props.activeFilters;
     this.callback = props.callback;
 
@@ -19,24 +20,27 @@ export default class FilterActiveGroup extends React.Component {
     this.removeEmptyCategory = this.removeEmptyCategory.bind(this);
   }
 
-  removeEmptyCategory(title) {
-    const updatedActiveCategories = [];
+  removeEmptyCategory(title, categories) {
     const { activeCategories } = this.state;
+    const updatedActiveCategories = [];
     activeCategories.forEach((category) => {
       if (category.title !== title) {
         updatedActiveCategories.push(category);
-        const { callback } = this.props;
-        callback({ title });
+      } else if (categories.length !== 0) {
+        updatedActiveCategories.push({ title, categories });
       }
     });
     this.setState({
       activeCategories: updatedActiveCategories,
     });
+    const { callback } = this.props;
+    callback(title, updatedActiveCategories);
   }
 
   renderCategory(category) {
     return (
       <FilterActiveCategory
+        key={category}
         title={category.title}
         categories={category.categories}
         callback={this.removeEmptyCategory}
@@ -45,11 +49,12 @@ export default class FilterActiveGroup extends React.Component {
   }
 
   render() {
+    const { title } = this.props;
     const { activeCategories } = this.state;
     return (
       <Toast>
         <ToastHeader>
-          Active Filters
+          { title }
         </ToastHeader>
         <ToastBody>
           {activeCategories.map(category => this.renderCategory(category)) }
@@ -60,6 +65,7 @@ export default class FilterActiveGroup extends React.Component {
 }
 
 FilterActiveGroup.propTypes = {
+  title: PropTypes.string.isRequired,
   activeFilters: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     categories: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -68,5 +74,5 @@ FilterActiveGroup.propTypes = {
 };
 
 FilterActiveGroup.defaultProps = {
-  callback: t => console.log(`FilterSearchOption uninitialized callback: ${t}`),
+  callback: (title, updatedActiveCategories) => console.log(`FilterActiveGroup Returning\nTitle: ${title}\nUpdatedActiveCategories: ${updatedActiveCategories}`),
 };

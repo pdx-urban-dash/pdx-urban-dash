@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {
   // Card, CardText, CardBody, CardTitle,
   Navbar, NavbarBrand,
-  Row,
+  Row, Col,
 } from 'reactstrap';
 import LineChart from './components/viz/LineChart';
 import {
@@ -581,14 +581,29 @@ const testData = [
 ];
 
 ReactDOM.render(
-  <Fragment>
-    <Navbar color="light" light expand="md">
-      <NavbarBrand><img src={logo} width="40" height="40" alt="City of Portland" /> City of Portland Dashboard</NavbarBrand>
-
-    </Navbar>
-    <FilterWrapper data={testData} title="Filter Wrapper" categories={['Category', 'Trend', 'Strategic Target']} />
-    <Row />
-  </Fragment>,
+  <Row>
+    <Col>
+      <FilterSearchOption
+        category="Search Category"
+        selected={false}
+      />
+      <FilterSearchGroup
+        wrapperTitle="FilterSearchGroup Wrapper Title"
+        title="Category Title"
+        categories={['Category 1', 'Category 2', 'Category 3']}
+        activeOptions={[]}
+      />
+    </Col>
+    <Col>
+      <FilterActiveOption
+        category="Active Option"
+      />
+      <FilterActiveCategory
+        title="Category 1 Title"
+        categories={['Title 1 Category 1', 'Title 1 Category 2', 'Title 1 Category 3']}
+      />
+    </Col>
+  </Row>,
   document.getElementById('root'),
 );
 /*
