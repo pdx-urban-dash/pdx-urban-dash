@@ -2,11 +2,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import FilterSelectGroup from '../index';
 
-const testFunc = () => { console.log(); };
 
-describe('FilterSelectGroup Render', () => {
+describe('FilterSelectGroup', () => {
   test('snapshot', () => {
-    const wrapper = shallow(<FilterSelectGroup title={'test'}/>);
-    expect(wrapper).toMatchSnapshot();
+    const component = shallow(<FilterSelectGroup title="test" />);
+    expect(component).toMatchSnapshot();
   });
 });

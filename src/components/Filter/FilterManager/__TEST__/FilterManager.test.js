@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import FilterManager from '../index';
 
 const data = [
-{
+  {
     metadata: 'Metadata placeholder',
     title: 'bar3',
     description:
@@ -44,43 +44,42 @@ const data = [
         ],
       },
     ],
-  }
+  },
 ];
 
 describe('FilterManager Test Suite', () => {
   test('snapshot', () => {
-    const component = shallow(<FilterManager title={'test'} data={data}/>);
+    const component = shallow(<FilterManager title="test" data={data} />);
     expect(component).toMatchSnapshot();
   });
 
   test('filterDropdownCallback', () => {
-    const component = shallow(<FilterManager title={'test'} data={data}/>)
+    const component = shallow(<FilterManager title="test" data={data} />);
     const instance = component.instance();
-    
-    expect(component.state('shownCategory')).toBe("");
-    instance.filterDropdownCallback('test')
+
+    expect(component.state('shownCategory')).toBe('');
+    instance.filterDropdownCallback('test');
     expect(component.state('shownCategory')).toBe('test');
   });
 
   test('filterItemCallback add to selected', () => {
     const mockCallBack = jest.fn();
-    const component = shallow(<FilterManager title={'test'} data={data} callback={mockCallBack}/>)
+    const component = shallow(<FilterManager title="test" data={data} callback={mockCallBack} />);
     const instance = component.instance();
-    
+
     expect(component.state('selected')).toStrictEqual([]);
-    instance.filterItemCallback({title: 'testT', category: 'testC'})
-    expect(component.state('selected')).toStrictEqual([{title: 'testT', category: 'testC'}]);
+    instance.filterItemCallback({ title: 'testT', category: 'testC' });
+    expect(component.state('selected')).toStrictEqual([{ title: 'testT', category: 'testC' }]);
   });
 
   test('filterItemCallback remove from selected', () => {
     const mockCallBack = jest.fn();
-    const component = shallow(<FilterManager title={'test'} data={data} callback={mockCallBack}/>)
+    const component = shallow(<FilterManager title="test" data={data} callback={mockCallBack} />);
     const instance = component.instance();
-    
+
     expect(component.state('selected')).toStrictEqual([]);
-    instance.filterItemCallback({title: 'testT', category: 'testC'})
-    instance.filterItemCallback({title: 'testT', category: 'testC'})
+    instance.filterItemCallback({ title: 'testT', category: 'testC' });
+    instance.filterItemCallback({ title: 'testT', category: 'testC' });
     expect(component.state('selected')).toStrictEqual([]);
   });
-
 });

@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FilterSelectGroup Render snapshot 1`] = `ShallowWrapper {}`;
+exports[`FilterSelectGroup snapshot 1`] = `ShallowWrapper {}`;
