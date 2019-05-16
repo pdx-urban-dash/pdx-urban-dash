@@ -51,21 +51,41 @@ export default class FilterItem extends Component {
   }
 
   render() {
-    return (
-      <Toast
-        fade={false}
-        onClick={this.state.activation}
-        style={
-          this.props.selected ? { background: "green" } : { background: "" }
-        }
-      >
-        <ToastHeader
-          toggle={!this.props.selected ? false : this.props.callback}
-          style={{ height: "2rem" }}
+
+    if (this.props.selected) {
+      return (
+        <Toast
+          fade={false}
+          onClick={this.state.activation}
+          style={
+            this.props.selected ? { background: "green" } : { background: "" }
+          }
         >
-          {this.props.title}
-        </ToastHeader>
-      </Toast>
-    );
+          <ToastHeader
+            toggle={this.props.callback}
+            style={{ height: "2rem" }}
+          >
+            {this.props.title}
+          </ToastHeader>
+        </Toast>
+      );
+    }
+    else {
+      return (
+        <Toast
+          fade={false}
+          onClick={this.state.activation}
+          style={
+            this.props.selected ? { background: "green" } : { background: "" }
+          }
+        >
+          <ToastHeader
+            style={{ height: "2rem" }}
+          >
+            {this.props.title}
+          </ToastHeader>
+        </Toast>
+      );
+    }
   }
 }

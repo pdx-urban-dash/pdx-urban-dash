@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterItem render selected 1`] = `ShallowWrapper {}`;
+
+exports[`FilterItem render unselected 1`] = `ShallowWrapper {}`;

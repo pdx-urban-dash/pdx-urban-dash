@@ -22,7 +22,6 @@ export default class FilterManager extends React.Component {
 
     this.filterDropdownCallback = this.filterDropdownCallback.bind(this);
     this.filterItemCallback = this.filterItemCallback.bind(this);
-    this.toggleFilterWindow = this.toggleFilterWindow.bind(this);
 
     this.callback = props.callback;
     this.hidden = true;
@@ -33,17 +32,11 @@ export default class FilterManager extends React.Component {
     };
   }
 
-  toggleFilterWindow() {
-    this.setState({
-      show: !this.state.show
-    });
-  }
-
   filterDropdownCallback(shownCategory) {
     this.setState({ shownCategory });
   }
 
-  filterItemCallback(data) {
+  filterItemCallback(data) {//data = {title: 'testT', category: 'testC'}
     //Toggle weather an option is selected or not
     //If a category exists in selected, remove it.
     //Otherwise add it
@@ -53,6 +46,7 @@ export default class FilterManager extends React.Component {
       if (data.title === selected[i].title) {
         selected.splice(i, 1);
         this.setState({ selected });
+        this.props.callback(selected);
         return;
       }
     }

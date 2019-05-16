@@ -13,11 +13,6 @@ export default class FilterDropdown extends React.Component {
     callback: PropTypes.func
   };
 
-  static defaultProps = {
-    callback: t =>
-      console.log(`FilterSearchOption uninitialized callback: ${t}`)
-  };
-
   constructor(props) {
     super(props);
 
@@ -55,12 +50,14 @@ export default class FilterDropdown extends React.Component {
 
   renderCategoryDropdownItem(category) {
     return (
-      <DropdownItem
-        key={category}
-        onClick={() => this.activateCategory(category)}
-      >
-        {category}
-      </DropdownItem>
+      React.createElement(
+        DropdownItem,
+        {
+          key: category,
+          onClick: () => this.activateCategory(category),
+        },
+        category
+      )
     );
   }
 

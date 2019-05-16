@@ -5,8 +5,9 @@ import Icon from "../../../components/Icon";
 
 export default class FilterSelect extends React.Component {
   static propTypes = {
-    callback: PropTypes.func,
-    title: PropTypes.string.isRequired
+    callback: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
+    category:PropTypes.string.isRequired
   };
 
   constructor(props) {
