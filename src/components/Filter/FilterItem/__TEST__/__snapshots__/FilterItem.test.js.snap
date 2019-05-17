@@ -1,0 +1,364 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterItem render selected 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <FilterItem
+    category="testC"
+    selected={true}
+    title="testT"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": <ToastHeader
+        charCode={215}
+        closeAriaLabel="Close"
+        style={
+          Object {
+            "height": "2rem",
+          }
+        }
+        tag="strong"
+        tagClassName="mr-auto"
+        wrapTag="div"
+      >
+        testT
+      </ToastHeader>,
+      "fade": false,
+      "isOpen": true,
+      "onClick": [Function],
+      "style": Object {
+        "background": "green",
+      },
+      "tag": "div",
+      "transition": Object {
+        "appear": true,
+        "baseClass": "fade",
+        "baseClassActive": "show",
+        "enter": true,
+        "exit": true,
+        "in": true,
+        "mountOnEnter": false,
+        "onEnter": [Function],
+        "onEntered": [Function],
+        "onEntering": [Function],
+        "onExit": [Function],
+        "onExited": [Function],
+        "onExiting": [Function],
+        "tag": "div",
+        "timeout": 150,
+        "unmountOnExit": true,
+      },
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "charCode": 215,
+        "children": "testT",
+        "closeAriaLabel": "Close",
+        "style": Object {
+          "height": "2rem",
+        },
+        "tag": "strong",
+        "tagClassName": "mr-auto",
+        "toggle": undefined,
+        "wrapTag": "div",
+      },
+      "ref": null,
+      "rendered": "testT",
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": <ToastHeader
+          charCode={215}
+          closeAriaLabel="Close"
+          style={
+            Object {
+              "height": "2rem",
+            }
+          }
+          tag="strong"
+          tagClassName="mr-auto"
+          wrapTag="div"
+        >
+          testT
+        </ToastHeader>,
+        "fade": false,
+        "isOpen": true,
+        "onClick": [Function],
+        "style": Object {
+          "background": "green",
+        },
+        "tag": "div",
+        "transition": Object {
+          "appear": true,
+          "baseClass": "fade",
+          "baseClassActive": "show",
+          "enter": true,
+          "exit": true,
+          "in": true,
+          "mountOnEnter": false,
+          "onEnter": [Function],
+          "onEntered": [Function],
+          "onEntering": [Function],
+          "onExit": [Function],
+          "onExited": [Function],
+          "onExiting": [Function],
+          "tag": "div",
+          "timeout": 150,
+          "unmountOnExit": true,
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "charCode": 215,
+          "children": "testT",
+          "closeAriaLabel": "Close",
+          "style": Object {
+            "height": "2rem",
+          },
+          "tag": "strong",
+          "tagClassName": "mr-auto",
+          "toggle": undefined,
+          "wrapTag": "div",
+        },
+        "ref": null,
+        "rendered": "testT",
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+  Symbol(enzyme.__childContext__): null,
+}
+`;
+
+exports[`FilterItem render unselected 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <FilterItem
+    category="testC"
+    title="testT"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": <ToastHeader
+        charCode={215}
+        closeAriaLabel="Close"
+        style={
+          Object {
+            "height": "2rem",
+          }
+        }
+        tag="strong"
+        tagClassName="mr-auto"
+        wrapTag="div"
+      >
+        testT
+      </ToastHeader>,
+      "fade": false,
+      "isOpen": true,
+      "onClick": [Function],
+      "style": Object {
+        "background": "",
+      },
+      "tag": "div",
+      "transition": Object {
+        "appear": true,
+        "baseClass": "fade",
+        "baseClassActive": "show",
+        "enter": true,
+        "exit": true,
+        "in": true,
+        "mountOnEnter": false,
+        "onEnter": [Function],
+        "onEntered": [Function],
+        "onEntering": [Function],
+        "onExit": [Function],
+        "onExited": [Function],
+        "onExiting": [Function],
+        "tag": "div",
+        "timeout": 150,
+        "unmountOnExit": true,
+      },
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "charCode": 215,
+        "children": "testT",
+        "closeAriaLabel": "Close",
+        "style": Object {
+          "height": "2rem",
+        },
+        "tag": "strong",
+        "tagClassName": "mr-auto",
+        "wrapTag": "div",
+      },
+      "ref": null,
+      "rendered": "testT",
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": <ToastHeader
+          charCode={215}
+          closeAriaLabel="Close"
+          style={
+            Object {
+              "height": "2rem",
+            }
+          }
+          tag="strong"
+          tagClassName="mr-auto"
+          wrapTag="div"
+        >
+          testT
+        </ToastHeader>,
+        "fade": false,
+        "isOpen": true,
+        "onClick": [Function],
+        "style": Object {
+          "background": "",
+        },
+        "tag": "div",
+        "transition": Object {
+          "appear": true,
+          "baseClass": "fade",
+          "baseClassActive": "show",
+          "enter": true,
+          "exit": true,
+          "in": true,
+          "mountOnEnter": false,
+          "onEnter": [Function],
+          "onEntered": [Function],
+          "onEntering": [Function],
+          "onExit": [Function],
+          "onExited": [Function],
+          "onExiting": [Function],
+          "tag": "div",
+          "timeout": 150,
+          "unmountOnExit": true,
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "charCode": 215,
+          "children": "testT",
+          "closeAriaLabel": "Close",
+          "style": Object {
+            "height": "2rem",
+          },
+          "tag": "strong",
+          "tagClassName": "mr-auto",
+          "wrapTag": "div",
+        },
+        "ref": null,
+        "rendered": "testT",
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+  Symbol(enzyme.__childContext__): null,
+}
+`;

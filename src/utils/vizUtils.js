@@ -24,6 +24,18 @@ export const getTrendLineFunc = (points) => {
   return x => (slope * x) + offset;
 };
 
+export const getTrendSlope = (points) => {
+  const n = points.length;
+  const sumOfProducts = points.reduce((acc, val) => acc + (val.x * val.y), 0);
+  const sumOfX = points.reduce((acc, val) => acc + val.x, 0);
+  const sumOfY = points.reduce((acc, val) => acc + val.y, 0);
+  const sumOfXsq = points.reduce((acc, val) => (acc + (val.x ** 2)), 0);
+
+  const slope = ((n * sumOfProducts) - (sumOfX * sumOfY)) / ((n * sumOfXsq) - (sumOfX ** 2));
+
+  return slope;
+};
+
 export const defaultDonutColors = [
   category20.color1,
   category20.color2,
