@@ -14,7 +14,7 @@ import logo from "./../Filter/images/SealofPortland.png";
 
 export default class StateManager extends React.Component {
   static propTypes = {
-    hidden: PropTypes.bool,
+    hideFilter: PropTypes.bool,
     data: PropTypes.array.isRequired
   };
 
@@ -24,22 +24,22 @@ export default class StateManager extends React.Component {
     this.toggleFilterWindow = this.toggleFilterWindow.bind(this);
     this.filterCallback = this.filterCallback.bind(this);
 
-    this.hidden = false;
+    this.hideFilter = true;
     this.data = [];
     this.state = {
-      hidden: this.props.hidden,
-      selected: []
+      hideFilter: this.props.hideFilter,
+      filteredCharts: this.props.data
     };
   }
 
   toggleFilterWindow() {
     this.setState({
-      hidden: !this.state.hidden
+      hideFilter: !this.state.hideFilter
     });
   }
 
   filterCallback(returned) {
-    this.setState({ selected: returned });
+    this.setState({ filteredCharts: returned });
   }
 
   render() {
@@ -55,7 +55,7 @@ export default class StateManager extends React.Component {
               <Nav className="ml-auto" navbar>
                 <NavItem>
                   <Button onClick={this.toggleFilterWindow}>
-                    {this.state.hidden ? "Filter results" : "Hide Filter"}
+                    {this.state.hideFilter ? "Hide Filter" : "Filter results" }
                   </Button>
                 </NavItem>
               </Nav>
@@ -66,7 +66,7 @@ export default class StateManager extends React.Component {
           <Col>
             <FilterManager
               data={this.props.data}
-              hidden={this.state.hidden}
+              hidden={this.state.hideFilter}
               callback={this.filterCallback}
             />
           </Col>
@@ -74,7 +74,8 @@ export default class StateManager extends React.Component {
         <Row>
           <Col>
             Chart manager goes here
-            {console.log(this.state.selected)}
+            {console.log("StateManager shows the following charts: ")}
+            {console.log(this.state.filteredCharts)}
           </Col>
         </Row>
       </Fragment>

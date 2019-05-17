@@ -31,7 +31,7 @@
     "test": "react-scripts test",
     "coverage": "react-scripts test --coverage",
     "test:filter": "react-scripts test src/components/Filter",
-    "coverge:filter": "react-scripts test src/components/Filter --verbose --coverage",
+    "test:filter:coverge": "react-scripts test src/components/Filter --verbose --coverage",
     "eject": "react-scripts eject",
     "lint": "node_modules/.bin/eslint ./src ./server.js"
   },

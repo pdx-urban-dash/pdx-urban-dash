@@ -9,6 +9,7 @@ import {
   FilterSelectGroup,
   FilterSelect
 } from "../FilterComponents";
+import  {getTrendLineSign}  from "../../../utils/vizUtils";
 
 export default class FilterManager extends React.Component {
   static propTypes = {
@@ -22,6 +23,8 @@ export default class FilterManager extends React.Component {
 
     this.filterDropdownCallback = this.filterDropdownCallback.bind(this);
     this.filterItemCallback = this.filterItemCallback.bind(this);
+    this.returnChartData = this.returnChartData.bind(this);
+    this.hasTarget = this.hasTarget.bind(this);
 
     this.callback = props.callback;
     this.hidden = true;
@@ -46,7 +49,11 @@ export default class FilterManager extends React.Component {
       if (data.title === selected[i].title) {
         selected.splice(i, 1);
         this.setState({ selected });
-        this.props.callback(selected);
+        
+        if(selected.length === 0)
+            this.props.callback(this.props.data)
+          else
+            this.props.callback(this.returnChartData(selected));
         return;
       }
     }
@@ -54,7 +61,191 @@ export default class FilterManager extends React.Component {
     //Not in the list, add it
     selected.push(data);
     this.setState({ selected });
-    this.props.callback(selected);
+    this.props.callback(this.returnChartData(selected));
+  }
+
+  //Accepts:
+  //selected = [
+  //  {title: 'testT_1', category: 'testC_1'}, 
+  //  ...,  
+  //  {title: 'testT_n', category: 'testC_n'}
+  //]
+  returnChartData(filters) {
+    var selectedChartData = [];
+    var charts = this.props.data;
+
+    for (var chartIdx in charts) {
+      var chart = charts[chartIdx];
+      var t1Cat, t1Trend, t1Target;
+      t1Cat = t1Trend = t1Target = false;
+      var t2Cat, t2Trend, t2Target;
+      t2Cat = t2Trend = t2Target = false;
+
+      for (var filterIdx in filters){
+        var filter = filters[filterIdx];
+        var t1Filter = filter.category;//Ands Trending Up and On Target
+        var t2Filter = filter.title;//Ors Trending Up or Trending Down and On Target
+
+        //if t2 is true, t1 must be true. Because t2 is OR, no need to keep looking.
+        if (!t2Cat && (t1Filter === 'Category')){
+          t1Cat = true;
+          t2Cat = this.hasCategory(chart, t2Filter);
+        } 
+        else if (!t2Trend && (t1Filter === 'Trend')){
+          t1Trend = true;
+          t2Trend = this.hasTrend(chart, t2Filter);
+        }
+        else if (!t2Target && (t1Filter === 'Strategic Target')){
+          t1Target = true;
+          t2Target = this.hasTarget(chart, t2Filter);
+        }
+      }
+
+      //Collected all filter matches
+      if (t1Cat){
+        if (t1Trend){
+          if (t1Target){
+            //111 cat, trend, target
+            if ((t2Cat && t2Trend) && (t2Cat && t2Target) && (t2Trend && t2Target))
+                selectedChartData.push(chart);
+          }
+          else{
+            //110 cat, trend
+            if (t2Cat && t2Trend)
+                selectedChartData.push(chart);
+          }
+        }
+        else{
+          if (t1Target){
+            //101 cat, target
+            if (t2Cat && t2Target)
+                selectedChartData.push(chart);
+          }
+          else{
+            //100 cat
+            if (t2Cat)
+                selectedChartData.push(chart);
+          }
+        }
+      }
+      else{
+        if (t1Trend){
+          if (t1Target){
+            //011 trend, target
+            if (t2Trend && t2Target)
+                selectedChartData.push(chart);
+          }
+          else{
+            //010 trend
+            if (t2Trend)
+                selectedChartData.push(chart);
+          }
+        }
+        else{
+          if (t1Target && t2Target){
+            //001 target
+            if (t2Target)
+                selectedChartData.push(chart);
+          }
+          else{
+            //000 none
+          }
+        }
+      }
+    }
+    return selectedChartData;
+  }
+
+  hasTarget(chart, matchTarget) {
+    var target = chart.target;
+    var targetTrend = chart.target_trend;
+    for (var datasetIdx in chart.data_sets) {
+      var dataset = chart.data_sets[datasetIdx];
+      var current = dataset.data_values[1][dataset.data_values[1].length-1];
+
+      if(chart.chart_type === 'DONUT')
+        current = dataset.data_values[2][dataset.data_values[2].length-1];
+
+      if(matchTarget === 'Above Target (Latest report)' && current > target)
+        return true;
+
+      if(matchTarget === 'On Target (Latest report)' && current === target)
+        return true;
+
+      if(matchTarget === 'Below Target (Latest report)' && current < target)
+        return true;
+
+      if((matchTarget === 'On Target (Increasing trend)') && (targetTrend === 'UP') && (this.hasTrend(chart, 'Trending Up')))
+        return true;
+
+      if((matchTarget === 'Off Target (Increasing trend)') && (targetTrend === 'UP') && (!this.hasTrend(chart, 'Trending Up')))
+        return true;
+
+      if((matchTarget === 'On Target (Decreasing trend)') && (targetTrend === 'DOWN') && (this.hasTrend(chart, 'Trending Down')))
+        return true;
+
+      if((matchTarget === 'Off Target (Decreasing trend)') && (targetTrend === 'DOWN') && (!this.hasTrend(chart, 'Trending Down')))
+        return true;
+
+      if(
+        (matchTarget === 'On Target (Stable trend)') && 
+        (targetTrend === 'STABLE') && 
+        (!this.hasTrend(chart, 'Trending Down') && (!this.hasTrend(chart, 'Trending Up')))
+      )
+        return true;
+
+      if(
+        (matchTarget === 'Off Target (Stable trend)') && 
+        (targetTrend === 'STABLE') && 
+        (this.hasTrend(chart, 'Trending Down') || (this.hasTrend(chart, 'Trending Up')))
+      )
+        return true;
+    }
+    
+    return false;
+  }
+
+  hasTrend(chart, matchTrend) {
+    if(chart.chart_type === 'DONUT')
+      return false;
+
+    for (var datasetIdx in chart.data_sets) {
+      var dataset = chart.data_sets[datasetIdx];
+      var xs, ys;
+
+      if(chart.chart_type === 'LINE'){
+        xs = dataset.data_values[0];
+        ys = dataset.data_values[1];
+      }
+
+      if(chart.chart_type === 'BAR'){
+        ys = dataset.data_values[1];
+        if(typeof dataset.data_values[0][0] === 'string')
+          xs = Array.from(Array(ys.length), (x, i) => i+1);
+        else
+          xs = dataset.data_values[0];
+      }
+
+      var xys = [];
+      for (var i in xs) xys.push({x:xs[i], y:ys[i]})
+      var slope = Math.sign(getTrendLineSign(xys));
+      var trend = slope > 0 ? 'Trending Up' : (slope === 0 ? 'Stable' : 'Trending Down');
+
+      if(trend === matchTrend)
+        return true;
+    }
+
+    return false;
+  }
+
+  hasCategory(chart, matchCategory) {
+    for (var categoryIdx in chart.categories){
+      var category = chart.categories[categoryIdx];
+      if ( category === matchCategory)
+        return true;
+    }
+
+    return false;
   }
 
   render() {
@@ -63,8 +254,18 @@ export default class FilterManager extends React.Component {
     function formatData(dataset) {
       var filtersByCat = {
         Category: [],
-        Trend: ["Treding Up", "Trending Down"],
-        "Strategic Target": ["On Target", "Above Target", "Below Target"]
+        Trend: ["Trending Up", "Trending Down"],
+        "Strategic Target": [
+          "On Target  (Latest report)", 
+          "Above Target  (Latest report)", 
+          "Below Target  (Latest report)",
+          "On Target (Increasing trend)", 
+          "On Target (Decreasing trend)", 
+          "On Target (Stable trend)", 
+          "Off Target (Increasing trend)", 
+          "Off Target (Decreasing trend)",
+          "Off Target (Stable trend)",
+        ]
       };
 
       //For each data point
