@@ -13,7 +13,7 @@ import {
   FilterSearchBar,
 } from '../FilterComponents';
 
-export default class FilterWrapper2 extends React.Component {
+export default class FilterWrapper extends React.Component {
   constructor(props) {
     super(props);
 
@@ -21,7 +21,7 @@ export default class FilterWrapper2 extends React.Component {
     this.categories = props.categories;
 
     this.state = {
-      show: false,
+      show: true,
       shownCategory: '',
       categoryFilters: [],
       activeFilters: [],
@@ -29,7 +29,8 @@ export default class FilterWrapper2 extends React.Component {
 
     this.toggleFilterWindow = this.toggleFilterWindow.bind(this);
     this.updateShownCategory = this.updateShownCategory.bind(this);
-    this.updateActiveFilters = this.updateActiveFilters.bind(this);
+    this.updateActiveFiltersFromActive = this.updateActiveFiltersFromActive.bind(this);
+    this.updateActiveFiltersFromSearch = this.updateActiveFiltersFromSearch.bind(this);
   }
 
   toggleFilterWindow() {
@@ -42,7 +43,7 @@ export default class FilterWrapper2 extends React.Component {
   updateShownCategory(category) {
     const updatedCategoryFilters = [];
     if (category === 'Category') {
-      for (let i = 0; i < 7; i += 1) {
+      for (let i = 1; i <= 7; i += 1) {
         updatedCategoryFilters.push(`Category ${i}`);
       }
     }
@@ -61,29 +62,44 @@ export default class FilterWrapper2 extends React.Component {
     });
   }
 
-  updateActiveFilters(title, activeOptions) {
-    console.log(`Title: ${title} ActiveOptions: ${activeOptions}`);
+  updateActiveFiltersFromActive(activeFilters) {
+    this.setState({
+      activeFilters,
+    });
+  }
+
+  updateActiveFiltersFromSearch(title, activeOptions) {
     const { activeFilters } = this.state;
     const updatedActiveFilters = [];
     let added = false;
     activeFilters.forEach((activeFilter) => {
-      if (title === activeFilter.title) {
-        if (activeOptions.length !== 0) {
-          updatedActiveFilters.push({ title, categories: activeOptions });
-          added = true;
+      if (!added) {
+        if (title === activeFilter.title) {
+          if (activeOptions.length !== 0) {
+            updatedActiveFilters.push({ title, categories: activeOptions });
+            added = true;
+          }
+        } else if (title < activeFilter.title) {
+          if (activeOptions.lenth !== 0) {
+            updatedActiveFilters.push({ title, categories: activeOptions });
+            updatedActiveFilters.push(activeFilter);
+            added = true;
+          }
+        } else {
+          updatedActiveFilters.push(activeFilter);
         }
       } else {
         updatedActiveFilters.push(activeFilter);
       }
     });
     if (!added) {
-      updatedActiveFilters.push({ title, categories: activeOptions });
-      console.log(`ADDED: Title: ${updatedActiveFilters[0].title} ActiveOptions: ${updatedActiveFilters[0].categories[0]}`);
+      if (activeOptions.length !== 0) {
+        updatedActiveFilters.push({ title, categories: activeOptions });
+      }
     }
     this.setState({
       activeFilters: updatedActiveFilters,
     });
-    console.log(`\nupdateActiveFilters: Title:${this.state} ActiveOptions:${activeOptions} updatedActiveFilters:${updatedActiveFilters}`);
   }
 
   render() {
@@ -92,9 +108,16 @@ export default class FilterWrapper2 extends React.Component {
     const { shownCategory } = this.state;
     const { categoryFilters } = this.state;
     const { activeFilters } = this.state;
-    const activeOptions = [];
 
-    console.log(`\nActiveFilters: ${activeFilters.map(filter => console.log(`\nFilter Name: ${filter.title}\nActive Categories:${filter.categories}`))} `);
+    const activeOptions = [];
+    activeFilters.forEach((filter) => {
+      if (filter.title === shownCategory) {
+        const filterCategories = filter.categories;
+        filterCategories.forEach((category) => {
+          activeOptions.push(category);
+        });
+      }
+    });
 
     return (
       <Fragment>
@@ -103,13 +126,13 @@ export default class FilterWrapper2 extends React.Component {
         </Button>
         <Collapse isOpen={show}>
           <Jumbotron>
-            <h1 style={{ marginBottom: '1rem' }}>
+            <h1>
               { title }
             </h1>
             <Row>
               <Col lg="8">
-                <Toast style={{ display: 'block' }}>
-                  <ToastHeader>
+                <Toast style={{ display: 'block', minWidth: '100%' }}>
+                  <ToastHeader style={{ display: 'block', minWidth: '100%' }}>
                     <FilterSearchBar
                       categories={this.categories}
                       callback={this.updateShownCategory}
@@ -121,16 +144,16 @@ export default class FilterWrapper2 extends React.Component {
                       title={shownCategory}
                       categories={categoryFilters}
                       activeOptions={activeOptions}
-                      callback={this.updateActiveFilters}
+                      callback={this.updateActiveFiltersFromSearch}
                     />
                   </ToastBody>
                 </Toast>
               </Col>
               <Col lg="4">
                 <FilterActiveGroup
-                  title="Your Selections"
+                  title="Active Filters"
                   activeFilters={activeFilters}
-                  callback={this.updateActiveFilters}
+                  callback={this.updateActiveFiltersFromActive}
                 />
               </Col>
             </Row>
@@ -141,7 +164,7 @@ export default class FilterWrapper2 extends React.Component {
   }
 }
 
-FilterWrapper2.propTypes = {
+FilterWrapper.propTypes = {
   title: PropTypes.string.isRequired,
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

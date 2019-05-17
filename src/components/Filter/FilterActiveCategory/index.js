@@ -22,17 +22,12 @@ export default class FilterActiveCategory extends React.Component {
   removeOption(category) {
     const { title } = this.props;
     const { categories } = this.state;
-    const updatedCategories = [];
-    categories.forEach((element) => {
-      if (element !== category) {
-        updatedCategories.push(element);
-      }
-    });
+    const updatedCategories = categories.filter(filter => filter !== category);
     this.setState({
       categories: updatedCategories,
     });
     const { callback } = this.props;
-    callback(title, categories);
+    callback(title, updatedCategories);
   }
 
   renderOption(option) {
@@ -48,6 +43,9 @@ export default class FilterActiveCategory extends React.Component {
   render() {
     const { title } = this.props;
     const { categories } = this.state;
+    if (categories.length === 0) {
+      return null;
+    }
     return (
       <Toast>
         <ToastHeader>

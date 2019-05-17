@@ -12,28 +12,34 @@ export default class FilterActiveGroup extends React.Component {
     this.callback = props.callback;
 
     this.state = {
-      activeCategories: this.activeFilters,
+      activeFilters: this.activeFilters,
     };
 
     this.renderCategory = this.renderCategory.bind(this);
     this.updateActiveFilters = this.updateActiveFilters.bind(this);
   }
 
-  updateActiveFilters(title, categories) {
-    const { activeCategories } = this.state;
-    const updatedActiveCategories = [];
-    activeCategories.forEach((category) => {
-      if (category.title !== title) {
-        updatedActiveCategories.push(category);
-      } else if (categories.length !== 0) {
-        updatedActiveCategories.push({ title, categories });
+  updateActiveFilters(title, activeOptions) {
+    const { activeFilters } = this.state;
+    const updatedActiveFilters = [];
+    let updated = false;
+    activeFilters.forEach((activeFilter) => {
+      if (!updated) {
+        if (title === activeFilter.title) {
+          if (activeOptions.length !== 0) {
+            updatedActiveFilters.push({ title, categories: activeOptions });
+          }
+          updated = true;
+        }
+      } else {
+        updatedActiveFilters.push(activeFilter);
       }
     });
     this.setState({
-      activeCategories: updatedActiveCategories,
+      activeFilters: updatedActiveFilters,
     });
     const { callback } = this.props;
-    callback(title, updatedActiveCategories);
+    callback(updatedActiveFilters);
   }
 
   renderCategory(category) {
@@ -49,14 +55,29 @@ export default class FilterActiveGroup extends React.Component {
 
   render() {
     const { title } = this.props;
-    const { activeCategories } = this.state;
+    const { activeFilters } = this.state;
+
+    activeFilters.map(filter => console.log(filter.title + ' ' + filter.categories));
+
+    if (activeFilters.length === 0) {
+      return (
+        <Toast style={{ minHeight: '425px', minWidth: '400px' }}>
+          <ToastHeader>
+            No Active Filters
+          </ToastHeader>
+          <ToastBody>
+            Please select filters from the left pane
+          </ToastBody>
+        </Toast>
+      );
+    }
     return (
-      <Toast>
+      <Toast style={{ minHeight: '425px', minWidth: '400px' }}>
         <ToastHeader>
           { title }
         </ToastHeader>
         <ToastBody>
-          {activeCategories.map(category => this.renderCategory(category)) }
+          { activeFilters.map(filter => this.renderCategory(filter)) }
         </ToastBody>
       </Toast>
     );
@@ -73,5 +94,5 @@ FilterActiveGroup.propTypes = {
 };
 
 FilterActiveGroup.defaultProps = {
-  callback: (title, updatedActiveCategories) => console.log(`FilterActiveGroup Returning\nTitle: ${title}\nUpdatedActiveFilters: ${updatedActiveCategories}`),
+  callback: updatedActiveFilters => console.log(`FilterActiveGroup Returning\nUpatedActiveFilters: ${updatedActiveFilters}`),
 };

@@ -73,5 +73,5 @@ FilterSearchBar.propTypes = {
 };
 
 FilterSearchBar.defaultProps = {
-  callback: t => console.log(`FilterSearchOption uninitialized callback: ${t}`),
+  callback: category => console.log(`FilterSearchBar Category: ${category}`),
 };

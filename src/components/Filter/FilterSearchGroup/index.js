@@ -57,12 +57,7 @@ export default class FilterSearchGroup extends React.Component {
   removeOption(option) {
     const { title } = this.props;
     const { activeOptions } = this.state;
-    const updatedActiveOptions = [];
-    activeOptions.forEach((active) => {
-      if (active !== option) {
-        updatedActiveOptions.push(active);
-      }
-    });
+    const updatedActiveOptions = activeOptions.filter(activeOption => activeOption !== option);
     this.setState({
       activeOptions: updatedActiveOptions,
     });
@@ -94,11 +89,11 @@ export default class FilterSearchGroup extends React.Component {
     const { categories } = this.props;
     if (title === 'None') {
       return (
-        <Toast style={{ minHeight: '350px' }} />
+        <Toast style={{ display: 'block', minHeight: '425px', minWidth: '100%' }} />
       );
     }
     return (
-      <Toast style={{ minHeight: '350px' }}>
+      <Toast style={{ display: 'block', minHeight: '425px', minWidth: '100%' }}>
         <ToastHeader>
           { wrapperTitle }
         </ToastHeader>
