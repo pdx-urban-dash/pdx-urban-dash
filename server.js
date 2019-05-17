@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const { ApolloServer } = require('apollo-server-express');
-const graphSchema = require('./src/graphAPI/schema.graphql');
+const graphSchema = require('./src/graphAPI/schema');
 
 const app = express();
 const port = process.env.PORT || 8080;
