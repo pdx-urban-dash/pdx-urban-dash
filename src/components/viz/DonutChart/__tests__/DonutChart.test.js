@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import DonutChart from '../index';
-import { trend } from '../../../../constants';
 
 describe('<DonutChart />', () => {
   test('snapshot', () => {
@@ -72,8 +71,6 @@ describe('<DonutChart />', () => {
             value: 10,
           },
         ]}
-        trending={trend.up}
-        onTarget={false}
       />,
     );
     expect(wrapper).toMatchSnapshot();

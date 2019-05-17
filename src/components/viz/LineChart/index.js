@@ -4,12 +4,13 @@ import { createClassFromSpec } from 'react-vega';
 
 import { injectPropsIntoSchema } from '../../../utils/vegaUtils';
 import { getDefaultColor, getTrendLineFunc } from '../../../utils/vizUtils';
-import { colors, sizes, trend } from '../../../constants';
+import { colors, sizes } from '../../../constants';
 import lineChartSchema from './schema';
 import './styles.scss';
 
 import Legend from '../shared/Legend';
 import ChartWrapper from '../shared/ChartWrapper';
+
 
 export const buildData = (data) => {
   const retData = [];
@@ -45,8 +46,6 @@ const LineChart = (
     title,
     className,
     colorScheme,
-    trending,
-    onTarget,
   },
 ) => {
   const colorRange = getColors(data);
@@ -74,7 +73,7 @@ const LineChart = (
     ),
   );
   return (
-    <ChartWrapper title={title} className={className} trending={trending} onTarget={onTarget}>
+    <ChartWrapper title={title} className={className}>
       <Graph />
       <Legend
         series={data.map((elem, idx) => ({
@@ -101,16 +100,12 @@ LineChart.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
   colorScheme: PropTypes.oneOf(['light', 'dark']),
-  trending: PropTypes.oneOf('Object.values(trend)'),
-  onTarget: PropTypes.bool,
 };
 
 LineChart.defaultProps = {
   title: 'chart title',
   className: '',
   colorScheme: 'light',
-  trending: trend.up,
-  onTarget: false,
 };
 
 export default LineChart;

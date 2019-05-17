@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { createClassFromSpec } from 'react-vega';
 
 import { injectPropsIntoSchema } from '../../../utils/vegaUtils';
-import { colors, sizes, trend } from '../../../constants';
+import { colors, sizes } from '../../../constants';
 import donutChartSchema from './schema';
 import './styles.scss';
 
@@ -25,8 +25,6 @@ const DonutChart = (
     title,
     className,
     colorScheme,
-    trending,
-    onTarget,
   },
 ) => {
   const mColors = getColors(data);
@@ -54,7 +52,7 @@ const DonutChart = (
     ),
   );
   return (
-    <ChartWrapper title={title} className={className} trending={trending} onTarget={onTarget}>
+    <ChartWrapper title={title} className={className}>
       <Graph />
       <Legend
         series={data.map((elem, idx) => ({
@@ -77,16 +75,12 @@ DonutChart.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
   colorScheme: PropTypes.oneOf(['light', 'dark']),
-  trending: PropTypes.oneOf('Object.values(trend)'),
-  onTarget: PropTypes.bool,
 };
 
 DonutChart.defaultProps = {
   title: 'default title',
   className: '',
   colorScheme: 'light',
-  trending: trend.up,
-  onTarget: false,
 };
 
 export default DonutChart;

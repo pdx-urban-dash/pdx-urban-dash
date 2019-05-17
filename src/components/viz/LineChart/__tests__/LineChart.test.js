@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import LineChart from '../index';
-import { trend } from '../../../../constants';
+
 
 describe('<LineChart />', () => {
   test('snapshot', () => {
@@ -32,8 +32,6 @@ describe('<LineChart />', () => {
             ],
           },
         ]}
-        trending={trend.up}
-        onTarget={false}
       />,
     );
     expect(wrapper).toMatchSnapshot();
