@@ -6,9 +6,9 @@
 
 In order to deploy the app in docker, you must have docker and docker-compose
 installed. You must also export UID, so the processes in the container can run
-as your user (this is important to prevent root from creating a bunch of files
-in your project repo, do this by running `export UID`. Then run
-`docker-compose up` to launch the container.
+as your user and group (this is important to prevent root from creating a
+bunch of files in your project repo, do this by running `export UID` and
+`export GID="${id -g}"`. Then run `docker-compose up` to launch the container.
 
 #### setup
 
