@@ -32,7 +32,6 @@ export const getTrendLineSign = (points) => {
   const sumOfXsq = points.reduce((acc, val) => (acc + (val.x ** 2)), 0);
 
   const slope = ((n * sumOfProducts) - (sumOfX * sumOfY)) / ((n * sumOfXsq) - (sumOfX ** 2));
-  const offset = (sumOfY - (slope * sumOfX)) / n;
 
   return slope;
 };
