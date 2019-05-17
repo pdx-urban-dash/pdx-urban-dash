@@ -6,15 +6,6 @@ import FilterSearchOption from '../FilterSearchOption';
 export default class FilterSearchGroup extends React.Component {
   constructor(props) {
     super(props);
-    this.wrapperTitle = props.wrapperTitle;
-    this.title = props.title;
-    this.categories = props.categories;
-    this.activeOptions = props.activeOptions;
-    this.callback = props.callback;
-
-    this.state = {
-      activeOptions: this.activeOptions,
-    };
 
     this.toggleSelectedOption = this.toggleSelectedOption.bind(this);
     this.addOption = this.addOption.bind(this);
@@ -32,7 +23,7 @@ export default class FilterSearchGroup extends React.Component {
 
   addOption(option) {
     const { title } = this.props;
-    const { activeOptions } = this.state;
+    const { activeOptions } = this.props;
     const updatedActiveOptions = [];
     let added = false;
     activeOptions.forEach((activeOption) => {
@@ -47,19 +38,18 @@ export default class FilterSearchGroup extends React.Component {
     if (!added) {
       updatedActiveOptions.push(option);
     }
-    this.setState({
-      activeOptions: updatedActiveOptions,
-    });
     const { callback } = this.props;
     callback(title, updatedActiveOptions);
   }
 
   removeOption(option) {
     const { title } = this.props;
-    const { activeOptions } = this.state;
-    const updatedActiveOptions = activeOptions.filter(activeOption => activeOption !== option);
-    this.setState({
-      activeOptions: updatedActiveOptions,
+    const { activeOptions } = this.props;
+    const updatedActiveOptions = [];
+    activeOptions.forEach((activeOption) => {
+      if (activeOption !== option) {
+        updatedActiveOptions.push(activeOption);
+      }
     });
     const { callback } = this.props;
     callback(title, updatedActiveOptions);
@@ -67,7 +57,7 @@ export default class FilterSearchGroup extends React.Component {
 
   renderSearchOption(category) {
     let select = false;
-    const { activeOptions } = this.state;
+    const { activeOptions } = this.props;
     activeOptions.forEach((option) => {
       if (option === category) {
         select = true;
@@ -89,11 +79,11 @@ export default class FilterSearchGroup extends React.Component {
     const { categories } = this.props;
     if (title === 'None') {
       return (
-        <Toast style={{ display: 'block', minHeight: '425px', minWidth: '100%' }} />
+        <Toast style={{ display: 'block', minHeight: '100%', minWidth: '100%' }} />
       );
     }
     return (
-      <Toast style={{ display: 'block', minHeight: '425px', minWidth: '100%' }}>
+      <Toast style={{ display: 'block', minHeight: '100%', minWidth: '100%' }}>
         <ToastHeader>
           { wrapperTitle }
         </ToastHeader>

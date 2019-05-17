@@ -1,22 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import {
-  // Card, CardText, CardBody, CardTitle,
-  Navbar, NavbarBrand,
-  Row, Col,
-} from 'reactstrap';
-import LineChart from './components/viz/LineChart';
-import {
-  FilterWrapper,
-  FilterActiveGroup,
-  FilterActiveCategory,
-  FilterActiveOption,
-  FilterSearchGroup,
-  FilterSearchCategory,
-  FilterSearchOption,
-  FilterSearchBar,
-} from './components/Filter/FilterComponents';
-import logo from './components/Filter/images/SealofPortland.png';
+import { FilterWrapper } from './components/Filter/FilterComponents';
 
 const testData = [
   {
@@ -584,65 +568,7 @@ ReactDOM.render(
   <FilterWrapper
     title="FilterWrapper Title"
     categories={['Category', 'Trend', 'Strategic Target']}
+    data={testData}
   />,
   document.getElementById('root'),
 );
-/*
-  <FilterWrapper
-    title="FilterWrapper Title"
-    categories={['Category', 'Trend', 'Strategic Target']}
-  />
-
-  <Row>
-    <Col>
-      <FilterSearchOption
-        category="Search Category"
-        selected={false}
-      />
-      <FilterSearchGroup
-        wrapperTitle="FilterSearchGroup Wrapper Title"
-        title="Category Title"
-        categories={['Category 1', 'Category 2', 'Category 3']}
-        activeOptions={[]}
-      />
-    </Col>
-    <Col>
-      <FilterActiveOption
-        category="Active Option"
-      />
-      <FilterActiveCategory
-        title="Category 1 Title"
-        categories={['Title 1 Category 1', 'Title 1 Category 2', 'Title 1 Category 3']}
-      />
-      <FilterActiveGroup
-        title="FilterActiveGroup Title"
-        activeFilters={[
-          {
-            title: 'Title 1',
-            categories: ['Title 1 Category 1', 'Title 1 Category 2', 'Title 1 Category 3'],
-          },
-          {
-            title: 'Title 2',
-            categories: ['Title 2 Category 1', 'Title 2 Category 2', 'Title 2 Category 3'],
-          },
-          {
-            title: 'Title 3',
-            categories: ['Title 3 Category 1', 'Title 3 Category 2', 'Title 3 Category 3'],
-          },
-        ]}
-      />
-    </Col>
-  </Row>
-
-  ReactDOM.render(
-  <Fragment>
-    <Navbar color="light" light expand="md">
-      <NavbarBrand><img src={logo} width="40" height="40" alt="City of Portland" /> City of Portland Dashboard</NavbarBrand>
-
-    </Navbar>
-    <FilterWrapper data={testData} title="Title" />
-    <Row />
-  </Fragment>,
-  document.getElementById('root'),
-);
-*/

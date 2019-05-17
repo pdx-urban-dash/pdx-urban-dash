@@ -7,24 +7,18 @@ export default class FilterActiveCategory extends React.Component {
   constructor(props) {
     super(props);
 
-    this.title = props.title;
-    this.categories = props.categories;
-    this.callback = props.callback;
-
-    this.state = {
-      categories: this.categories,
-    };
-
     this.renderOption = this.renderOption.bind(this);
     this.removeOption = this.removeOption.bind(this);
   }
 
   removeOption(category) {
     const { title } = this.props;
-    const { categories } = this.state;
-    const updatedCategories = categories.filter(filter => filter !== category);
-    this.setState({
-      categories: updatedCategories,
+    const { categories } = this.props;
+    const updatedCategories = [];
+    categories.forEach((cat) => {
+      if (cat !== category) {
+        updatedCategories.push(cat);
+      }
     });
     const { callback } = this.props;
     callback(title, updatedCategories);
@@ -42,10 +36,7 @@ export default class FilterActiveCategory extends React.Component {
 
   render() {
     const { title } = this.props;
-    const { categories } = this.state;
-    if (categories.length === 0) {
-      return null;
-    }
+    const { categories } = this.props;
     return (
       <Toast>
         <ToastHeader>

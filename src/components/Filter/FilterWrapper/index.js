@@ -1,11 +1,8 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Jumbotron,
-  Button,
-  Collapse,
-  Row, Col,
-  Toast, ToastBody, ToastHeader,
+  Button, Collapse, Col, Jumbotron, Row,
+  Nav, NavItem, Navbar, NavbarBrand, Toast, ToastBody, ToastHeader,
 } from 'reactstrap';
 import {
   FilterActiveGroup,
@@ -13,15 +10,17 @@ import {
   FilterSearchBar,
 } from '../FilterComponents';
 
+import logo from '../images/SealofPortland.png';
+import Icon from '../../Icon';
+
+import './styles.scss';
+
 export default class FilterWrapper extends React.Component {
   constructor(props) {
     super(props);
 
-    this.title = props.title;
-    this.categories = props.categories;
-
     this.state = {
-      show: true,
+      showFilterWindow: true,
       shownCategory: '',
       categoryFilters: [],
       activeFilters: [],
@@ -34,9 +33,9 @@ export default class FilterWrapper extends React.Component {
   }
 
   toggleFilterWindow() {
-    const { show } = this.state;
+    const { showFilterWindow } = this.state;
     this.setState({
-      show: !show,
+      showFilterWindow: !showFilterWindow,
     });
   }
 
@@ -104,7 +103,8 @@ export default class FilterWrapper extends React.Component {
 
   render() {
     const { title } = this.props;
-    const { show } = this.state;
+    const { categories } = this.props;
+    const { showFilterWindow } = this.state;
     const { shownCategory } = this.state;
     const { categoryFilters } = this.state;
     const { activeFilters } = this.state;
@@ -121,20 +121,36 @@ export default class FilterWrapper extends React.Component {
 
     return (
       <Fragment>
-        <Button onClick={this.toggleFilterWindow}>
-          { !show ? 'Filter results' : 'Hide Filter' }
-        </Button>
-        <Collapse isOpen={show}>
+        <Navbar light expand="md">
+          <NavbarBrand>
+            <img src={logo} width="40" height="40" alt="City of Portland" />
+            { ' ' }
+            City of Portland Dashboard
+          </NavbarBrand>
+          <Nav className="ml-auto" navbar>
+            <NavItem style={{ paddingRight: '10px', paddingTop: '2px' }}>
+              <span>
+                <Icon size="md" type="help-circle" />
+              </span>
+            </NavItem>
+            <NavItem>
+              <Button onClick={this.toggleFilterWindow}>
+                {showFilterWindow ? 'Hide Filter' : 'Filter results' }
+              </Button>
+            </NavItem>
+          </Nav>
+        </Navbar>
+        <Collapse isOpen={showFilterWindow}>
           <Jumbotron>
             <h1>
               { title }
             </h1>
-            <Row>
-              <Col lg="8">
+            <Row style={{ height: '500px' }}>
+              <Col style={{ minWidth: '75%', minHeight: '100%' }}>
                 <Toast style={{ display: 'block', minWidth: '100%' }}>
                   <ToastHeader style={{ display: 'block', minWidth: '100%' }}>
                     <FilterSearchBar
-                      categories={this.categories}
+                      categories={categories}
                       callback={this.updateShownCategory}
                     />
                   </ToastHeader>
@@ -149,7 +165,7 @@ export default class FilterWrapper extends React.Component {
                   </ToastBody>
                 </Toast>
               </Col>
-              <Col lg="4">
+              <Col style={{ minWidth: '25%' }}>
                 <FilterActiveGroup
                   title="Active Filters"
                   activeFilters={activeFilters}

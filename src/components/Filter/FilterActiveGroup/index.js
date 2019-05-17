@@ -7,20 +7,12 @@ export default class FilterActiveGroup extends React.Component {
   constructor(props) {
     super(props);
 
-    this.title = props.title;
-    this.activeFilters = props.activeFilters;
-    this.callback = props.callback;
-
-    this.state = {
-      activeFilters: this.activeFilters,
-    };
-
     this.renderCategory = this.renderCategory.bind(this);
     this.updateActiveFilters = this.updateActiveFilters.bind(this);
   }
 
   updateActiveFilters(title, activeOptions) {
-    const { activeFilters } = this.state;
+    const { activeFilters } = this.props;
     const updatedActiveFilters = [];
     let updated = false;
     activeFilters.forEach((activeFilter) => {
@@ -28,16 +20,20 @@ export default class FilterActiveGroup extends React.Component {
         if (title === activeFilter.title) {
           if (activeOptions.length !== 0) {
             updatedActiveFilters.push({ title, categories: activeOptions });
+            updated = true;
           }
-          updated = true;
+        } else {
+          updatedActiveFilters.push(activeFilter);
         }
       } else {
         updatedActiveFilters.push(activeFilter);
       }
     });
-    this.setState({
-      activeFilters: updatedActiveFilters,
-    });
+    if (!updated) {
+      if (activeOptions.length !== 0) {
+        updatedActiveFilters.push({ title, categories: activeOptions });
+      }
+    }
     const { callback } = this.props;
     callback(updatedActiveFilters);
   }
@@ -55,28 +51,25 @@ export default class FilterActiveGroup extends React.Component {
 
   render() {
     const { title } = this.props;
-    const { activeFilters } = this.state;
-
-    activeFilters.map(filter => console.log(filter.title + ' ' + filter.categories));
-
+    const { activeFilters } = this.props;
     if (activeFilters.length === 0) {
       return (
-        <Toast style={{ minHeight: '425px', minWidth: '400px' }}>
-          <ToastHeader>
+        <Toast style={{ display: 'block', minWidth: '100%', minHeight: '100%' }}>
+          <ToastHeader style={{ display: 'block', minWidth: '100%', minHeight: '100%' }}>
             No Active Filters
           </ToastHeader>
-          <ToastBody>
+          <ToastBody style={{ display: 'block', minWidth: '100%', minHeight: '100%' }}>
             Please select filters from the left pane
           </ToastBody>
         </Toast>
       );
     }
     return (
-      <Toast style={{ minHeight: '425px', minWidth: '400px' }}>
-        <ToastHeader>
+      <Toast style={{ display: 'block', minWidth: '100%', minHeight: '100%' }}>
+        <ToastHeader style={{ display: 'block', minWidth: '100%', minHeight: '100%' }}>
           { title }
         </ToastHeader>
-        <ToastBody>
+        <ToastBody style={{ display: 'block', minWidth: '100%', minHeight: '100%' }}>
           { activeFilters.map(filter => this.renderCategory(filter)) }
         </ToastBody>
       </Toast>

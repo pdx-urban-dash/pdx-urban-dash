@@ -6,29 +6,19 @@ export default class FilterSearchOption extends Component {
   constructor(props) {
     super(props);
 
-    this.category = props.category;
-    this.selected = props.selected;
-    this.callback = props.callback;
-
-    this.state = {
-      selected: this.selected,
-    };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
     const { category } = this.props;
-    const { selected } = this.state;
-    this.setState({
-      selected: !selected,
-    });
+    const { selected } = this.props;
     const { callback } = this.props;
     callback(category, !selected);
   }
 
   render() {
     const { category } = this.props;
-    const { selected } = this.state;
+    const { selected } = this.props;
     return (
       <Toast onClick={this.handleClick} style={{ background: selected ? 'green' : '', cursor: 'pointer', height: '2rem' }}>
         <ToastHeader>
