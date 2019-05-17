@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`genChart with obj: { metadata: 'Metadata placeholder',
+  title: 'bar1',
+  description: 'Dummy bar chart 1: 7 bars of random positive size.',
+  chart_type: 'BAR',
+  categories:
+   [ 'category 4',
+     'category 5',
+     'category 3',
+     'category 7',
+     'category 2',
+     'category 1',
+     'category 6',
+     [length]: 7 ],
+  target: 30,
+  target_trend: 'STABLE',
+  axis_labels: [ [ 'bar_labels', 'bar values', [length]: 2 ], [length]: 1 ],
+  data_sets:
+   [ { metadata: 'Metadata placeholder.',
+       title:
+        'bar1 dataset member 1. Axis label(s): [\\'bar_labels\\', \\'bar values\\']',
+       description: 'Contains bar1 data for type BAR chart.',
+       color: 'YELLOW',
+       show_trendline: true,
+       data_values:
+        [ [ 'bar 1',
+            'bar 2',
+            'bar 3',
+            'bar 4',
+            'bar 5',
+            'bar 6',
+            'bar 7',
+            'bar 8',
+            [length]: 8 ],
+          [ 78, 35, 72, 99, 33, 78, 75, 91, [length]: 8 ],
+          [length]: 2 ] },
+     [length]: 1 ] } 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <chart />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {},
+    "ref": null,
+    "rendered": null,
+    "type": "chart",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {},
+      "ref": null,
+      "rendered": null,
+      "type": "chart",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;
+
+exports[`genChart with obj: { target_trend: 'UP',
+  target: 100,
+  title: 'dummy line graph',
+  axis_labels: [ 'x', 'y', [length]: 2 ],
+  chart_type: 'LINE',
+  data_sets:
+   [ { show_trendline: true,
+       description: 'first datapoint',
+       title: 'line1',
+       color: 'RED',
+       data_values:
+        [ [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, [length]: 10 ],
+          [ 2, 5, 1, 6, 8, 9, 3, 4, 7, 8, [length]: 10 ],
+          [length]: 2 ],
+       metadata: '' },
+     [length]: 1 ] } 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <chart />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {},
+    "ref": null,
+    "rendered": null,
+    "type": "chart",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {},
+      "ref": null,
+      "rendered": null,
+      "type": "chart",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

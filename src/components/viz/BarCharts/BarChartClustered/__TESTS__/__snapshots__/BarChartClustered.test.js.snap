@@ -1,3 +1,227 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<BarChartClustered /> snapshot 1`] = `ShallowWrapper {}`;
+exports[`<BarChartClustered /> snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <BarChartClustered
+    className=""
+    colorScheme="light"
+    data={
+      Array [
+        Object {
+          "dataSetName": "first",
+          "description": "this is first",
+          "values": Array [
+            Object {
+              "x": 0,
+              "y": 10,
+            },
+            Object {
+              "x": 1,
+              "y": 20,
+            },
+            Object {
+              "x": 2,
+              "y": 15,
+            },
+            Object {
+              "x": 3,
+              "y": 40,
+            },
+          ],
+        },
+        Object {
+          "dataSetName": "second",
+          "description": "this is second",
+          "values": Array [
+            Object {
+              "x": 0,
+              "y": 20,
+            },
+            Object {
+              "x": 1,
+              "y": 30,
+            },
+            Object {
+              "x": 2,
+              "y": 19,
+            },
+            Object {
+              "x": 3,
+              "y": 50,
+            },
+          ],
+        },
+      ]
+    }
+    onTarget={false}
+    title="chart title"
+    trending="trending-up"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": Array [
+        <a />,
+        <Legend
+          series={
+            Array [
+              Object {
+                "color": "#82204A",
+                "description": "this is first",
+                "title": "first",
+              },
+              Object {
+                "color": "#558C8C",
+                "description": "this is second",
+                "title": "second",
+              },
+            ]
+          }
+        />,
+      ],
+      "className": "",
+      "onTarget": false,
+      "title": "chart title",
+      "trending": "trending-up",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "series": Array [
+            Object {
+              "color": "#82204A",
+              "description": "this is first",
+              "title": "first",
+            },
+            Object {
+              "color": "#558C8C",
+              "description": "this is second",
+              "title": "second",
+            },
+          ],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          <a />,
+          <Legend
+            series={
+              Array [
+                Object {
+                  "color": "#82204A",
+                  "description": "this is first",
+                  "title": "first",
+                },
+                Object {
+                  "color": "#558C8C",
+                  "description": "this is second",
+                  "title": "second",
+                },
+              ]
+            }
+          />,
+        ],
+        "className": "",
+        "onTarget": false,
+        "title": "chart title",
+        "trending": "trending-up",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "series": Array [
+              Object {
+                "color": "#82204A",
+                "description": "this is first",
+                "title": "first",
+              },
+              Object {
+                "color": "#558C8C",
+                "description": "this is second",
+                "title": "second",
+              },
+            ],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

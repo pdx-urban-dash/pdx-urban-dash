@@ -4,13 +4,12 @@ import { createClassFromSpec } from 'react-vega';
 
 import { injectPropsIntoSchema } from '../../../../utils/vegaUtils';
 import { getDefaultColor } from '../../../../utils/vizUtils';
-import { colors, sizes } from '../../../../constants';
+import { colors, sizes, trend } from '../../../../constants';
 import BarChartSchema from './schema';
 import './styles.scss';
 
 import Legend from '../../shared/Legend';
 import ChartWrapper from '../../shared/ChartWrapper';
-
 
 const buildData = (data) => {
   const retData = [];
@@ -28,6 +27,8 @@ const BarChartGrouped = (
     title,
     className,
     colorScheme,
+    trending,
+    onTarget,
   },
 ) => {
   const colorRange = getColors(data);
@@ -55,7 +56,7 @@ const BarChartGrouped = (
     ),
   );
   return (
-    <ChartWrapper title={title} className={className}>
+    <ChartWrapper title={title} className={className} trending={trending} onTarget={onTarget}>
       <Graph />
       <Legend
         series={data.map((elem, idx) => ({
@@ -81,12 +82,16 @@ BarChartGrouped.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
   colorScheme: PropTypes.oneOf(['light', 'dark']),
+  trending: PropTypes.oneOf('Object.values(trend)'),
+  onTarget: PropTypes.bool,
 };
 
 BarChartGrouped.defaultProps = {
   title: 'chart title',
   className: '',
   colorScheme: 'light',
+  trending: trend.up,
+  onTarget: false,
 };
 
 export default BarChartGrouped;
