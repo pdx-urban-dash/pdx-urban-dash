@@ -31,7 +31,7 @@ export default class FilterManager extends React.Component {
     this.data = [];
     this.state = {
       shownCategory: "",
-      selected: []
+      selected: this.props.data,
     };
   }
 
