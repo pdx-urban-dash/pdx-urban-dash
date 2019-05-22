@@ -14,4 +14,4 @@ services:
         - "8080"
     ports:
         - "127.0.0.1:8080:8080"
-    command: bash -c "yarn build && node server.js"
+    command: bash -c "yarn install && yarn build && node server.js"
