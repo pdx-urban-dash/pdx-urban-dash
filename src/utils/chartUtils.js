@@ -38,7 +38,7 @@ export const genChart = (chartJson, colorScheme, className) => {
       });
     });
     fInput.data = data;
-    if (chartJson.chart_type === 'BARCLUSTERED') {
+    if (chartJson.chart_type === 'BARCLUSTERED' || chartJson.chart_type === 'BAR') {
       return <BarChartClustered {...fInput} />;
     }
     if (chartJson.chart_type === 'BARSTACKED') {
