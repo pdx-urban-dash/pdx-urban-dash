@@ -7,7 +7,7 @@ ShallowWrapper {
     data={
       Array [
         Object {
-          "axis_labels": Array [
+          "axisLabels": Array [
             Array [
               "bar_labels",
               "bar values",
@@ -22,11 +22,14 @@ ShallowWrapper {
             "category 1",
             "category 6",
           ],
-          "chart_type": "BAR",
-          "data_sets": Array [
+          "dataSets": Array [
             Object {
               "color": "INDIGO",
-              "data_values": Array [
+              "description": "Contains bar3 data for type BAR chart.",
+              "metaData": "metaData placeholder.",
+              "showTrendline": true,
+              "title": "bar3 dataset member 1. Axis label(s): ['bar_labels', 'bar values']",
+              "values": Array [
                 Array [
                   "bar 1",
                   "bar 2",
@@ -48,17 +51,14 @@ ShallowWrapper {
                   -8,
                 ],
               ],
-              "description": "Contains bar3 data for type BAR chart.",
-              "metadata": "Metadata placeholder.",
-              "show_trendline": true,
-              "title": "bar3 dataset member 1. Axis label(s): ['bar_labels', 'bar values']",
             },
           ],
           "description": "Dummy bar chart 3: 7 bars of descending size from positive to negative.",
-          "metadata": "Metadata placeholder",
+          "metaData": "metaData placeholder",
           "target": 30,
-          "target_trend": "DOWN",
+          "targetTrend": "DOWN",
           "title": "bar3",
+          "type": "BAR",
         },
       ]
     }

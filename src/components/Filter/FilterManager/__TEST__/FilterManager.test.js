@@ -4,11 +4,11 @@ import FilterManager from '../index';
 
 const data = [
   {
-    metadata: 'Metadata placeholder',
+    metaData: 'metaData placeholder',
     title: 'bar3',
     description:
       'Dummy bar chart 3: 7 bars of descending size from positive to negative.',
-    chart_type: 'BAR',
+    type: 'BAR',
     categories: [
       'category 4',
       'category 2',
@@ -19,17 +19,17 @@ const data = [
       'category 6',
     ],
     target: 30.0,
-    target_trend: 'DOWN',
-    axis_labels: [['bar_labels', 'bar values']],
-    data_sets: [
+    targetTrend: 'DOWN',
+    axisLabels: [['bar_labels', 'bar values']],
+    dataSets: [
       {
-        metadata: 'Metadata placeholder.',
+        metaData: 'metaData placeholder.',
         title:
           "bar3 dataset member 1. Axis label(s): ['bar_labels', 'bar values']",
         description: 'Contains bar3 data for type BAR chart.',
         color: 'INDIGO',
-        show_trendline: true,
-        data_values: [
+        showTrendline: true,
+        values: [
           [
             'bar 1',
             'bar 2',
@@ -113,7 +113,7 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTrend donut up', () => {
     const fakeData = {
-      chart_type: 'DONUT',
+      type: 'DONUT',
     };
     const mockCallBack = jest.fn();
     const component = shallow(<FilterManager title="test" data={data} callback={mockCallBack} />);
@@ -125,7 +125,7 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTrend donut down', () => {
     const fakeData = {
-      chart_type: 'DONUT',
+      type: 'DONUT',
     };
     const mockCallBack = jest.fn();
     const component = shallow(<FilterManager title="test" data={data} callback={mockCallBack} />);
@@ -138,10 +138,10 @@ describe('FilterManager Test Suite', () => {
   // line
   test('hasTrend line up true', () => {
     const fakeData = {
-      chart_type: 'LINE',
-      data_sets: [
+      type: 'LINE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [1, 2, 3],
           ],
@@ -158,10 +158,10 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTrend line up false', () => {
     const fakeData = {
-      chart_type: 'LINE',
-      data_sets: [
+      type: 'LINE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 2, 1],
           ],
@@ -178,10 +178,10 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTrend line down true', () => {
     const fakeData = {
-      chart_type: 'LINE',
-      data_sets: [
+      type: 'LINE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 2, 1],
           ],
@@ -198,10 +198,10 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTrend line down false', () => {
     const fakeData = {
-      chart_type: 'LINE',
-      data_sets: [
+      type: 'LINE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [1, 2, 3],
           ],
@@ -219,10 +219,10 @@ describe('FilterManager Test Suite', () => {
   // bar
   test('hasTrend bar up true', () => {
     const fakeData = {
-      chart_type: 'BAR',
-      data_sets: [
+      type: 'BAR',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [2, 3, 4],
             [1, 2, 3],
           ],
@@ -239,10 +239,10 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTrend bar up false', () => {
     const fakeData = {
-      chart_type: 'BAR',
-      data_sets: [
+      type: 'BAR',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [2, 3, 4],
             [3, 2, 1],
           ],
@@ -259,10 +259,10 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTrend bar down true', () => {
     const fakeData = {
-      chart_type: 'BAR',
-      data_sets: [
+      type: 'BAR',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [2, 3, 4],
             [3, 2, 1],
           ],
@@ -279,10 +279,10 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTrend bar down false', () => {
     const fakeData = {
-      chart_type: 'BAR',
-      data_sets: [
+      type: 'BAR',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [2, 3, 4],
             [1, 2, 3],
           ],
@@ -300,10 +300,10 @@ describe('FilterManager Test Suite', () => {
   // bar char
   test('hasTrend bar up true string', () => {
     const fakeData = {
-      chart_type: 'BAR',
-      data_sets: [
+      type: 'BAR',
+      dataSets: [
         {
-          data_values: [
+          values: [
             ['first', 'Second', 'Third'],
             [1, 2, 3],
           ],
@@ -320,10 +320,10 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTrend bar up false string', () => {
     const fakeData = {
-      chart_type: 'BAR',
-      data_sets: [
+      type: 'BAR',
+      dataSets: [
         {
-          data_values: [
+          values: [
             ['first', 'Second', 'Third'],
             [3, 2, 1],
           ],
@@ -340,10 +340,10 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTrend bar down true string', () => {
     const fakeData = {
-      chart_type: 'BAR',
-      data_sets: [
+      type: 'BAR',
+      dataSets: [
         {
-          data_values: [
+          values: [
             ['first', 'Second', 'Third'],
             [3, 2, 1],
           ],
@@ -360,10 +360,10 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTrend bar down false string', () => {
     const fakeData = {
-      chart_type: 'BAR',
-      data_sets: [
+      type: 'BAR',
+      dataSets: [
         {
-          data_values: [
+          values: [
             ['first', 'Second', 'Third'],
             [1, 2, 3],
           ],
@@ -385,12 +385,12 @@ describe('FilterManager Test Suite', () => {
   /* hasTarget - donut */
   test('hasTarget donut above target true', () => {
     const fakeData = {
-      chart_type: 'DONUT',
+      type: 'DONUT',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             ['color'],
             ['label'],
             [2],
@@ -408,12 +408,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget donut above target false', () => {
     const fakeData = {
-      chart_type: 'DONUT',
+      type: 'DONUT',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             ['color'],
             ['label'],
             [0],
@@ -431,12 +431,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget donut on target true', () => {
     const fakeData = {
-      chart_type: 'DONUT',
+      type: 'DONUT',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             ['color'],
             ['label'],
             [1],
@@ -454,12 +454,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget donut on target false', () => {
     const fakeData = {
-      chart_type: 'DONUT',
+      type: 'DONUT',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             ['color'],
             ['label'],
             [2],
@@ -477,12 +477,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget donut below target true', () => {
     const fakeData = {
-      chart_type: 'DONUT',
+      type: 'DONUT',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             ['color'],
             ['label'],
             [0],
@@ -500,12 +500,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget donut below target false', () => {
     const fakeData = {
-      chart_type: 'DONUT',
+      type: 'DONUT',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             ['color'],
             ['label'],
             [1],
@@ -523,12 +523,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget donut On Target (Increasing) false', () => {
     const fakeData = {
-      chart_type: 'DONUT',
+      type: 'DONUT',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             ['color'],
             ['label'],
             [1],
@@ -546,12 +546,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget donut On Target (Decreasing) false', () => {
     const fakeData = {
-      chart_type: 'DONUT',
+      type: 'DONUT',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             ['color'],
             ['label'],
             [1],
@@ -569,12 +569,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget donut Off Target (Decreasing) false', () => {
     const fakeData = {
-      chart_type: 'DONUT',
+      type: 'DONUT',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             ['color'],
             ['label'],
             [1],
@@ -592,12 +592,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget donut Off Target (Increasing) false', () => {
     const fakeData = {
-      chart_type: 'DONUT',
+      type: 'DONUT',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             ['color'],
             ['label'],
             [1],
@@ -615,12 +615,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget donut On Target (Stable) true', () => {
     const fakeData = {
-      chart_type: 'DONUT',
+      type: 'DONUT',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             ['color'],
             ['label'],
             [1],
@@ -638,12 +638,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget donut Off Target (Stable) true', () => {
     const fakeData = {
-      chart_type: 'DONUT',
+      type: 'DONUT',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             ['color'],
             ['label'],
             [0],
@@ -661,12 +661,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget donut Off Target (Stable) false', () => {
     const fakeData = {
-      chart_type: 'DONUT',
+      type: 'DONUT',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             ['color'],
             ['label'],
             [0],
@@ -685,11 +685,11 @@ describe('FilterManager Test Suite', () => {
   /* hasTarget - line */
   test('hasTarget line above target true', () => {
     const fakeData = {
-      chart_type: 'LINE',
+      type: 'LINE',
       target: 1,
-      data_sets: [
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 2, 2],
           ],
@@ -706,12 +706,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget line above target false', () => {
     const fakeData = {
-      chart_type: 'LINE',
+      type: 'LINE',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 2, 0],
           ],
@@ -728,12 +728,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget line on target true', () => {
     const fakeData = {
-      chart_type: 'LINE',
+      type: 'LINE',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 2, 1],
           ],
@@ -750,12 +750,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget line on target false', () => {
     const fakeData = {
-      chart_type: 'LINE',
+      type: 'LINE',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 2, 0],
           ],
@@ -772,12 +772,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget line below target true', () => {
     const fakeData = {
-      chart_type: 'LINE',
+      type: 'LINE',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 2, 0],
           ],
@@ -794,12 +794,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget line below target false', () => {
     const fakeData = {
-      chart_type: 'LINE',
+      type: 'LINE',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 2, 2],
           ],
@@ -816,12 +816,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget line On Target (Increasing) false', () => {
     const fakeData = {
-      chart_type: 'LINE',
+      type: 'LINE',
       target: 1,
-      target_trend: 'UP',
-      data_sets: [
+      targetTrend: 'UP',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 2, 1],
           ],
@@ -838,12 +838,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget line On Target (Decreasing) false', () => {
     const fakeData = {
-      chart_type: 'LINE',
+      type: 'LINE',
       target: 1,
-      target_trend: 'DOWN',
-      data_sets: [
+      targetTrend: 'DOWN',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [1, 2, 3],
           ],
@@ -860,12 +860,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget line Off Target (Decreasing) false', () => {
     const fakeData = {
-      chart_type: 'LINE',
+      type: 'LINE',
       target: 1,
-      target_trend: 'UP',
-      data_sets: [
+      targetTrend: 'UP',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 2, 1],
           ],
@@ -882,12 +882,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget line Off Target (Increasing) false', () => {
     const fakeData = {
-      chart_type: 'LINE',
+      type: 'LINE',
       target: 1,
-      target_trend: 'DOWN',
-      data_sets: [
+      targetTrend: 'DOWN',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [2, 2, 3],
           ],
@@ -904,12 +904,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget line On Target (Stable) true', () => {
     const fakeData = {
-      chart_type: 'LINE',
+      type: 'LINE',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 3, 3],
           ],
@@ -926,12 +926,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget line Off Target (Stable) true', () => {
     const fakeData = {
-      chart_type: 'LINE',
+      type: 'LINE',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 3, 3],
           ],
@@ -948,12 +948,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget line Off Target (Stable) false', () => {
     const fakeData = {
-      chart_type: 'LINE',
+      type: 'LINE',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 3, 3],
           ],
@@ -971,11 +971,11 @@ describe('FilterManager Test Suite', () => {
   /* hasTarget - bar */
   test('hasTarget bar above target true', () => {
     const fakeData = {
-      chart_type: 'BAR',
+      type: 'BAR',
       target: 1,
-      data_sets: [
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 2, 2],
           ],
@@ -992,12 +992,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget bar above target false', () => {
     const fakeData = {
-      chart_type: 'BAR',
+      type: 'BAR',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 2, 0],
           ],
@@ -1014,12 +1014,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget bar on target true', () => {
     const fakeData = {
-      chart_type: 'BAR',
+      type: 'BAR',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 2, 1],
           ],
@@ -1036,12 +1036,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget bar on target false', () => {
     const fakeData = {
-      chart_type: 'BAR',
+      type: 'BAR',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 2, 0],
           ],
@@ -1058,12 +1058,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget bar below target true', () => {
     const fakeData = {
-      chart_type: 'BAR',
+      type: 'BAR',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 2, 0],
           ],
@@ -1080,12 +1080,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget bar below target false', () => {
     const fakeData = {
-      chart_type: 'BAR',
+      type: 'BAR',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 2, 2],
           ],
@@ -1102,12 +1102,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget bar On Target (Increasing) false', () => {
     const fakeData = {
-      chart_type: 'BAR',
+      type: 'BAR',
       target: 1,
-      target_trend: 'UP',
-      data_sets: [
+      targetTrend: 'UP',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 2, 1],
           ],
@@ -1124,12 +1124,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget bar On Target (Decreasing) false', () => {
     const fakeData = {
-      chart_type: 'BAR',
+      type: 'BAR',
       target: 1,
-      target_trend: 'DOWN',
-      data_sets: [
+      targetTrend: 'DOWN',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [1, 2, 3],
           ],
@@ -1146,12 +1146,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget bar Off Target (Decreasing) false', () => {
     const fakeData = {
-      chart_type: 'BAR',
+      type: 'BAR',
       target: 1,
-      target_trend: 'UP',
-      data_sets: [
+      targetTrend: 'UP',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 2, 1],
           ],
@@ -1168,12 +1168,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget bar Off Target (Increasing) false', () => {
     const fakeData = {
-      chart_type: 'BAR',
+      type: 'BAR',
       target: 1,
-      target_trend: 'DOWN',
-      data_sets: [
+      targetTrend: 'DOWN',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [2, 2, 3],
           ],
@@ -1190,12 +1190,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget bar On Target (Stable) true', () => {
     const fakeData = {
-      chart_type: 'BAR',
+      type: 'BAR',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 3, 3],
           ],
@@ -1212,12 +1212,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget bar Off Target (Stable) true', () => {
     const fakeData = {
-      chart_type: 'BAR',
+      type: 'BAR',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 3, 3],
           ],
@@ -1234,12 +1234,12 @@ describe('FilterManager Test Suite', () => {
 
   test('hasTarget bar Off Target (Stable) false', () => {
     const fakeData = {
-      chart_type: 'BAR',
+      type: 'BAR',
       target: 1,
-      target_trend: 'STABLE',
-      data_sets: [
+      targetTrend: 'STABLE',
+      dataSets: [
         {
-          data_values: [
+          values: [
             [0, 1, 2],
             [3, 3, 3],
           ],
