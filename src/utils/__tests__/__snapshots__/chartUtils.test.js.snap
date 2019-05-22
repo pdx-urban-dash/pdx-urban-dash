@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`genChart with obj: { metadata: 'Metadata placeholder',
+exports[`genChart with obj: { metaData: 'metaData placeholder',
   title: 'bar1',
   description: 'Dummy bar chart 1: 7 bars of random positive size.',
-  chart_type: 'BAR',
+  type: 'BAR',
   categories:
    [ 'category 4',
      'category 5',
@@ -14,16 +14,16 @@ exports[`genChart with obj: { metadata: 'Metadata placeholder',
      'category 6',
      [length]: 7 ],
   target: 30,
-  target_trend: 'STABLE',
-  axis_labels: [ [ 'bar_labels', 'bar values', [length]: 2 ], [length]: 1 ],
-  data_sets:
-   [ { metadata: 'Metadata placeholder.',
+  targetTrend: 'STABLE',
+  axisLabels: [ [ 'bar_labels', 'bar values', [length]: 2 ], [length]: 1 ],
+  dataSets:
+   [ { metaData: 'metaData placeholder.',
        title:
         'bar1 dataset member 1. Axis label(s): [\\'bar_labels\\', \\'bar values\\']',
        description: 'Contains bar1 data for type BAR chart.',
        color: 'YELLOW',
-       show_trendline: true,
-       data_values:
+       showTrendLine: true,
+       dataValues:
         [ [ 'bar 1',
             'bar 2',
             'bar 3',
@@ -95,21 +95,21 @@ ShallowWrapper {
 }
 `;
 
-exports[`genChart with obj: { target_trend: 'UP',
+exports[`genChart with obj: { targetTrend: 'UP',
   target: 100,
   title: 'dummy line graph',
-  axis_labels: [ 'x', 'y', [length]: 2 ],
-  chart_type: 'LINE',
-  data_sets:
-   [ { show_trendline: true,
+  axisLabels: [ 'x', 'y', [length]: 2 ],
+  type: 'LINE',
+  dataSets:
+   [ { showTrendLine: true,
        description: 'first datapoint',
        title: 'line1',
        color: 'RED',
-       data_values:
+       dataValues:
         [ [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, [length]: 10 ],
           [ 2, 5, 1, 6, 8, 9, 3, 4, 7, 8, [length]: 10 ],
           [length]: 2 ],
-       metadata: '' },
+       metaData: '' },
      [length]: 1 ] } 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],

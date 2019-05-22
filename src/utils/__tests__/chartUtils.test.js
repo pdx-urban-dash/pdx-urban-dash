@@ -6,21 +6,21 @@ import { genChart } from '../chartUtils';
 each([
   [undefined],
   [{
-    target_trend: 'UP',
+    targetTrend: 'UP',
     target: 100,
     title: 'dummy line graph',
-    axis_labels: [
+    axisLabels: [
       'x',
       'y',
     ],
-    chart_type: 'LINE',
-    data_sets: [
+    type: 'LINE',
+    dataSets: [
       {
-        show_trendline: true,
+        showTrendLine: true,
         description: 'first datapoint',
         title: 'line1',
         color: 'RED',
-        data_values: [
+        dataValues: [
           [
             1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
           ],
@@ -28,15 +28,15 @@ each([
             2, 5, 1, 6, 8, 9, 3, 4, 7, 8,
           ],
         ],
-        metadata: '',
+        metaData: '',
       },
     ],
   }],
   [{
-    metadata: 'Metadata placeholder',
+    metaData: 'metaData placeholder',
     title: 'bar1',
     description: 'Dummy bar chart 1: 7 bars of random positive size.',
-    chart_type: 'BAR',
+    type: 'BAR',
     categories: [
       'category 4',
       'category 5',
@@ -47,21 +47,21 @@ each([
       'category 6',
     ],
     target: 30.0,
-    target_trend: 'STABLE',
-    axis_labels: [
+    targetTrend: 'STABLE',
+    axisLabels: [
       [
         'bar_labels',
         'bar values',
       ],
     ],
-    data_sets: [
+    dataSets: [
       {
-        metadata: 'Metadata placeholder.',
+        metaData: 'metaData placeholder.',
         title: "bar1 dataset member 1. Axis label(s): ['bar_labels', 'bar values']",
         description: 'Contains bar1 data for type BAR chart.',
         color: 'YELLOW',
-        show_trendline: true,
-        data_values: [
+        showTrendLine: true,
+        dataValues: [
           [
             'bar 1',
             'bar 2',
@@ -87,21 +87,21 @@ each([
     ],
   },
   {
-    target_trend: 'UP',
+    targetTrend: 'UP',
     target: 100,
     title: 'dummy line graph',
-    axis_labels: [
+    axisLabels: [
       'x',
       'y',
     ],
-    chart_type: 'DONUT',
-    data_sets: [
+    type: 'DONUT',
+    dataSets: [
       {
-        show_trendline: true,
+        showTrendLine: true,
         description: 'first datapoint',
         title: 'line1',
         color: 'RED',
-        data_values: [
+        dataValues: [
           [
             'RED',
             'BLUE',
@@ -115,7 +115,7 @@ each([
             70,
           ],
         ],
-        metadata: '',
+        metaData: '',
       },
     ],
   },

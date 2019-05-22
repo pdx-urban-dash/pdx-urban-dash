@@ -158,13 +158,13 @@ export default class FilterManager extends React.Component {
 
   hasTarget(chart, matchTarget) {
     var target = chart.target;
-    var targetTrend = chart.target_trend;
-    for (var datasetIdx in chart.data_sets) {
-      var dataset = chart.data_sets[datasetIdx];
-      var current = dataset.data_values[1][dataset.data_values[1].length-1];
+    var targetTrend = chart.targetTrend;
+    for (var datasetIdx in chart.dataSets) {
+      var dataset = chart.dataSets[datasetIdx];
+      var current = dataset.values[1][dataset.values[1].length-1];
 
-      if(chart.chart_type === 'DONUT')
-        current = dataset.data_values[2][dataset.data_values[2].length-1];
+      if(chart.type === 'DONUT')
+        current = dataset.values[2][dataset.values[2].length-1];
 
       if(matchTarget === 'Above Target (Latest report)' && current > target)
         return true;
@@ -206,24 +206,24 @@ export default class FilterManager extends React.Component {
   }
 
   hasTrend(chart, matchTrend) {
-    if(chart.chart_type === 'DONUT')
+    if(chart.type === 'DONUT')
       return false;
 
-    for (var datasetIdx in chart.data_sets) {
-      var dataset = chart.data_sets[datasetIdx];
+    for (var datasetIdx in chart.dataSets) {
+      var dataset = chart.dataSets[datasetIdx];
       var xs, ys;
 
-      if(chart.chart_type === 'LINE'){
-        xs = dataset.data_values[0];
-        ys = dataset.data_values[1];
+      if(chart.type === 'LINE'){
+        xs = dataset.values[0];
+        ys = dataset.values[1];
       }
 
-      if(chart.chart_type === 'BAR'){
-        ys = dataset.data_values[1];
-        if(typeof dataset.data_values[0][0] === 'string')
+      if(chart.type === 'BAR'){
+        ys = dataset.values[1];
+        if(typeof dataset.values[0][0] === 'string')
           xs = Array.from(Array(ys.length), (x, i) => i+1);
         else
-          xs = dataset.data_values[0];
+          xs = dataset.values[0];
       }
 
       var xys = [];
