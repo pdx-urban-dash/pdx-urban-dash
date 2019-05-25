@@ -1,5 +1,10 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# API Tokens, etc
+src/graphAPI/credentials.json
+src/graphAPI/token.json
+src/graphAPI/sheetID.json
+
 # dependencies
 /node_modules
 /.pnp
