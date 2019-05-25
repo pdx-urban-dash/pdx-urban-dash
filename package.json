@@ -5,11 +5,13 @@
   "dependencies": {
     "apollo-cache-inmemory": "^1.5.1",
     "apollo-client": "^2.5.1",
+    "apollo-datasource-rest": "^0.4.0",
     "apollo-link-http": "^1.5.14",
     "apollo-server-express": "^2.4.8",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.3.1",
     "express": "^4.16.4",
+    "googleapis": "^40.0.0",
     "graphql": "^14.2.1",
     "graphql-tools": "^4.0.4",
     "node-sass": "^4.11.0",
@@ -47,6 +49,9 @@
     "eslint-config-airbnb": "^17.1.0",
     "jest-each": "^24.7.1",
     "nodemon": "^1.18.10"
+  },
+  "optionalDependencies": {
+    "fsevents": "^1.2.9"
   },
   "proxy": "http://localhost:8080/"
 }
