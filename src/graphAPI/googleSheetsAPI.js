@@ -49,13 +49,16 @@ function dataSetProcessor(chart, type) {
   chart = R.transpose(chart).slice(1);
   if (type === 'DONUT') {
     data = attributeColumn(chart[0]);
+    data.showTrendLine = data.showTrendLine === 'TRUE';
     data.values = [chart[1], chart[2], chart[3]];
     return [data];      
   } 
   data = [];
   return chart.reduce((accum, curr, i) => {
     if (i % 3 === 0) {
-      accum.push(attributeColumn(curr));
+      const column = attributeColumn(curr);
+      column.showTrendLine = column.showTrendLine === 'TRUE';
+      accum.push(column);
       return accum;
     } 
     accum[accum.length - 1].values.push(curr);
@@ -88,7 +91,7 @@ class GoogleSheetsAPI extends RESTDataSource {
   async getChartTitles() {
     const retrieveData = new Promise(((resolve, reject) => {
       const request = {
-        spreadSheetID: sheetID,
+        spreadsheetId: sheetID,
         auth: genAuth(),
         range: [],
         includeGridData: false,
@@ -119,7 +122,7 @@ class GoogleSheetsAPI extends RESTDataSource {
     const titles = await this.getChartTitles();
     const ranges = titles.map(chart => `${chart.title}!A1:${toColumn(chart.gridProperties.columnCount)}${chart.gridProperties.rowCount}`);
     const request = {
-      spreadSheetID: sheetID,
+      spreadsheetId: sheetID,
       auth: genAuth(),
       ranges,
     };
@@ -137,4 +140,4 @@ class GoogleSheetsAPI extends RESTDataSource {
   }
 }
 
-export default GoogleSheetsAPI;
+module.exports = { GoogleSheetsAPI };
