@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const { ApolloServer } = require('apollo-server-express');
 const graphSchema = require('./src/graphAPI/schema');
+const GoogleSheetsAPI = require('./src/graphAPI/googleSheetsAPI');
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -10,6 +11,9 @@ const port = process.env.PORT || 8080;
 const graphQlServer = new ApolloServer({
   typeDefs: graphSchema.typeDef,
   resolvers: graphSchema.resolvers,
+  dataSources: () => ({
+    googleSheetsAPI: new GoogleSheetsAPI(),
+  }),
   mocks: true,
 });
 app.use(express.static(path.join(__dirname, 'build')));
