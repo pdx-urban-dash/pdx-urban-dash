@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Jumbotron,
+  Container,
+  Row,
+  Col,
   Dropdown,
   DropdownMenu,
   DropdownItem,
@@ -28,6 +31,25 @@ export const FILTERS = {
     },
     key: 'categoryFilters',
     label: 'Category filters',
+    name: 'Category',
+  },
+  TARGET: {
+    apply: (dataSetItem, targets) => {
+      if (targets.length === 0) return true;
+      return false;
+    },
+    key: 'targetFilters',
+    label: 'Target filters',
+    name: 'Target',
+  },
+  TREND: {
+    apply: (dataSetItem, trends) => {
+      if (trends.length === 0) return true;
+      return trends.some(trend => dataSetItem.dataSets.some(setTrend => trend === setTrend));
+    },
+    key: 'trendFilters',
+    label: 'Trend filters',
+    name: 'Trend',
   },
   KEYWORD: {
     apply: (dataSetItem, keywords) => {
@@ -53,22 +75,7 @@ export const FILTERS = {
     },
     key: 'keywordFilters',
     label: 'Search for a keyword',
-  },
-  TREND: {
-    apply: (dataSetItem, trends) => {
-      if (trends.length === 0) return true;
-      return trends.some(trend => dataSetItem.dataSets.some(setTrend => trend === setTrend));
-    },
-    key: 'trendFilters',
-    label: 'Trend filters',
-  },
-  TARGET: {
-    apply: (dataSetItem, targets) => {
-      if (targets.length === 0) return true;
-      return false;
-    },
-    key: 'targetFilters',
-    label: 'Target filters',
+    name: 'Keyword',
   },
 };
 
@@ -96,7 +103,7 @@ const FilterPane = ({
     keywordFilters: [],
   };
   const [activeFilters, setActiveFilters] = useState(mFilterSet);
-  const [activeFilterPane, setActiveFilterPane] = useState(FILTERS.CATEGORY.key);
+  const [activeFilterPane, setActiveFilterPane] = useState(FILTERS.CATEGORY.label);
   const [isFilterTypeSelectOpen, setFilterTypeSelectOpen] = useState(false);
   const toggleFilterTypeDropdown = () => {
     setFilterTypeSelectOpen(!isFilterTypeSelectOpen);
@@ -116,50 +123,59 @@ const FilterPane = ({
   return (
     <div className={`ud-FilterPane ${visible ? 'ud-FilterPane--show' : 'ud-FilterPane--hide'}`}>
       <Jumbotron>
-        <Dropdown isOpen={isFilterTypeSelectOpen} toggle={toggleFilterTypeDropdown}>
-          <DropdownToggle className="ud-FilterPane-filter-type-dropdown">{activeFilterPane}</DropdownToggle>
-          <DropdownMenu className="ud-FilterPane-filter-type-dropdown">
-            {Object.keys(FILTERS).map(key => (
-              <DropdownItem onClick={() => setActiveFilterPane(FILTERS[key].label)}>
-                {FILTERS[key].label}
-              </DropdownItem>
-            ))}
-          </DropdownMenu>
-        </Dropdown>
-        {activeFilterPane === FILTERS.CATEGORY.label && (
-          <AvailableFiltersPane
-            filterType={FILTERS.CATEGORY.key}
-            availableFilters={getCategoriesFromData(data)}
-            selectedFilters={activeFilters[FILTERS.CATEGORY.key]}
-            toggleFilterOption={toggleFilter}
-          />
-        )}
-        {activeFilterPane === FILTERS.TREND.label && (
-          <AvailableFiltersPane
-            filterType={FILTERS.TREND.key}
-            availableFilters={Object.values(trend)}
-            selectedFilters={activeFilters[FILTERS.TREND.key]}
-            toggleFilterOption={toggleFilter}
-          />
-        )}
-        {activeFilterPane === FILTERS.TARGET.label && (
-          <AvailableFiltersPane
-            filterType={FILTERS.TARGET.key}
-            availableFilters={Object.values(target)}
-            selectedFilters={activeFilters[FILTERS.TARGET.key]}
-            toggleFilterOption={toggleFilter}
-          />
-        )}
-        {activeFilterPane === FILTERS.KEYWORD.label && (
-          <AvailableFiltersPane
-            filterType={FILTERS.KEYWORD.key}
-            availableFilters={activeFilters[FILTERS.KEYWORD.key]}
-            selectedFilters={activeFilters[FILTERS.KEYWORD.key]}
-            toggleFilterOption={toggleFilter}
-          >
+        <Container fluid>
+          <Row>
+            <Col sm={8}>
+              <Dropdown isOpen={isFilterTypeSelectOpen} toggle={toggleFilterTypeDropdown}>
+                <DropdownToggle className="ud-FilterPane-filter-type-dropdown" caret>{activeFilterPane}</DropdownToggle>
+                <DropdownMenu className="ud-FilterPane-filter-type-dropdown">
+                  {Object.keys(FILTERS).map(key => (
+                    <DropdownItem onClick={() => setActiveFilterPane(FILTERS[key].label)}>
+                      {FILTERS[key].label}
+                    </DropdownItem>
+                  ))}
+                </DropdownMenu>
+              </Dropdown>
+              {activeFilterPane === FILTERS.CATEGORY.label && (
+                <AvailableFiltersPane
+                  filterType={FILTERS.CATEGORY.key}
+                  availableFilters={getCategoriesFromData(data)}
+                  selectedFilters={activeFilters[FILTERS.CATEGORY.key]}
+                  toggleFilterOption={toggleFilter}
+                />
+              )}
+              {activeFilterPane === FILTERS.TREND.label && (
+                <AvailableFiltersPane
+                  filterType={FILTERS.TREND.key}
+                  availableFilters={Object.values(trend)}
+                  selectedFilters={activeFilters[FILTERS.TREND.key]}
+                  toggleFilterOption={toggleFilter}
+                />
+              )}
+              {activeFilterPane === FILTERS.TARGET.label && (
+                <AvailableFiltersPane
+                  filterType={FILTERS.TARGET.key}
+                  availableFilters={Object.values(target)}
+                  selectedFilters={activeFilters[FILTERS.TARGET.key]}
+                  toggleFilterOption={toggleFilter}
+                />
+              )}
+              {activeFilterPane === FILTERS.KEYWORD.label && (
+                <AvailableFiltersPane
+                  filterType={FILTERS.KEYWORD.key}
+                  availableFilters={activeFilters[FILTERS.KEYWORD.key]}
+                  selectedFilters={activeFilters[FILTERS.KEYWORD.key]}
+                  toggleFilterOption={toggleFilter}
+                >
 
-          </AvailableFiltersPane>
-        )}
+                </AvailableFiltersPane>
+              )}
+            </Col>
+            <Col sm={4}>
+              selected filters...
+            </Col>
+          </Row>
+        </Container>
       </Jumbotron>
     </div>
   );

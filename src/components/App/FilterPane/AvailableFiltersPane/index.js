@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import FilterBadge from '../FilterBadge';
+import './styles.scss';
 
 const AvailableFiltersPane = ({
   availableFilters,
@@ -10,7 +11,7 @@ const AvailableFiltersPane = ({
   toggleFilterOption,
   children,
 }) => (
-  <div>
+  <div className="ud-AvailableFiltersPane">
     {children}
     {availableFilters.map(filter => (
       <FilterBadge

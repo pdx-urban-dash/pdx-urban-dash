@@ -5,7 +5,7 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 const FilterSetHelpModal = ({ isOpen, toggleOpen }) => (
   <Modal isOpen={isOpen} toggle={toggleOpen}>
     <ModalHeader>
-      Filter Sets
+      What are filter sets?
     </ModalHeader>
     <ModalBody>
       Some explaination here.
