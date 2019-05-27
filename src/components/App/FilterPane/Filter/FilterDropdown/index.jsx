@@ -1,16 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   ButtonDropdown,
   DropdownMenu,
   DropdownToggle,
-  DropdownItem
-} from "reactstrap";
+  DropdownItem,
+} from 'reactstrap';
 
 export default class FilterDropdown extends React.Component {
   static propTypes = {
     categories: PropTypes.arrayOf(PropTypes.string).isRequired,
-    callback: PropTypes.func
+    callback: PropTypes.func,
+  };
+
+  static defaultProps = {
+    callback: () => undefined,
   };
 
   constructor(props) {
@@ -18,30 +22,28 @@ export default class FilterDropdown extends React.Component {
 
     this.toggleDropDown = this.toggleDropDown.bind(this);
     this.activateCategory = this.activateCategory.bind(this);
-    this.renderCategoryDropdownItem = this.renderCategoryDropdownItem.bind(
-      this
-    );
+    this.renderCategoryDropdownItem = this.renderCategoryDropdownItem.bind(this);
 
     this.callback = props.callback;
     this.categories = props.categories;
     this.state = {
       dropdownOpen: false,
-      dropdownLabel: "Select a Filter"
+      dropdownLabel: 'Select a Filter',
     };
   }
 
   toggleDropDown() {
     const { dropdownOpen } = this.state;
     this.setState({
-      dropdownOpen: !dropdownOpen
+      dropdownOpen: !dropdownOpen,
     });
   }
 
   activateCategory(category) {
     const { categories } = this.props;
-    if (categories.includes(category) || category === "None") {
+    if (categories.includes(category) || category === 'None') {
       this.setState({
-        dropdownLabel: category
+        dropdownLabel: category,
       });
       const { callback } = this.props;
       callback(category);
@@ -56,7 +58,7 @@ export default class FilterDropdown extends React.Component {
           key: category,
           onClick: () => this.activateCategory(category),
         },
-        category
+        category,
       )
     );
   }
@@ -76,12 +78,10 @@ export default class FilterDropdown extends React.Component {
           {dropdownLabel}
         </DropdownToggle>
         <DropdownMenu className="btn-block" right>
-          <DropdownItem onClick={() => this.activateCategory("None")}>
+          <DropdownItem onClick={() => this.activateCategory('None')}>
             None
           </DropdownItem>
-          {categories.map(category =>
-            this.renderCategoryDropdownItem(category)
-          )}
+          {categories.map(category => this.renderCategoryDropdownItem(category))}
         </DropdownMenu>
       </ButtonDropdown>
     );

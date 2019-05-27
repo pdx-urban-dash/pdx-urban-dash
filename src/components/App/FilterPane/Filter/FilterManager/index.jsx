@@ -8,7 +8,7 @@ import {
   FilterDropdown,
   FilterSelectGroup,
   FilterSelect
-} from "../FilterComponents";
+} from "..";
 import  {getTrendSlope}  from "../../../utils/vizUtils";
 
 export default class FilterManager extends React.Component {

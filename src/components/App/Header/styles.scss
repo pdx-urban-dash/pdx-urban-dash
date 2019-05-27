@@ -1,0 +1,28 @@
+@import "../../../base-styles";
+
+.ud-Header {
+  &-navbar-brand {
+    margin-right: $spacing-2;
+  }
+
+  &-filter-set {
+    margin-left: $spacing-4;
+  }
+
+  &-filter-set-dropdown {
+    display: inline-block;
+  }
+
+  &-filter-toggle {
+    margin: auto;
+  }
+
+  &-filter-set-dropdown {
+    min-width: 175px;
+  }
+
+  &-help-icon {
+    display: inline-block;
+    margin-left: $spacing-2;
+  }
+}

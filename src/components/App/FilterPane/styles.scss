@@ -1,0 +1,20 @@
+@import "../../../base-styles";
+
+.ud-FilterPane {
+  transition: max-height 0.5s;
+  -webkit-transition: max-height 0.5s;
+
+  &-filter-type-dropdown {
+    width: 100%;
+  }
+
+  &--hide {
+    max-height: 2px;
+    overflow: hidden;
+  }
+
+  &--show {
+    max-height: 400px;
+    overflow: scroll;
+  }
+}

@@ -7,6 +7,26 @@ enum TrendType {
   NEUTRAL
 }
 
+enum ChartType {
+  LINE
+  BAR
+  DONUT
+}
+
+enum TargetTrendType {
+  ON_TARGET
+  OFF_TARGET
+  TRENDING_TO_TARGET
+  TRENDING_FROM_TARGET
+}
+
+type FilterSet {
+  categories: [String!]!
+  trends: [TrendType!]!
+  targets: [TargetTrendType!]!
+  keywords: [String!]!
+}
+
 type DataSetValue {
   values: [String!]!
 }
@@ -29,7 +49,7 @@ type VizData {
   metaData: String
   title: String!
   description: String
-  type: String!
+  type: ChartType!
   categories: [String!]!
   target: Float
   targetTrend: TrendType

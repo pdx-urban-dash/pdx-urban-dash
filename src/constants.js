@@ -49,6 +49,7 @@ export const category20 = {
 };
 
 export const iconSizes = {
+  xsmall: 16,
   small: 24,
   medium: 36,
   large: 48,
@@ -56,7 +57,14 @@ export const iconSizes = {
 };
 
 export const trend = {
-  up: 'trending-up',
-  down: 'trending-down',
-  // neutral: 'trend-neutral',
+  up: 'UP',
+  down: 'DOWN',
+  neutral: 'NEUTRAL',
+};
+
+export const target = {
+  onTarget: 'ON_TARGET',
+  offTarget: 'OFF_TARGET',
+  trendingToTarget: 'TRENDING_TO_TARGET',
+  trendingFromTarget: 'TRENDING_FROM_TARGET',
 };
