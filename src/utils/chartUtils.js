@@ -10,26 +10,26 @@ export const genChart = (chartJson, colorScheme, className) => {
   }
   // All charts use these elements
   const fInput = { title: chartJson.title, colorScheme, className };
-  if (chartJson.chart_type === 'LINE') {
+  if (chartJson.type === 'LINE') {
     const data = [];
-    chartJson.data_sets.forEach((chartData) => {
+    chartJson.dataSets.forEach((chartData) => {
       const values = [];
-      chartData.data_values[0].map((e, i) => values.push({ x: e, y: chartData.data_values[1][i] }));
+      chartData.values[0].map((e, i) => values.push({ x: e, y: chartData.values[1][i] }));
       data.push({
         dataSetName: chartData.title,
         lineColor: chartData.color,
         description: chartData.description,
-        showTrendLine: chartData.show_trendLine,
+        showTrendLine: chartData.showTrendLine,
         values,
       });
     });
     fInput.data = data;
     return <LineChart {...fInput} />;
-  } if (chartJson.chart_type.startsWith('BAR')) {
+  } if (chartJson.type.startsWith('BAR')) {
     const data = [];
-    chartJson.data_sets.forEach((chartData) => {
+    chartJson.dataSets.forEach((chartData) => {
       const values = [];
-      chartData.data_values[0].map((e, i) => values.push({ x: e, y: chartData.data_values[1][i] }));
+      chartData.values[0].map((e, i) => values.push({ x: e, y: chartData.values[1][i] }));
       data.push({
         dataSetName: chartData.title,
         barColor: chartData.color,
@@ -38,23 +38,23 @@ export const genChart = (chartJson, colorScheme, className) => {
       });
     });
     fInput.data = data;
-    if (chartJson.chart_type === 'BARCLUSTERED') {
+    if (chartJson.type === 'BARCLUSTERED') {
       return <BarChartClustered {...fInput} />;
     }
-    if (chartJson.chart_type === 'BARSTACKED') {
+    if (chartJson.type === 'BARSTACKED') {
       return <BarChartStacked {...fInput} />;
     }
-    if (chartJson.chart_type === 'BARGROUPED') {
+    if (chartJson.type === 'BARGROUPED') {
       return <BarChartGrouped {...fInput} />;
     }
-  } else if (chartJson.chart_type.startsWith('DONUT')) {
+  } else if (chartJson.type.startsWith('DONUT')) {
     const data = [];
-    chartJson.data_sets.forEach((chartData) => {
-      chartData.data_values[0].map((e, i) => data.push(
+    chartJson.dataSets.forEach((chartData) => {
+      chartData.values[0].map((e, i) => data.push(
         {
           color: e,
-          name: chartData.data_values[1][i],
-          value: chartData.data_values[2][i],
+          name: chartData.values[1][i],
+          value: chartData.values[2][i],
         },
       ));
     });

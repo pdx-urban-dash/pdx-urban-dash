@@ -32,6 +32,8 @@
     "server": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:filter": "react-scripts test src/components/Filter",
+    "test:filter:coverge": "react-scripts test src/components/Filter --verbose --coverage",
     "eject": "react-scripts eject",
     "lint": "node_modules/.bin/eslint ./src ./server.js"
   },
