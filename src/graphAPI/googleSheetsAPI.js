@@ -1,32 +1,15 @@
-/* eslint-disable no-trailing-spaces */
 const { RESTDataSource } = require('apollo-datasource-rest');
-// const fs = require('fs');
-// const readline = require('readline');
 const { google } = require('googleapis');
 const R = require('ramda');
 
-const { sheetID } = require('./sheetID');
-const token = require('./token');
-const credentials = require('./credentials');
-
-// const TOKEN_PATH = 'token.json';
-// this is actually the scope path? the actual api path is different
-// const SCOPE = 'https://www.googleapis.com/auth/spreadsheets.readonly';
+const { SHEET_ID, CLIENT_EMAIL } = process.env;
+const PRIVATE_KEY = process.env.PRIVATE_KEY.replace(/\\n/g, '\n');
 const API_PATH = 'https://sheets.googleapis.com/v4/spreadsheets/';
+const SCOPE = 'https://www.googleapis.com/auth/spreadsheets.readonly';
+const jwt = new google.auth.JWT(CLIENT_EMAIL, null, PRIVATE_KEY, [SCOPE]);
 
-function genAuth() {
-  const {
-    client_secret,
-    client_id,
-    redirect_uris,
-  } = credentials.installed;
-  const oAuth2Client = new google.auth.OAuth2(
-    client_id, client_secret, redirect_uris[0],
-  );
-  oAuth2Client.setCredentials(token);
-  return oAuth2Client;
-}
-
+// turns integers into column notation
+// ie: 1=>A, 26=>Z, 27=>AA, etc
 function toColumn(num) {
   let range = '';
   while (num > 26) {
@@ -36,6 +19,7 @@ function toColumn(num) {
   return range.concat(String.fromCharCode(64 + num));
 }
 
+// Grabs info from sheets and processes it into the expected schema
 function dataSetProcessor(chart, type) {
   const attributeColumn = attr => ({
     title: attr[0],
@@ -51,8 +35,8 @@ function dataSetProcessor(chart, type) {
     data = attributeColumn(chart[0]);
     data.showTrendLine = data.showTrendLine === 'TRUE';
     data.values = [chart[1], chart[2], chart[3]];
-    return [data];      
-  } 
+    return [data];
+  }
   data = [];
   return chart.reduce((accum, curr, i) => {
     if (i % 3 === 0) {
@@ -60,12 +44,13 @@ function dataSetProcessor(chart, type) {
       column.showTrendLine = column.showTrendLine === 'TRUE';
       accum.push(column);
       return accum;
-    } 
+    }
     accum[accum.length - 1].values.push(curr);
     return accum;
   }, data);
 }
 
+// Takes values from sheets that support multiple data sets and processes
 function valueProcessor(data) {
   const chart = {
     metaData: data.values[6][1],
@@ -91,8 +76,8 @@ class GoogleSheetsAPI extends RESTDataSource {
   async getChartTitles() {
     const retrieveData = new Promise(((resolve, reject) => {
       const request = {
-        spreadsheetId: sheetID,
-        auth: genAuth(),
+        spreadsheetId: SHEET_ID,
+        auth: jwt,
         range: [],
         includeGridData: false,
       };
@@ -122,8 +107,8 @@ class GoogleSheetsAPI extends RESTDataSource {
     const titles = await this.getChartTitles();
     const ranges = titles.map(chart => `${chart.title}!A1:${toColumn(chart.gridProperties.columnCount)}${chart.gridProperties.rowCount}`);
     const request = {
-      spreadsheetId: sheetID,
-      auth: genAuth(),
+      spreadsheetId: SHEET_ID,
+      auth: jwt,
       ranges,
     };
     const retrieveData = new Promise((resolve, reject) => {
