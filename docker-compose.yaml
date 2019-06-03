@@ -8,6 +8,9 @@ services:
         - NODE_ENV=production
         - REACT_APP_STAGE=production
         - PORT=8080
+        - SHEET_ID="${SHEET_ID}"
+        - CLIENT_EMAIL="${CLIENT_EMAIL}"
+        - PRIVATE_KEY="${PRIVATE_KEY}"
     volumes:
         - ./:/home/dash/pdx-urban-dash
     expose:
