@@ -42,7 +42,11 @@ type Query {
 }
 `;
 
-const resolvers = {};
+const resolvers = {
+  Query: {
+    sheetsData: async (_source, _args, { dataSources }) => dataSources.googleSheetsAPI.getCharts(),
+  },
+};
 
 module.exports = {
   typeDef,
