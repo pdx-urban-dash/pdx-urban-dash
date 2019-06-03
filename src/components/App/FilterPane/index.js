@@ -14,6 +14,7 @@ import {
 import { filterSetType, standardizedDataType } from '../../../propTypes';
 import { trend, target } from '../../../constants';
 import AvailableFiltersPane from './AvailableFiltersPane';
+import SelectedFiltersPane from './SelectedFiltersPane';
 
 import './styles.scss';
 
@@ -45,7 +46,7 @@ export const FILTERS = {
   TREND: {
     apply: (dataSetItem, trends) => {
       if (trends.length === 0) return true;
-      return trends.some(trend => dataSetItem.dataSets.some(setTrend => trend === setTrend));
+      return trends.some(mTrend => dataSetItem.dataSets.some(setTrend => mTrend === setTrend));
     },
     key: 'trendFilters',
     label: 'Trend filters',
@@ -87,7 +88,7 @@ const filterDataSets = (data, filterSet) => (
     .filter(dataSetItem => FILTERS.TARGET.apply(dataSetItem, filterSet[FILTERS.TARGET.key]))
 );
 
-const getCategoriesFromData = data => data.flatMap(dataSetItem => dataSetItem.categories);
+const getCategoriesFromData = data => [...new Set(data.flatMap(dataSetItem => dataSetItem.categories))];
 
 const FilterPane = ({
   data,
@@ -172,7 +173,7 @@ const FilterPane = ({
               )}
             </Col>
             <Col sm={4}>
-              selected filters...
+              <SelectedFiltersPane toggleFilter={toggleFilter} filterSet={activeFilters} />
             </Col>
           </Row>
         </Container>

@@ -1,0 +1,12 @@
+@import "../../../../base-styles";
+
+.ud-SelectedFiltersPane {
+  width: 150px;
+  position: relative;
+
+  &-icon {
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+  }
+}
