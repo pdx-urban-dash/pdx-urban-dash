@@ -1,4 +1,5 @@
 import React from 'react';
+import { Spinner } from 'react-bootstrap';
 import gql from 'graphql-tag';
 import { ApolloProvider, Query } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
@@ -56,15 +57,16 @@ const App = () => (
     <Query query={sheetsDataQuery}>
       {({ data, loading, error }) => {
         if (loading) {
-
+          return <Spinner color="primary" />;
         }
         if (error) {
-
+          console.error(error);
         }
         if (data) {
           const { sheetsData } = data;
           return <Main data={sheetsData} />;
         }
+        return <span />;
       }}
     </Query>
   </ApolloProvider>

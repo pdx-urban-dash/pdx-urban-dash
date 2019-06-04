@@ -16,6 +16,7 @@ import {
 import { colors, iconSizes } from '../../constants';
 
 const Icon = ({ size, type }) => {
+  if (typeof type === 'object') return null;
   const validSizes = {
     xs: iconSizes.xsmall,
     sm: iconSizes.small,

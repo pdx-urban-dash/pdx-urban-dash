@@ -22,6 +22,7 @@ export const standardizedDataType = PropTypes.shape({
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
   target: PropTypes.number,
   targetTrend: PropTypes.string,
+  trending: PropTypes.string,
   axisLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
   dataSets: PropTypes.arrayOf(dataSetType),
 });

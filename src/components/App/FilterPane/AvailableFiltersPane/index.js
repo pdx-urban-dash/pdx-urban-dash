@@ -15,17 +15,20 @@ const AvailableFiltersPane = ({
     {children}
     {availableFilters.map(filter => (
       <FilterBadge
-        key={`ud-filter-${filter}`}
-        title={filter}
-        onSelect={() => { toggleFilterOption(filterType, filter); }}
-        isSelected={selectedFilters.some(selectedFilter => selectedFilter === filter)}
+        key={`ud-filter-${filter.key}`}
+        title={filter.label}
+        onSelect={() => { toggleFilterOption(filterType, filter.key); }}
+        isSelected={selectedFilters.some(selectedFilter => selectedFilter === filter.key)}
       />
     ))}
   </div>
 );
 
 AvailableFiltersPane.propTypes = {
-  availableFilters: PropTypes.arrayOf(PropTypes.string).isRequired,
+  availableFilters: PropTypes.arrayOf(PropTypes.shape({
+    key: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+  })).isRequired,
   selectedFilters: PropTypes.arrayOf(PropTypes.string).isRequired,
   filterType: PropTypes.string.isRequired,
   toggleFilterOption: PropTypes.func.isRequired,

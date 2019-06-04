@@ -35,7 +35,7 @@ const Main = ({ data, filterSets }) => {
         visible={showFilters}
         loadFilterSet={selectedFilterSet}
       />
-      <ChartPane visibleData={visibleData} />
+      <ChartPane visibleCharts={visibleData} />
     </Fragment>
   );
 };

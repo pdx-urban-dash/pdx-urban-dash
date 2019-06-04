@@ -5,7 +5,7 @@ import DonutChart from '../components/viz/DonutChart';
 
 // eslint-disable-next-line import/prefer-default-export
 export const genChart = (chartJson, colorScheme, className) => {
-  if (chartJson === undefined) {
+  if (!chartJson) {
     return null;
   }
   // All charts use these elements
@@ -14,7 +14,10 @@ export const genChart = (chartJson, colorScheme, className) => {
     const data = [];
     chartJson.dataSets.forEach((chartData) => {
       const values = [];
-      chartData.values[0].map((e, i) => values.push({ x: e, y: chartData.values[1][i] }));
+      chartData
+        .values[0]
+        .values
+        .map((e, i) => values.push({ x: e, y: chartData.values[1].values[i] }));
       data.push({
         dataSetName: chartData.title,
         lineColor: chartData.color,
@@ -29,7 +32,10 @@ export const genChart = (chartJson, colorScheme, className) => {
     const data = [];
     chartJson.dataSets.forEach((chartData) => {
       const values = [];
-      chartData.values[0].map((e, i) => values.push({ x: e, y: chartData.values[1][i] }));
+      chartData
+        .values[0]
+        .values
+        .map((e, i) => values.push({ x: e, y: chartData.values[1].values[i] }));
       data.push({
         dataSetName: chartData.title,
         barColor: chartData.color,
@@ -38,7 +44,7 @@ export const genChart = (chartJson, colorScheme, className) => {
       });
     });
     fInput.data = data;
-    if (chartJson.type === 'BARCLUSTERED') {
+    if (chartJson.type === 'BAR') {
       return <BarChartClustered {...fInput} />;
     }
     if (chartJson.type === 'BARSTACKED') {
@@ -50,11 +56,11 @@ export const genChart = (chartJson, colorScheme, className) => {
   } else if (chartJson.type.startsWith('DONUT')) {
     const data = [];
     chartJson.dataSets.forEach((chartData) => {
-      chartData.values[0].map((e, i) => data.push(
+      chartData.values[0].values.map((e, i) => data.push(
         {
           color: e,
-          name: chartData.values[1][i],
-          value: chartData.values[2][i],
+          name: chartData.values[1].values[i],
+          value: chartData.values[2].values[i],
         },
       ));
     });

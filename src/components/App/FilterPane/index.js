@@ -8,7 +8,7 @@ import {
   Dropdown,
   DropdownMenu,
   DropdownItem,
-  DropdownToggle
+  DropdownToggle,
 } from 'reactstrap';
 
 import { filterSetType, standardizedDataType } from '../../../propTypes';
@@ -37,7 +37,7 @@ export const FILTERS = {
   TARGET: {
     apply: (dataSetItem, targets) => {
       if (targets.length === 0) return true;
-      return false;
+      return targets.some(target => target === dataSetItem.trending);
     },
     key: 'targetFilters',
     label: 'Target filters',
@@ -88,7 +88,13 @@ const filterDataSets = (data, filterSet) => (
     .filter(dataSetItem => FILTERS.TARGET.apply(dataSetItem, filterSet[FILTERS.TARGET.key]))
 );
 
-const getCategoriesFromData = data => [...new Set(data.flatMap(dataSetItem => dataSetItem.categories))];
+const getCategoriesFromData = (data) => {
+  const cats = [...new Set(data
+    .flatMap(dataSetItem => dataSetItem.categories)),
+  ];
+  cats.sort();
+  return cats.map(cat => ({ key: cat, label: cat }));
+};
 
 const FilterPane = ({
   data,
@@ -113,10 +119,12 @@ const FilterPane = ({
     const newFilters = { ...activeFilters };
     if (activeFilters[filterType].every(filterName => filterName !== filter)) {
       newFilters[filterType].push(filter);
+      newFilters[filterType].sort();
       setActiveFilters(newFilters);
     } else {
       newFilters[filterType] = newFilters[filterType]
         .filter(filterName => filterName !== filter);
+      newFilters[filterType].sort();
       setActiveFilters(newFilters);
     }
     setVisibleData(filterDataSets(data, newFilters));

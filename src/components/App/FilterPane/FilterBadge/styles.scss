@@ -5,9 +5,9 @@
   border: solid thin white;
   color: $color-font-dark;
   background-color: white;
-  padding: $spacing-1;
+  padding: $spacing-1 $spacing-2 $spacing-1 $spacing-2;
   text-align: center;
-  max-width: 150px;
+  display: inline-block;
   position: relative;
   margin: $spacing-2;
 
