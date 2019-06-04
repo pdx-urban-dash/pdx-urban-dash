@@ -10,6 +10,7 @@ import {
   DropdownItem,
   DropdownToggle,
   Input,
+  Button,
 } from 'reactstrap';
 
 import { filterSetType, standardizedDataType } from '../../../propTypes';
@@ -18,7 +19,6 @@ import AvailableFiltersPane from './AvailableFiltersPane';
 import SelectedFiltersPane from './SelectedFiltersPane';
 
 import './styles.scss';
-import { Button } from 'react-bootstrap';
 
 export const FILTERS = {
   CATEGORY: {
@@ -39,7 +39,7 @@ export const FILTERS = {
   TARGET: {
     apply: (dataSetItem, targets) => {
       if (targets.length === 0) return true;
-      return targets.some(target => target === dataSetItem.trending);
+      return targets.some(t => t === dataSetItem.trending);
     },
     key: 'targetFilters',
     label: 'Target filters',
