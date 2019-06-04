@@ -9,6 +9,7 @@ import {
   DropdownMenu,
   DropdownItem,
   DropdownToggle,
+  Input,
 } from 'reactstrap';
 
 import { filterSetType, standardizedDataType } from '../../../propTypes';
@@ -17,6 +18,7 @@ import AvailableFiltersPane from './AvailableFiltersPane';
 import SelectedFiltersPane from './SelectedFiltersPane';
 
 import './styles.scss';
+import { Button } from 'react-bootstrap';
 
 export const FILTERS = {
   CATEGORY: {
@@ -96,6 +98,8 @@ const getCategoriesFromData = (data) => {
   return cats.map(cat => ({ key: cat, label: cat }));
 };
 
+const getKeywordFiltersFromList = keywords => keywords.map(word => ({ key: word, label: word }));
+
 const FilterPane = ({
   data,
   setVisibleData,
@@ -112,6 +116,7 @@ const FilterPane = ({
   const [activeFilters, setActiveFilters] = useState(mFilterSet);
   const [activeFilterPane, setActiveFilterPane] = useState(FILTERS.CATEGORY.label);
   const [isFilterTypeSelectOpen, setFilterTypeSelectOpen] = useState(false);
+  const [keyword, setKeyword] = useState('');
   const toggleFilterTypeDropdown = () => {
     setFilterTypeSelectOpen(!isFilterTypeSelectOpen);
   };
@@ -172,11 +177,24 @@ const FilterPane = ({
               {activeFilterPane === FILTERS.KEYWORD.label && (
                 <AvailableFiltersPane
                   filterType={FILTERS.KEYWORD.key}
-                  availableFilters={activeFilters[FILTERS.KEYWORD.key]}
+                  availableFilters={getKeywordFiltersFromList(activeFilters[FILTERS.KEYWORD.key])}
                   selectedFilters={activeFilters[FILTERS.KEYWORD.key]}
                   toggleFilterOption={toggleFilter}
                 >
-
+                  <div className="ud-FilterPane-keyword">
+                    <div className="ud-FilterPane-keyword-input">
+                      <Input
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          setKeyword(val);
+                        }}
+                        value={keyword}
+                      />
+                    </div>
+                    <Button onClick={() => toggleFilter(FILTERS.KEYWORD.key, keyword)}>
+                      Add Filter
+                    </Button>
+                  </div>
                 </AvailableFiltersPane>
               )}
             </Col>

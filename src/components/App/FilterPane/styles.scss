@@ -17,4 +17,16 @@
     max-height: 400px;
     overflow: scroll;
   }
+
+  &-keyword {
+    width: 100%;
+    margin-bottom: $spacing-3;
+    padding-bottom: $spacing-2;
+    border-bottom: solid thin lightgray;
+    text-align: right;
+
+     &-input {
+       margin-bottom: $spacing-3;
+     }
+  }
 }
