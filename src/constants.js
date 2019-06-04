@@ -1,4 +1,4 @@
-export const colors = {
+export const colors = Object.freeze({
   fontDark: '#231123',
   fontLight: '#EFF7FF',
   primary: '#82204A',
@@ -8,9 +8,9 @@ export const colors = {
   warning: '#ff9966',
   error: '#cc3300',
   trendLine: '#bcbcbc',
-};
+});
 
-export const sizes = {
+export const sizes = Object.freeze({
   fontXSM: '10px',
   fontSM: '14px',
   fontMD: '18px',
@@ -22,10 +22,10 @@ export const sizes = {
   spacing4: '32px',
   spacing5: '48px',
   spacing6: '64px',
-};
+});
 
 
-export const category20 = {
+export const category20 = Object.freeze({
   color1: '#1f77b4',
   color2: '#aec7e8',
   color3: '#ff7f0e',
@@ -46,17 +46,46 @@ export const category20 = {
   color18: '#dbdb8d',
   color19: '#17becf',
   color20: '#9edae5',
-};
+});
 
-export const iconSizes = {
+export const iconSizes = Object.freeze({
+  xsmall: 16,
   small: 24,
   medium: 36,
   large: 48,
   xlarge: 64,
-};
+});
 
-export const trend = {
-  up: 'trending-up',
-  down: 'trending-down',
-  // neutral: 'trend-neutral',
-};
+export const trend = Object.freeze({
+  up: {
+    key: 'UP',
+    label: 'Trending Up',
+  },
+  down: {
+    key: 'DOWN',
+    label: 'Trending Down',
+  },
+  neutral: {
+    key: 'NEUTRAL',
+    label: 'Trending Neutral',
+  },
+});
+
+export const target = Object.freeze({
+  onTarget: {
+    label: 'On Target',
+    key: 'ON_TARGET',
+  },
+  offTarget: {
+    label: 'Off Target',
+    key: 'OFF_TARGET',
+  },
+  trendingToTarget: {
+    label: 'Trending to Target',
+    key: 'TRENDING_TO_TARGET',
+  },
+  trendingFromTarget: {
+    label: 'Trending From Target',
+    key: 'TRENDING_FROM_TARGET',
+  },
+});

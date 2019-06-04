@@ -19,6 +19,16 @@ function toColumn(num) {
   return range.concat(String.fromCharCode(64 + num));
 }
 
+function getTrendSlope(points) {
+  const n = points.length;
+  const sumOfProducts = points.reduce((acc, val) => acc + (val.x * val.y), 0);
+  const sumOfX = points.reduce((acc, val) => acc + val.x, 0);
+  const sumOfY = points.reduce((acc, val) => acc + val.y, 0);
+  const sumOfXsq = points.reduce((acc, val) => (acc + (val.x ** 2)), 0);
+
+  return ((n * sumOfProducts) - (sumOfX * sumOfY)) / ((n * sumOfXsq) - (sumOfX ** 2));
+}
+
 // Grabs info from sheets and processes it into the expected schema
 function dataSetProcessor(chart, type) {
   const attributeColumn = attr => ({
@@ -63,6 +73,22 @@ function valueProcessor(data) {
   };
   chart.axisLabels = chart.type === 'DONUT' ? [data.values[9][1]] : [data.values[9][1], data.values[10][1]];
   chart.dataSets = dataSetProcessor(data.values.slice(14), chart.type);
+  if (chart.type !== 'DONUT') {
+    let avgSlope = chart.dataSets
+      .map((set) => {
+        const points = set.values[0].map((val, i) => ({
+          // eslint-disable-next-line no-restricted-globals
+          x: isNaN(val) ? i : parseInt(val, 10),
+          y: parseInt(set.values[1][i], 10),
+        }));
+        return getTrendSlope(points);
+      })
+      .reduce((acc, val) => val + acc, 0);
+    avgSlope /= chart.dataSets.length;
+    if (avgSlope > 0) chart.trending = 'UP';
+    else if (avgSlope < 0) chart.trending = 'DOWN';
+    else chart.trending = 'NEUTRAL';
+  }
   return chart;
 }
 
@@ -90,17 +116,13 @@ class GoogleSheetsAPI extends RESTDataSource {
       });
     }));
     const results = await retrieveData;
-    return results.data.sheets.filter((x) => {
-      if (x.properties.title === 'DonutTemplate'
-            || x.properties.title === 'BarTemplate'
-          || x.properties.title === 'LineTemplate') {
-        return false;
-      }
-      return true;
-    }).map(x => ({
-      title: x.properties.title,
-      gridProperties: x.properties.gridProperties,
-    }));
+    return results.data.sheets.filter(x => !(x.properties.title === 'DonutTemplate'
+        || x.properties.title === 'BarTemplate'
+        || x.properties.title === 'LineTemplate'))
+      .map(x => ({
+        title: x.properties.title,
+        gridProperties: x.properties.gridProperties,
+      }));
   }
 
   async getCharts() {

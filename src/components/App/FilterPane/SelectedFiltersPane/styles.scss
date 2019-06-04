@@ -1,0 +1,18 @@
+@import "../../../../base-styles";
+
+.ud-SelectedFiltersPane {
+  max-width: 300px;
+  position: relative;
+  margin: $spacing-3 0 $spacing-3 0;
+
+  &-icon {
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+  }
+
+  &-toggle {
+    position: relative;
+    padding-right: $spacing-4;
+  }
+}

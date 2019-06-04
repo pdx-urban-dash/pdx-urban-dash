@@ -1,0 +1,32 @@
+@import "../../../base-styles";
+
+.ud-FilterPane {
+  transition: max-height 0.5s;
+  -webkit-transition: max-height 0.5s;
+
+  &-filter-type-dropdown {
+    width: 100%;
+  }
+
+  &--hide {
+    max-height: 2px;
+    overflow: hidden;
+  }
+
+  &--show {
+    max-height: 400px;
+    overflow: scroll;
+  }
+
+  &-keyword {
+    width: 100%;
+    margin-bottom: $spacing-3;
+    padding-bottom: $spacing-2;
+    border-bottom: solid thin lightgray;
+    text-align: right;
+
+     &-input {
+       margin-bottom: $spacing-3;
+     }
+  }
+}

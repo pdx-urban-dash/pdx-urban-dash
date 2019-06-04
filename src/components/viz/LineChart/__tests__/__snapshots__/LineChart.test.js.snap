@@ -59,7 +59,12 @@ ShallowWrapper {
     }
     onTarget={false}
     title="chart title"
-    trending="trending-up"
+    trending={
+      Object {
+        "key": "UP",
+        "label": "Trending Up",
+      }
+    }
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -97,7 +102,10 @@ ShallowWrapper {
       "className": "",
       "onTarget": false,
       "title": "chart title",
-      "trending": "trending-up",
+      "trending": Object {
+        "key": "UP",
+        "label": "Trending Up",
+      },
     },
     "ref": null,
     "rendered": Array [
@@ -163,7 +171,10 @@ ShallowWrapper {
         "className": "",
         "onTarget": false,
         "title": "chart title",
-        "trending": "trending-up",
+        "trending": Object {
+          "key": "UP",
+          "label": "Trending Up",
+        },
       },
       "ref": null,
       "rendered": Array [

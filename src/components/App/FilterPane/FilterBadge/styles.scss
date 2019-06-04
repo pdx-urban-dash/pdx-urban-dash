@@ -1,0 +1,19 @@
+@import "../../../../base-styles";
+
+.ud-FilterBadge {
+  border-radius: 4px;
+  border: solid thin white;
+  color: $color-font-dark;
+  background-color: white;
+  padding: $spacing-1 $spacing-2 $spacing-1 $spacing-2;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  margin: $spacing-2;
+
+  &--selected {
+    color: $color-font-light;
+    border-color: $color-success;
+    background-color: $color-success;
+  }
+}

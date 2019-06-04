@@ -28,12 +28,14 @@ graphQlServer.applyMiddleware({
       'editor.theme': 'light',
     },
   },
+  path: '/graphql',
 });
-
-app.get('/test', (req, res) => res.send({ express: 'Hello World.' }));
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(port, () => {
+  console.log(`📈 Listening on port ${port}`);
+  console.log(`🚀 serving graphql API at http://localhost:${port}/graphql`);
+});

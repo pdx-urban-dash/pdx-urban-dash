@@ -13,6 +13,7 @@
     "express": "^4.16.4",
     "googleapis": "^40.0.0",
     "graphql": "^14.2.1",
+    "graphql-tag": "^2.10.1",
     "graphql-tools": "^4.0.4",
     "node-sass": "^4.11.0",
     "prop-types": "^15.7.2",
