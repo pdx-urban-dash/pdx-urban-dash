@@ -11,6 +11,7 @@ services:
         - SHEET_ID=${SHEET_ID}
         - CLIENT_EMAIL=${CLIENT_EMAIL}
         - PRIVATE_KEY=${PRIVATE_KEY}
+        - GRAPHQL_URI=${GRAPHQL_URI}
     volumes:
         - ./:/home/dash/pdx-urban-dash
     expose:
