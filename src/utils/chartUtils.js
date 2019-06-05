@@ -17,7 +17,10 @@ export const genChart = (chartJson, colorScheme, className) => {
       chartData
         .values[0]
         .values
-        .map((e, i) => values.push({ x: e, y: chartData.values[1].values[i] }));
+        .map((e, i) => values.push({
+          x: isNaN(e) ? e : parseFloat(e),
+          y: parseFloat(chartData.values[1].values[i]),
+        }));
       data.push({
         dataSetName: chartData.title,
         lineColor: chartData.color,
@@ -35,7 +38,10 @@ export const genChart = (chartJson, colorScheme, className) => {
       chartData
         .values[0]
         .values
-        .map((e, i) => values.push({ x: e, y: chartData.values[1].values[i] }));
+        .map((e, i) => values.push({
+          x: isNaN(e) ? e : parseFloat(e),
+          y: parseFloat(chartData.values[1].values[i]),
+        }));
       data.push({
         dataSetName: chartData.title,
         barColor: chartData.color,
@@ -60,7 +66,7 @@ export const genChart = (chartJson, colorScheme, className) => {
         {
           color: e,
           name: chartData.values[1].values[i],
-          value: chartData.values[2].values[i],
+          value: parseFloat(chartData.values[2].values[i]),
         },
       ));
     });

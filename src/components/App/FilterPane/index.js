@@ -20,6 +20,43 @@ import SelectedFiltersPane from './SelectedFiltersPane';
 
 import './styles.scss';
 
+const compareAgainstTargetFilter = (setTarget, targetTrend, trending, lastYValue, targetFilter) => {
+  if (setTarget === undefined || setTarget === null) return false;
+  if (targetFilter === target.onTarget.key) {
+    return (targetTrend === trend.up.key && trending === trend.up.key && lastYValue >= setTarget)
+      || (targetTrend === trend.down.key && trending === trend.down.key && lastYValue <= setTarget);
+  }
+  if (targetFilter === target.offTarget.key) {
+    return (targetTrend === trend.up.key && trending === trend.up.key && lastYValue < setTarget)
+    || (targetTrend === trend.down.key && trending === trend.down.key && lastYValue > setTarget);
+  }
+  if (targetFilter === target.trendingFromTarget.key) {
+    return (trending === trend.up.key && lastYValue > target)
+      || (trending === trend.down.key && lastYValue < target);
+  }
+  if (targetFilter === target.trendingToTarget.key) {
+    return (trending === trend.up.key && lastYValue < target)
+      || (trending === trend.down.key && lastYValue > target);
+  }
+  return false;
+};
+
+const targetFilter = (dataSetItem, targetFilter) => {
+  const yValuesLength = dataSetItem.values[1].values.length;
+  let lastYValue = dataSetItem.values[1].values[yValuesLength - 1];
+  // eslint-disable-next-line
+  if (isNaN(lastYValue)) return false;
+  lastYValue = parseFloat(lastYValue);
+  if (dataSetItem.trending === trend.neutral.key) return false;
+  return compareAgainstTargetFilter(
+    dataSetItem.target,
+    dataSetItem.targetTrend,
+    dataSetItem.trending,
+    lastYValue,
+    targetFilter
+  );
+};
+
 export const FILTERS = {
   CATEGORY: {
     apply: (dataSetItem, categories) => {
@@ -39,7 +76,7 @@ export const FILTERS = {
   TARGET: {
     apply: (dataSetItem, targets) => {
       if (targets.length === 0) return true;
-      return targets.some(t => t === dataSetItem.trending);
+      return targets.some(t => targetFilter(dataSetItem, t));
     },
     key: 'targetFilters',
     label: 'Target filters',
@@ -48,7 +85,7 @@ export const FILTERS = {
   TREND: {
     apply: (dataSetItem, trends) => {
       if (trends.length === 0) return true;
-      return trends.some(mTrend => dataSetItem.dataSets.some(setTrend => mTrend === setTrend));
+      return trends.some(t => t === dataSetItem.trending);
     },
     key: 'trendFilters',
     label: 'Trend filters',
@@ -144,7 +181,10 @@ const FilterPane = ({
                 <DropdownToggle className="ud-FilterPane-filter-type-dropdown" caret>{activeFilterPane}</DropdownToggle>
                 <DropdownMenu className="ud-FilterPane-filter-type-dropdown">
                   {Object.keys(FILTERS).map(key => (
-                    <DropdownItem onClick={() => setActiveFilterPane(FILTERS[key].label)}>
+                    <DropdownItem
+                      key={`ud-FilterPane-dropdown-item-${key}`}
+                      onClick={() => setActiveFilterPane(FILTERS[key].label)}
+                    >
                       {FILTERS[key].label}
                     </DropdownItem>
                   ))}
@@ -191,7 +231,11 @@ const FilterPane = ({
                         value={keyword}
                       />
                     </div>
-                    <Button onClick={() => toggleFilter(FILTERS.KEYWORD.key, keyword)}>
+                    <Button
+                      onClick={() => {
+                        if (keyword) toggleFilter(FILTERS.KEYWORD.key, keyword);
+                      }}
+                    >
                       Add Filter
                     </Button>
                   </div>

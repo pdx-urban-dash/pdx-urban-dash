@@ -82,7 +82,7 @@ BarChartGrouped.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
   colorScheme: PropTypes.oneOf(['light', 'dark']),
-  trending: PropTypes.oneOf('Object.values(trend)'),
+  trending: PropTypes.oneOf(Object.values(trend).map(t => t.key)),
   onTarget: PropTypes.bool,
 };
 
@@ -90,7 +90,7 @@ BarChartGrouped.defaultProps = {
   title: 'chart title',
   className: '',
   colorScheme: 'light',
-  trending: trend.up,
+  trending: trend.neutral.key,
   onTarget: false,
 };
 

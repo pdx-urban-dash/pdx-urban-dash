@@ -7,8 +7,8 @@ import { genChart } from '../../../utils/chartUtils';
 
 const ChartPane = ({ visibleCharts }) => (
   <Container>
-    {visibleCharts.map(chart => (
-      <div className="ud-ChartPane-chart" key={`ud-chart-${chart.title}`}>
+    {visibleCharts.map((chart, idx) => (
+      <div className="ud-ChartPane-chart" key={`ud-chart-${chart.title}-${idx}`}>
         {genChart(chart, 'light')}
       </div>
     ))}

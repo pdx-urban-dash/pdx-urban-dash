@@ -27,7 +27,9 @@ const ChartWrapper = (
       nonLegendChildren.push(child);
     }
   });
-
+  let trendingIcon = null;
+  if (trending === trend.up.key) trendingIcon = 'trending-up';
+  if (trending === trend.down.key) trendingIcon = 'trending-down';
 
   return (
     <Container className={`ChartWrapper-wrapper ${className}`}>
@@ -41,7 +43,9 @@ const ChartWrapper = (
         <Col>{nonLegendChildren} </Col>
         <Col>
           <Row>
-            <Col> <Icon type={trending} size="sm" /></Col>
+            <Col>
+              {trendingIcon && <Icon type={trendingIcon} size="sm" />}
+            </Col>
             <Col> <Icon type={onTarget ? ('on-target') : ('off-target')} size="sm" /></Col>
           </Row>
           <Row> { legendChild } </Row>
@@ -54,14 +58,14 @@ const ChartWrapper = (
 ChartWrapper.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
-  trending: PropTypes.oneOf(Object.values(trend)),
+  trending: PropTypes.oneOf(Object.values(trend).map(t => t.key)),
   onTarget: PropTypes.bool,
 };
 
 ChartWrapper.defaultProps = {
   title: '',
   className: '',
-  trending: trend.up,
+  trending: trend.neutral.key,
   onTarget: false,
 };
 

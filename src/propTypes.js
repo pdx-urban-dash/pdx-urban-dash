@@ -6,7 +6,6 @@ export const dataSetType = PropTypes.shape({
   description: PropTypes.string,
   color: PropTypes.string,
   showTrendLine: PropTypes.bool.isRequired,
-  trend: PropTypes.oneOf(['UP', 'DOWN']).isRequired,
   values: PropTypes.arrayOf(
     PropTypes.shape({
       values: PropTypes.arrayOf(PropTypes.string),
