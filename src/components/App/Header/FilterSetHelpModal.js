@@ -8,7 +8,8 @@ const FilterSetHelpModal = ({ isOpen, toggleOpen }) => (
       What are filter sets?
     </ModalHeader>
     <ModalBody>
-      Some explaination here.
+      <strong>Filter sets are a way to save your filters to recall later.</strong>
+      <span className="ud-FilterSetHelpModal-body">Using this drop-down menu, you can recall filter presets that help you understand the data better!</span>
     </ModalBody>
   </Modal>
 );
