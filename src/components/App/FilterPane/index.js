@@ -20,40 +20,40 @@ import SelectedFiltersPane from './SelectedFiltersPane';
 
 import './styles.scss';
 
-const compareAgainstTargetFilter = (setTarget, targetTrend, trending, lastYValue, targetFilter) => {
+const compareAgainstTargetFilter = (setTarget, targetTrend, trending, lastYValue, mFilter) => {
   if (setTarget === undefined || setTarget === null) return false;
-  if (targetFilter === target.onTarget.key) {
+  if (mFilter === target.onTarget.key) {
     return (targetTrend === trend.up.key && trending === trend.up.key && lastYValue >= setTarget)
       || (targetTrend === trend.down.key && trending === trend.down.key && lastYValue <= setTarget);
   }
-  if (targetFilter === target.offTarget.key) {
+  if (mFilter === target.offTarget.key) {
     return (targetTrend === trend.up.key && trending === trend.up.key && lastYValue < setTarget)
     || (targetTrend === trend.down.key && trending === trend.down.key && lastYValue > setTarget);
   }
-  if (targetFilter === target.trendingFromTarget.key) {
-    return (trending === trend.up.key && lastYValue > target)
-      || (trending === trend.down.key && lastYValue < target);
+  if (mFilter === target.trendingFromTarget.key) {
+    return (trending === trend.up.key && lastYValue >= setTarget)
+      || (trending === trend.down.key && lastYValue <= setTarget);
   }
-  if (targetFilter === target.trendingToTarget.key) {
-    return (trending === trend.up.key && lastYValue < target)
-      || (trending === trend.down.key && lastYValue > target);
+  if (mFilter === target.trendingToTarget.key) {
+    return (trending === trend.up.key && lastYValue <= setTarget)
+      || (trending === trend.down.key && lastYValue >= setTarget);
   }
   return false;
 };
 
-const targetFilter = (dataSetItem, targetFilter) => {
-  const yValuesLength = dataSetItem.values[1].values.length;
-  let lastYValue = dataSetItem.values[1].values[yValuesLength - 1];
-  // eslint-disable-next-line
+const targetFilter = (dataSetItem, mFilter) => {
+  if (dataSetItem.trending === trend.neutral.key) return false;
+  const set = dataSetItem.dataSets[0];
+  const yValuesLength = set.values[1].values.length;
+  let lastYValue = set.values[1].values[yValuesLength - 1];
   if (isNaN(lastYValue)) return false;
   lastYValue = parseFloat(lastYValue);
-  if (dataSetItem.trending === trend.neutral.key) return false;
   return compareAgainstTargetFilter(
     dataSetItem.target,
     dataSetItem.targetTrend,
     dataSetItem.trending,
     lastYValue,
-    targetFilter
+    mFilter,
   );
 };
 

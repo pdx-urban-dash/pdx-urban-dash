@@ -38,6 +38,7 @@ const sheetsDataQuery = gql`
       categories
       target
       targetTrend
+      trending
       axisLabels
       dataSets {
         title
