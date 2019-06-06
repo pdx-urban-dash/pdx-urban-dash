@@ -8,6 +8,7 @@ import { genChart } from '../../../utils/chartUtils';
 const ChartPane = ({ visibleCharts }) => (
   <Container>
     {visibleCharts.map((chart, idx) => (
+      // eslint-disable-next-line
       <div className="ud-ChartPane-chart" key={`ud-chart-${chart.title}-${idx}`}>
         {genChart(chart, 'light')}
       </div>
