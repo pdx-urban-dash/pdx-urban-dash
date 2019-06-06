@@ -12,7 +12,7 @@ import Main from './Main';
 
 const cache = new InMemoryCache();
 
-const graphQlURI = process.env.GRAPHQL_URI || 'http://localhost:8080/graphql';
+const graphQlURI = process.env.GRAPHQL_URI;
 const graphQlAuth = process.env.GRAPHQL_CRED || '';
 
 const httpLink = new HttpLink({

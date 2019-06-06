@@ -6,7 +6,7 @@ const graphSchema = require('./src/graphAPI/schema');
 const { GoogleSheetsAPI } = require('./src/graphAPI/googleSheetsAPI');
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT;
 
 const graphQlServer = new ApolloServer({
   typeDefs: graphSchema.typeDef,
