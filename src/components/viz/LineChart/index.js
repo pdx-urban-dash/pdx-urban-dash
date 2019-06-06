@@ -94,14 +94,17 @@ LineChart.propTypes = {
     description: PropTypes.string,
     showTrendLine: PropTypes.bool,
     values: PropTypes.arrayOf(PropTypes.shape({
-      x: PropTypes.number.isRequired,
+      x: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+      ]).isRequired,
       y: PropTypes.number.isRequired,
     })),
   })).isRequired,
   title: PropTypes.string,
   className: PropTypes.string,
   colorScheme: PropTypes.oneOf(['light', 'dark']),
-  trending: PropTypes.oneOf('Object.values(trend)'),
+  trending: PropTypes.oneOf(Object.values(trend).map(t => t.key)),
   onTarget: PropTypes.bool,
 };
 
@@ -109,7 +112,7 @@ LineChart.defaultProps = {
   title: 'chart title',
   className: '',
   colorScheme: 'light',
-  trending: trend.up,
+  trending: trend.neutral.key,
   onTarget: false,
 };
 

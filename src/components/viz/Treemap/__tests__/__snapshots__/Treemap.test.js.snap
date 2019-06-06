@@ -84,10 +84,7 @@ ShallowWrapper {
       "className": "",
       "onTarget": false,
       "title": "chart title",
-      "trending": Object {
-        "key": "UP",
-        "label": "Trending Up",
-      },
+      "trending": "NEUTRAL",
     },
     "ref": null,
     "rendered": Array [
@@ -153,10 +150,7 @@ ShallowWrapper {
         "className": "",
         "onTarget": false,
         "title": "chart title",
-        "trending": Object {
-          "key": "UP",
-          "label": "Trending Up",
-        },
+        "trending": "NEUTRAL",
       },
       "ref": null,
       "rendered": Array [
