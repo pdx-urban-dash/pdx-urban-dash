@@ -12,7 +12,10 @@
   "config": {
     "axis": {
       "$labelColor": "",
-      "$labelFontSize": 0
+      "$labelFontSize": 0,
+      "$labelOverlap": true,
+      "$labelBound": true
+
     }
   },
   "scales": [
