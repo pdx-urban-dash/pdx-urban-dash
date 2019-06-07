@@ -38,7 +38,13 @@
     }
   ],
   "axes": [
-    {"orient": "bottom", "scale": "x"},
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "labelOverlap": "greedy",
+      "labelBound": 25,
+      "labelSeparation": 10
+    },
     {"orient": "left", "scale": "y"}
   ],
   "marks": [
