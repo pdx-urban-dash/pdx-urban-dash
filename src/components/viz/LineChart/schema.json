@@ -12,10 +12,7 @@
   "config": {
     "axis": {
       "$labelColor": "",
-      "$labelFontSize": 0,
-      "$labelOverlap": true,
-      "$labelBound": true
-
+      "$labelFontSize": 0
     }
   },
   "scales": [
@@ -41,7 +38,13 @@
     }
   ],
   "axes": [
-    {"orient": "bottom", "scale": "x"},
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "labelOverlap": "greedy",
+      "labelBound": 25,
+      "labelSeparation": 10
+    },
     {"orient": "left", "scale": "y"}
   ],
   "marks": [
