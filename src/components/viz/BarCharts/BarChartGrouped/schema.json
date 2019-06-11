@@ -11,6 +11,17 @@
     }
   ],
 
+  "config": {
+    "axis": {
+      "$labelColor": "",
+      "$labelFontSize": 0,
+      "labelOverlap": "greedy",
+      "labelBound": 25,
+      "labelSeparation": 10
+    }
+  },
+
+
 "scales": [
     {
       "name": "yscale",

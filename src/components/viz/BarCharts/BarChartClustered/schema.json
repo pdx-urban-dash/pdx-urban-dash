@@ -14,7 +14,10 @@
   "config": {
     "axis": {
       "$labelColor": "",
-      "$labelFontSize": 0
+      "$labelFontSize": 0,
+      "labelOverlap": "greedy",
+      "labelBound": 25,
+      "labelSeparation": 10
     }
   },
 
