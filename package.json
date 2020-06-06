@@ -7,7 +7,7 @@
     "apollo-client": "^2.5.1",
     "apollo-datasource-rest": "^0.4.0",
     "apollo-link-http": "^1.5.14",
-    "apollo-server-express": "^2.4.8",
+    "apollo-server-express": "^2.14.2",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.3.1",
     "express": "^4.16.4",
